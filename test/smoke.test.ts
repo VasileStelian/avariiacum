@@ -57,3 +57,11 @@ describe("home page HTML", () => {
     expect(html).toMatch(/<meta name="description" content="[^"]{50,}"/);
   });
 });
+
+describe("cron endpoint", () => {
+  it("refuses a request without the cron secret", async () => {
+    const response = await fetch(`${BASE}/api/cron/curatenie/`);
+
+    expect([401, 500]).toContain(response.status);
+  });
+});
