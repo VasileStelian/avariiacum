@@ -16,7 +16,7 @@ Povestea: în Bacău rămân des cartiere fără apă. Vasile e din IT, știe Do
 | Orașe | **Bacău + Iași** din prima zi | Iași are de ~5 ori mai multe căutări pentru avarii |
 | Adrese | `/bacau/`, `/bacau/republicii/`, `/bacau/apa/` | Scop național mai târziu, fără mutări de URL |
 | Zone | **Listă fixă de cartiere** + link „Lipsește cartierul tău? Spune-ne” | Destui oameni pe zonă cât să iasă grafic; harta vine mai târziu |
-| Servicii | **Apă, Curent, Gaz, Apă caldă și căldură (CET)** | CET = termoficare (Thermoenergy Bacău, Veolia Iași); sezonul începe în octombrie |
+| Servicii | **Apă, Curent, Gaz, Apă caldă și căldură (CET)** | CET = termoficare (Thermoenergy Bacău, Termo-Service Iași); sezonul începe în octombrie |
 | Conturi | **Niciunul**, raportare anonimă | Nimeni nu-și face cont ca să spună că nu are apă |
 | Anti-abuz | 1 raport per (serviciu, cartier) la 2 ore per dispozitiv/IP; IP salvat doar ca hash HMAC; **alertă doar la ≥3 raportori distincți în ultima oră** | Un troll singur nu poate declanșa nimic |
 | Turnstile | Pregătit în cod, **oprit** (flag) | Se pornește doar dacă apar abuzuri |
@@ -49,16 +49,16 @@ Slug-uri fără diacritice: `bistrita-lac`, `george-bacovia`, `serbanesti`, `ghe
 
 ## Furnizorii și numerele de avarii
 
-**DE VERIFICAT la sursa oficială** înainte de lansare, cu data verificării scrisă lângă număr:
+Verificate pe 5 octombrie 2026, pe site-urile oficiale (sursele sunt și în `src/config/locations.ts`):
 
 | Serviciu | Bacău | Iași |
 |---|---|---|
-| Apă | CRAB, Compania Regională de Apă Bacău (apabacau.ro) | ApaVital |
-| Curent | Delgaz Grid | Delgaz Grid |
-| Gaz | Delgaz Grid | Delgaz Grid |
-| Apă caldă și căldură (CET) | Thermoenergy | Veolia Energie Iași |
+| Apă | CRAB: 0372 401 301, call center, tasta 1 pentru avarii ([apabacau.ro](https://www.apabacau.ro/)) | ApaVital: 0232 969, call center L-V 07-21, weekend 08-20; avarii@apavital.ro ([apavital.ro/contact](https://www.apavital.ro/contact)) |
+| Curent | Delgaz Grid: 0800 800 929, gratuit, non-stop ([delgaz.ro/despre-noi/contact](https://delgaz.ro/despre-noi/contact)) | la fel |
+| Gaz | Delgaz Grid: 0800 800 928, gratuit, non-stop (aceeași sursă) | la fel |
+| Apă caldă și căldură | Thermoenergy: 0234 585 050, dispecerat non-stop ([thermoenergy.ro](https://thermoenergy.ro/)) | Termo-Service (nu mai e Veolia): 0232 232 360, linie de informații, nu dispecerat ([tsiasi.ro](https://tsiasi.ro/noutati-si-comunicate/numere-de-telefon)) |
 
-Pe fiecare pagină de serviciu: „Nu suntem [furnizor]. Pentru avarii, sună la: [număr]”. Numele furnizorului poate apărea descriptiv în titlu (ex. „Apă Bacău acum: avarii CRAB raportate pe cartiere”), dar pagina nu trebuie să pară site-ul lor oficial.
+Pe fiecare pagină de serviciu: „Nu suntem [furnizor]. Pentru avarii, sună la: [număr]”, cu sursa și data verificării. Numele furnizorului poate apărea descriptiv în titlu (ex. „Apă Bacău acum: avarii CRAB raportate pe cartiere”), dar pagina nu trebuie să pară site-ul lor oficial.
 
 ## Paginile versiunii 1
 

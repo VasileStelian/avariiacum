@@ -39,7 +39,7 @@ export default function AboutPage() {
         </section>
         <section className="stack">
           <h2>Ce nu suntem</h2>
-          <p>Nu suntem CRAB, ApaVital, Delgaz Grid, Thermoenergy sau Veolia și nu primim date de la ei. Pentru avarii, sună la furnizor; numărul e pe pagina fiecărui serviciu.</p>
+          <p>Nu suntem CRAB, ApaVital, Delgaz Grid, Thermoenergy sau Termo-Service și nu primim date de la ei. Pentru avarii, sună la furnizor; numărul e pe pagina fiecărui serviciu.</p>
         </section>
         <section className="stack">
           <h2>Ce păstrăm</h2>

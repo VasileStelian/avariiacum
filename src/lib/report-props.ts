@@ -12,6 +12,7 @@ export function reportProps(city: City, label: string, preset: { zone?: string; 
       noun: service.outagePhrase.replace(/^de /, ""),
       provider: city.providers[service.slug].name,
       phone: city.providers[service.slug].phone,
+      phoneNote: city.providers[service.slug].phoneNote,
     })),
     zone: preset.zone,
     service: preset.service,

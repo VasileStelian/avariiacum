@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { clockRo, countRo, joinRo, timeAgo } from "./format";
+import { clockRo, countRo, joinRo, telHref, timeAgo } from "./format";
 
 describe("joinRo", () => {
   it("joins Romanian lists with commas and a final „și”", () => {
@@ -63,5 +63,13 @@ describe("countRo", () => {
     expect(countRo(101, people)).toBe("101 persoane");
     expect(countRo(119, people)).toBe("119 persoane");
     expect(countRo(120, people)).toBe("120 de persoane");
+  });
+});
+
+describe("telHref", () => {
+  it("makes a tel: link from a number written with spaces or dots", () => {
+    expect(telHref("0372 401 301")).toBe("tel:0372401301");
+    expect(telHref("0234.585.050")).toBe("tel:0234585050");
+    expect(telHref("0232 969")).toBe("tel:0232969");
   });
 });

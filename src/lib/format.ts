@@ -45,3 +45,7 @@ const CLOCK = new Intl.DateTimeFormat("ro-RO", { timeZone: "Europe/Bucharest", h
 export function clockRo(date: Date): string {
   return CLOCK.format(date);
 }
+
+export function telHref(phone: string): string {
+  return `tel:${phone.replace(/[^\d+]/g, "")}`;
+}

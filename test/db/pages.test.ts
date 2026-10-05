@@ -121,6 +121,9 @@ describe("/bacau/apa/", () => {
     expect(html).toContain(">Bistrița-Lac<");
     expect(html).toContain("Avarii apă: CRAB");
     expect(html).toContain("Nu suntem CRAB");
+    expect(html).toContain('href="tel:0372401301"');
+    expect(html).toContain("call center, tasta 1 pentru avarii");
+    expect(html).toContain('href="https://www.apabacau.ro/"');
   });
 
   it("draws 96 bars of 15 minutes", async () => {

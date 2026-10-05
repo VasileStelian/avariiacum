@@ -7,7 +7,7 @@ import { Breadcrumbs } from "@/components/json-ld";
 import { ReportDialog } from "@/components/report-dialog";
 import { StatusBadge } from "@/components/status-badge";
 import { SERVICES, findCity } from "@/config/locations";
-import { clockRo, countRo } from "@/lib/format";
+import { clockRo, countRo, telHref } from "@/lib/format";
 import { reportProps } from "@/lib/report-props";
 import { type Cell, type CityRow, cityView } from "@/lib/views";
 import { serverReportsStore } from "@/server/supabase";
@@ -137,7 +137,11 @@ export default async function CityPage({ params }: PageProps<"/[oras]">) {
                   <ServiceIcon slug={service.slug} />
                   {service.name}
                 </span>
-                <p className="small muted">{`${city.providers[service.slug].name}: ${city.providers[service.slug].phone ?? "număr de verificat la sursă"}`}</p>
+                <p className="small muted">
+                  {`${city.providers[service.slug].name}: `}
+                  <a href={telHref(city.providers[service.slug].phone)}>{city.providers[service.slug].phone}</a>
+                  {` (${city.providers[service.slug].phoneNote})`}
+                </p>
               </li>
             ))}
           </ul>

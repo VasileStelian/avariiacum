@@ -23,8 +23,12 @@ export type Zone = {
 export type Provider = {
   name: string;
   fullName: string;
-  // null până la verificarea la sursa oficială (issue #2)
-  phone: string | null;
+  phone: string;
+  // ce fel de linie e: „gratuit, non-stop”, „call center, tasta 1 pentru avarii”
+  phoneNote: string;
+  // pagina oficială de unde e luat numărul și data verificării (AAAA-LL-ZZ)
+  source: string;
+  verified: string;
 };
 
 export type City = {
@@ -58,7 +62,24 @@ function zones(names: readonly string[]): Zone[] {
   return names.map((name) => ({ slug: slugify(name), name }));
 }
 
-const DELGAZ: Provider = { name: "Delgaz Grid", fullName: "Delgaz Grid", phone: null };
+// Delgaz Grid acoperă curentul și gazul în Bacău și Iași; numerele de urgență diferă.
+const DELGAZ_CURENT: Provider = {
+  name: "Delgaz Grid",
+  fullName: "Delgaz Grid",
+  phone: "0800 800 929",
+  phoneNote: "gratuit, non-stop",
+  source: "https://delgaz.ro/despre-noi/contact",
+  verified: "2026-10-05",
+};
+
+const DELGAZ_GAZ: Provider = {
+  name: "Delgaz Grid",
+  fullName: "Delgaz Grid",
+  phone: "0800 800 928",
+  phoneNote: "gratuit, non-stop",
+  source: "https://delgaz.ro/despre-noi/contact",
+  verified: "2026-10-05",
+};
 
 // Sursa: ro.wikipedia.org/wiki/Listă_de_cartiere_din_Bacău (10) + storia.ro (Nord, Orizont), vezi docs/PLAN.md.
 // Iași intră după verificarea listei de cartiere (issue #1).
@@ -82,10 +103,24 @@ export const CITIES: readonly City[] = [
       "Orizont",
     ]),
     providers: {
-      apa: { name: "CRAB", fullName: "Compania Regională de Apă Bacău", phone: null },
-      curent: DELGAZ,
-      gaz: DELGAZ,
-      caldura: { name: "Thermoenergy", fullName: "Thermoenergy", phone: null },
+      apa: {
+        name: "CRAB",
+        fullName: "Compania Regională de Apă Bacău",
+        phone: "0372 401 301",
+        phoneNote: "call center, tasta 1 pentru avarii",
+        source: "https://www.apabacau.ro/",
+        verified: "2026-10-05",
+      },
+      curent: DELGAZ_CURENT,
+      gaz: DELGAZ_GAZ,
+      caldura: {
+        name: "Thermoenergy",
+        fullName: "Thermoenergy",
+        phone: "0234 585 050",
+        phoneNote: "dispecerat, non-stop",
+        source: "https://thermoenergy.ro/",
+        verified: "2026-10-05",
+      },
     },
   },
 ];

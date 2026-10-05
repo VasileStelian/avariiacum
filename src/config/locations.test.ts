@@ -102,12 +102,23 @@ describe("Bacău", () => {
     ]);
   });
 
-  it("has no provider phone number until it is checked at the source (issue #2)", () => {
+  it("has every provider number checked at an official source, with the date", () => {
+    for (const city of CITIES) {
+      for (const service of SERVICES) {
+        const provider = city.providers[service.slug];
+
+        expect(provider.phone, `${city.slug}/${service.slug}`).toMatch(/^0\d{3} ?\d{2,3} ?\d{2,3}( ?\d{3})?$/);
+        expect(provider.source, `${city.slug}/${service.slug}`).toMatch(/^https:\/\//);
+        expect(provider.verified, `${city.slug}/${service.slug}`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      }
+    }
+  });
+
+  it("uses the free non-stop Delgaz numbers, which differ for power and gas", () => {
     const bacau = findCity("bacau");
 
-    for (const service of SERVICES) {
-      expect(bacau?.providers[service.slug].phone).toBeNull();
-    }
+    expect(bacau?.providers.curent.phone).toBe("0800 800 929");
+    expect(bacau?.providers.gaz.phone).toBe("0800 800 928");
   });
 });
 
