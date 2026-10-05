@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import Link from "next/link";
 
 import { CITIES } from "@/config/locations";
+import { siteUrl } from "@/lib/site";
 
 import "./globals.css";
 
@@ -25,6 +26,8 @@ const body = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl(process.env.SITE_URL)),
+  openGraph: { siteName: "Avarii Acum", locale: "ro_RO", type: "website" },
   title: "Avarii Acum: apă, curent, gaz și căldură, pe cartiere",
   description: "Raportări anonime de la locuitori despre avariile de apă, curent, gaz și căldură, pe cartiere. Bacău și Iași.",
 };
@@ -53,6 +56,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <footer className="foot">
           <p>Avarii Acum nu este furnizorul de apă, curent, gaz sau căldură. Afișăm ce raportează locuitorii.</p>
+          <nav className="inline-links" aria-label="Despre site">
+            <Link prefetch={false} href="/despre/">
+              Despre
+            </Link>
+            <Link prefetch={false} href="/confidentialitate/">
+              Confidențialitate
+            </Link>
+          </nav>
           <p>
             Făcut de <a href="https://fanvora.ro">Fanvora Digital Studio</a>, Bacău
           </p>

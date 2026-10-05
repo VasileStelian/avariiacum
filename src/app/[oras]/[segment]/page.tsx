@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { Axis, Bars } from "@/components/bars";
 import { ServiceIcon } from "@/components/icons";
+import { Breadcrumbs } from "@/components/json-ld";
 import { ReportDialog } from "@/components/report-dialog";
 import { StatusBadge } from "@/components/status-badge";
 import { type City, SERVICES, type Service, type Zone, findCity, resolveCitySegment } from "@/config/locations";
@@ -69,6 +70,12 @@ async function ServicePage({ city, service }: { city: City; service: Service }) 
         <span aria-hidden="true">/</span>
         <span>{service.name}</span>
       </nav>
+      <Breadcrumbs
+        crumbs={[
+          { name: city.name, path: `/${city.slug}/` },
+          { name: service.name, path: `/${city.slug}/${service.slug}/` },
+        ]}
+      />
       <div className="head">
         <h1>{`${service.name} ${city.name} acum: avarii raportate pe cartiere`}</h1>
         <p className="lead">{view.affected.some((row) => row.status === "avarie") ? <strong>{view.headline}</strong> : view.headline}</p>
@@ -152,6 +159,12 @@ async function ZonePage({ city, zone }: { city: City; zone: Zone }) {
         <span aria-hidden="true">/</span>
         <span>{zone.name}</span>
       </nav>
+      <Breadcrumbs
+        crumbs={[
+          { name: city.name, path: `/${city.slug}/` },
+          { name: zone.name, path: `/${city.slug}/${zone.slug}/` },
+        ]}
+      />
       <div className="head">
         <h1>{`${zone.name}, ${city.name}: avarii acum`}</h1>
         <p className="lead">{view.services.some((row) => row.status === "avarie") ? <strong>{view.headline}</strong> : view.headline}</p>

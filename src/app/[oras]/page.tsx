@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ServiceIcon } from "@/components/icons";
+import { Breadcrumbs } from "@/components/json-ld";
 import { ReportDialog } from "@/components/report-dialog";
 import { StatusBadge } from "@/components/status-badge";
 import { SERVICES, findCity } from "@/config/locations";
@@ -70,6 +71,7 @@ export default async function CityPage({ params }: PageProps<"/[oras]">) {
 
   return (
     <main className="page">
+      <Breadcrumbs crumbs={[{ name: city.name, path: `/${city.slug}/` }]} />
       <div className="head">
         <h1>{`Avarii în ${city.name} acum`}</h1>
         <p className="lead">
