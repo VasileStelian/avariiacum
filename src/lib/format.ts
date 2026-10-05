@@ -1,0 +1,47 @@
+export type Noun = {
+  one: string;
+  many: string;
+};
+
+export function joinRo(items: readonly string[]): string {
+  if (items.length <= 1) {
+    return items.join("");
+  }
+
+  return `${items.slice(0, -1).join(", ")} și ${items.at(-1)}`;
+}
+
+// În română, numeralele de la 20 cer „de” („20 de persoane”), în afară de cele care se termină în 01-19.
+export function countRo(count: number, noun: Noun): string {
+  if (count === 1) {
+    return `1 ${noun.one}`;
+  }
+
+  const lastTwo = count % 100;
+  const needsDe = count >= 20 && (lastTwo === 0 || lastTwo >= 20);
+
+  return `${count} ${needsDe ? "de " : ""}${noun.many}`;
+}
+
+export function timeAgo(then: Date, now: Date): string {
+  const minutes = Math.floor((now.getTime() - then.getTime()) / 60_000);
+
+  if (minutes < 1) {
+    return "acum";
+  }
+
+  if (minutes < 60) {
+    return `acum ${minutes} min`;
+  }
+
+  const hours = Math.floor(minutes / 60);
+  const rest = minutes % 60;
+
+  return rest === 0 ? `acum ${hours} h` : `acum ${hours} h ${rest} min`;
+}
+
+const CLOCK = new Intl.DateTimeFormat("ro-RO", { timeZone: "Europe/Bucharest", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+
+export function clockRo(date: Date): string {
+  return CLOCK.format(date);
+}

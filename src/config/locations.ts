@@ -7,6 +7,10 @@ export type Service = {
   slug: ServiceSlug;
   name: string;
   shortName: string;
+  // „Probabil avarie de apă”
+  outagePhrase: string;
+  // „Nicio problemă cu apa”
+  aboutPhrase: string;
 };
 
 export type Zone = {
@@ -24,6 +28,8 @@ export type Provider = {
 export type City = {
   slug: string;
   name: string;
+  // forma articulată: „în tot Bacăul”
+  nameDefinite: string;
   zones: readonly Zone[];
   providers: Readonly<Record<ServiceSlug, Provider>>;
 };
@@ -31,10 +37,10 @@ export type City = {
 export type CitySegment = { kind: "service"; service: Service } | { kind: "zone"; zone: Zone };
 
 export const SERVICES: readonly Service[] = [
-  { slug: "apa", name: "Apă", shortName: "Apă" },
-  { slug: "curent", name: "Curent", shortName: "Curent" },
-  { slug: "gaz", name: "Gaz", shortName: "Gaz" },
-  { slug: "caldura", name: "Apă caldă și căldură", shortName: "Căldură" },
+  { slug: "apa", name: "Apă", shortName: "Apă", outagePhrase: "de apă", aboutPhrase: "cu apa" },
+  { slug: "curent", name: "Curent", shortName: "Curent", outagePhrase: "de curent", aboutPhrase: "cu curentul" },
+  { slug: "gaz", name: "Gaz", shortName: "Gaz", outagePhrase: "de gaz", aboutPhrase: "cu gazul" },
+  { slug: "caldura", name: "Apă caldă și căldură", shortName: "Căldură", outagePhrase: "de căldură", aboutPhrase: "cu căldura" },
 ];
 
 export function slugify(name: string): string {
@@ -58,6 +64,7 @@ export const CITIES: readonly City[] = [
   {
     slug: "bacau",
     name: "Bacău",
+    nameDefinite: "Bacăul",
     zones: zones([
       "Centru",
       "Republicii",
