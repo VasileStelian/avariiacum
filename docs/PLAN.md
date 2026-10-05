@@ -43,7 +43,8 @@ Povestea: în Bacău rămân des cartiere fără apă. Vasile e din IT, știe Do
 **Bacău (12)**: Centru, Republicii, Nord, CFR, Cornișa, Izvoare, Mioriței, George Bacovia, Bistrița-Lac, Gherăiești, Șerbănești, Orizont.
 Sursa: ro.wikipedia.org/wiki/Listă_de_cartiere_din_Bacău (10) + storia.ro, articolul „cele mai bune cartiere din Bacău” (Nord, Orizont). OpenStreetMap nu are cartierele marcate.
 
-**Iași**: **DE VERIFICAT**. Se caută lista cu sursă (Wikipedia, primărie), nu din memorie.
+**Iași (22)**: Alexandru cel Bun, Aviației, Bucium, Bularga, Canta, Cantemir, Centru, Copou, CUG, Dacia, Frumoasa, Galata, Mircea cel Bătrân, Moara de Vânt, Nicolina, Păcurari, Podu Roș, Sărărie, Socola, Tătărași, Tudor Vladimirescu, Țicău.
+Nu există o listă oficială; sursele diferă (Wikipedia spune că limitele „nu sunt stabilite clar”). Am păstrat cartierele care apar în cel puțin două din: ro.wikipedia.org/wiki/Cartiere_din_Iași (secțiunea „Listă”, 36 de nume), ro.wikipedia.org/wiki/Format:Cartiere_din_Iași (27) și apix.ro (17, 2022). Verificat pe 5 oct 2026. Zonele industriale și cartierele mici au rămas pe dinafară, ca pragul de 3 persoane să poată fi atins; se adaugă la cerere.
 
 Slug-uri fără diacritice: `bistrita-lac`, `george-bacovia`, `serbanesti`, `gheraiesti`, `mioritei`, `cornisa`. Un singur loc de adevăr pentru orașe, cartiere și servicii (un fișier de configurare), din care se generează toate paginile.
 

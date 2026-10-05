@@ -84,3 +84,16 @@ Sursa articolului despre vibe coding de pe fanvora.ro. O intrare per etapă: dat
   - Testul nu putea da clic pe plăcuța „Apă” (un input transparent stă peste ea, intenționat). Corect era să aleagă radio-ul după nume, cum face un cititor de ecran.
   - Anunțătorul de rută al Next are tot `role="alert"`; testul trebuie să caute în dialog.
 - Timp: 22:45 → 22:49.
+
+## 2026-10-05 · Pasul 4c, datele verificate și lansarea pe Vercel
+
+- Cerut (Vasile): „dă merge, termină aplicația, dă deploy și dă-mi linkul”.
+- Pasul 4c (PR #20): Despre, Confidențialitate, sitemap, robots, BreadcrumbList, imaginea de partajare generată cu starea curentă, WhatsApp și Facebook pe „Mulțumim”, 404 și pagină de eroare în română, iconiță.
+- Datele (PR #21, #22): un agent separat a verificat pe site-urile oficiale numerele de avarii și cartierele din Iași, cu URL și citat pentru fiecare. Planul greșea: la Iași, termoficarea nu mai e la Veolia, ci la Termo-Service. ApaVital are call center cu program, nu non-stop; Termo-Service are doar o linie de informații. Pentru cartierele din Iași nu există o listă oficială; au intrat cele 22 care apar în cel puțin două surse.
+- Ce s-a stricat:
+  - Confidențialitatea promitea „ștearsă după 24 de ore”, dar cron-ul rulează o dată pe zi; textul corect e „în cel mult 48 de ore”. Prins la scrierea paginii, din cod, nu din machete.
+  - În imaginea de partajare, „ă” apărea subțire în titlul îngroșat: generatorul ia litera din primul font care o are. Rezolvat cu fișiere de font complete; prins doar pe captură.
+  - Build-ul din CI a picat când descărcarea fonturilor de la Google a eșuat (GitHub Actions era degradat). Fonturile sunt acum în repo, subset de 13-15 KB; a dispărut și riscul de deplasare a textului.
+  - Pagina 404 pentru un oraș necunoscut e un schelet în HTML (textul vine cu JavaScript); acceptat, documentat.
+  - GitHub Actions degradat: joburi „neacceptate de runner”, rulate din nou.
+- Timp: 23:10 → 23:40.

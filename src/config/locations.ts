@@ -81,8 +81,9 @@ const DELGAZ_GAZ: Provider = {
   verified: "2026-10-05",
 };
 
-// Sursa: ro.wikipedia.org/wiki/Listă_de_cartiere_din_Bacău (10) + storia.ro (Nord, Orizont), vezi docs/PLAN.md.
-// Iași intră după verificarea listei de cartiere (issue #1).
+// Bacău: ro.wikipedia.org/wiki/Listă_de_cartiere_din_Bacău (10) + storia.ro (Nord, Orizont).
+// Iași: cartierele care apar în cel puțin două din ro.wikipedia.org/wiki/Cartiere_din_Iași (lista),
+// ro.wikipedia.org/wiki/Format:Cartiere_din_Iași și apix.ro (2022), verificate pe 5 oct 2026. Vezi docs/PLAN.md.
 export const CITIES: readonly City[] = [
   {
     slug: "bacau",
@@ -119,6 +120,55 @@ export const CITIES: readonly City[] = [
         phone: "0234 585 050",
         phoneNote: "dispecerat, non-stop",
         source: "https://thermoenergy.ro/",
+        verified: "2026-10-05",
+      },
+    },
+  },
+  {
+    slug: "iasi",
+    name: "Iași",
+    nameDefinite: "Iașiul",
+    zones: zones([
+      "Alexandru cel Bun",
+      "Aviației",
+      "Bucium",
+      "Bularga",
+      "Canta",
+      "Cantemir",
+      "Centru",
+      "Copou",
+      "CUG",
+      "Dacia",
+      "Frumoasa",
+      "Galata",
+      "Mircea cel Bătrân",
+      "Moara de Vânt",
+      "Nicolina",
+      "Păcurari",
+      "Podu Roș",
+      "Sărărie",
+      "Socola",
+      "Tătărași",
+      "Tudor Vladimirescu",
+      "Țicău",
+    ]),
+    providers: {
+      apa: {
+        name: "ApaVital",
+        fullName: "ApaVital",
+        phone: "0232 969",
+        phoneNote: "call center: luni-vineri 07-21, weekend 08-20; avarii@apavital.ro",
+        source: "https://www.apavital.ro/contact",
+        verified: "2026-10-05",
+      },
+      curent: DELGAZ_CURENT,
+      gaz: DELGAZ_GAZ,
+      caldura: {
+        name: "Termo-Service",
+        fullName: "Termo-Service",
+        phone: "0232 232 360",
+        phoneNote: "linie de informații despre termoficare, nu dispecerat",
+        source: "https://tsiasi.ro/noutati-si-comunicate/numere-de-telefon",
         verified: "2026-10-05",
       },
     },

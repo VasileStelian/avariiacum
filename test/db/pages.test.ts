@@ -210,7 +210,7 @@ describe("search engines", () => {
 
     expect(response.status).toBe(200);
     expect(xml).toContain("<loc>https://avariiacum.vercel.app/bacau/republicii/</loc>");
-    expect(xml.match(/<loc>/g)).toHaveLength(3 + 1 + 4 + 12);
+    expect(xml.match(/<loc>/g)).toHaveLength(3 + (1 + 4 + 12) + (1 + 4 + 22));
   });
 
   it("serves robots.txt that keeps crawlers out of the API and points to the sitemap", async () => {
