@@ -44,3 +44,17 @@ Sursa articolului despre vibe coding de pe fanvora.ro. O intrare per etapă: dat
 - Backlog-ul din plan a devenit 7 issue-uri (#1-#7), plus etichete. Două sunt P1 și blochează lansarea: cartierele din Iași și numerele de avarii.
 - Verificat înainte de push: căutare după chei, tokenuri, emailuri și căi locale în fișierele din commit; nimic găsit.
 - Timp: aproximativ 10 minute (21:30 la final).
+
+## 2026-10-05 · Pasul 2: scheletul Next.js și configurarea
+
+- Cerut: proiectul Next.js, configurarea orașelor, cartierelor și serviciilor, cu teste; anti-slop din primul commit.
+- Făcut (PR pentru #8): Next.js 16.3.8, TypeScript strict, Node 24; oxlint 1.87.0 cu pluginul anti-slop vendorizat; Vitest. Configurarea (`src/config/locations.ts`): Bacău cu 12 cartiere, 4 servicii, furnizori fără telefon până la verificare. Pagina principală și layout-ul cu fonturile și culorile din design. CI pe GitHub care rulează tot.
+- Teste: 17 unitare + 3 pe HTML-ul real servit de `next start`, fără JavaScript. Testul de coliziune verificat prin mutație: un cartier „Gaz” îl face să pice.
+- Ce s-a stricat:
+  - Vitest 5 a refuzat să se instaleze: scheletul fixa tipurile pentru Node 20, proiectul rulează pe Node 24. Aliniate.
+  - Instalarea eșuată a oprit lanțul de comenzi, așa că fișierul de configurare oxlint nu s-a scris. Lint-ul „trecea” pentru că nu verifica nimic. Prins cu un fișier de probă cu încălcări cunoscute; de reținut: o unealtă de verificare se testează și ea.
+  - În teste, `next/link` scoate bara finală din adrese (setarea vine doar la build). Verificarea s-a mutat pe HTML-ul real.
+  - Testul pe HTML-ul real a găsit „12<!-- --> cartiere”: React pune un comentariu între număr și text. Reparat.
+  - Next nu are metrici pentru fontul Atkinson Hyperlegible Next, deci nu poate face fontul de rezervă ajustat; de măsurat CLS la verificare.
+- Ideile noi ale lui Vasile (date oficiale de la furnizori, partajare cu imagine, raportare dintr-un clic) au devenit issue-urile #9, #10, #11.
+- Timp: 21:20 → 21:41.

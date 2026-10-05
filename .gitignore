@@ -23,3 +23,4 @@ test-results/
 *.log
 .vercel
 .claude/settings.local.json
+*.pem

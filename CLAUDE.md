@@ -19,3 +19,5 @@ Downdetector pentru apă, curent, gaz și căldură, pe cartiere. Bacău + Iași
 - Textul din interfață: română cu diacritice complete, ghilimele „...”, fără liniuțe lungi în propoziții, fără alarmism.
 - Nicio cheie Supabase în client. Nicio cheie în repo.
 - **Jurnal pentru articol:** după fiecare etapă, adaugă în `docs/JURNAL.md` ce s-a făcut, cât a durat și ce s-a stricat. Din el se scrie articolul despre vibe coding; fără jurnal nu există experiență de povestit.
+
+@AGENTS.md
