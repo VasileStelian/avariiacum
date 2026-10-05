@@ -250,6 +250,27 @@ describe("sharing", () => {
   });
 });
 
+describe("default preview image", () => {
+  it("gives the home and info pages a neutral image", async () => {
+    for (const path of ["/", "/despre/", "/confidentialitate/"]) {
+      const { html } = await page(path);
+      const image = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1] ?? "";
+
+      expect(image, path).toMatch(/\/opengraph-image/);
+
+      const response = await fetch(new URL(new URL(image).pathname + new URL(image).search, BASE));
+
+      expect(response.headers.get("content-type"), path).toBe("image/png");
+    }
+  });
+
+  it("keeps the status image on city pages", async () => {
+    const { html } = await page("/bacau/");
+
+    expect(html).toMatch(/<meta property="og:image" content="[^"]*\/bacau\/opengraph-image/);
+  });
+});
+
 describe("error pages", () => {
   it("say „pagina nu există” in Romanian, with a way back", async () => {
     // Adresă fără rută: pagina 404 completă, în HTML.
