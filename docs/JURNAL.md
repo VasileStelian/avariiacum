@@ -73,3 +73,14 @@ Sursa articolului despre vibe coding de pe fanvora.ro. O intrare per etapă: dat
   - Acordul numeralelor: „20 de persoane”, „1 persoană a raportat”; prinse de teste, nu de ochi.
   - Deploy-ul de previzualizare Vercel pe PR #14 a picat; cauza necunoscută până la logarea în Vercel.
 - Timp: 21:40 → 22:13.
+
+## 2026-10-05 · Producția și pasul 4b (raportarea)
+
+- Producția: Vercel nu construia aplicația (proiectul fusese creat cu presetul „Other”, înainte să existe Next.js); reparat în `vercel.json`. Variabilele de mediu nu existau deloc; adăugate din terminal, cheia secretă Supabase trimisă direct din CLI-ul Supabase în Vercel, fără să apară pe ecran. Prima încercare a eșuat de trei ori: cheia venea mascată (fără `--reveal`), apoi Vercel nu aștepta valoarea venită din rețea. Merge #12 → #14 → #16; migrarea s-a aplicat singură în Supabase; site-ul răspunde pe avariiacum.vercel.app, cu funcțiile în Dublin.
+- Pasul 4b (PR pentru #17): raportarea, cu acțiune pe server, panou de jos, „Mulțumim”, cartierul ținut minte (#11).
+- Test E2E: trei „vecini” cu IP-uri diferite raportează din browser; la al treilea, pagina orașului spune „Probabil avarie de apă în Republicii.” Durează sub 5 secunde.
+- Ce s-a stricat:
+  - E2E-ul a găsit 28 de erori în consola browserului după o raportare: preîncărcarea pe segmente a Next 16 dă 404 pe paginile încă negenerate. Navigarea mergea, dar utilizatorul ar fi văzut erori. Preîncărcarea oprită pe linkurile interne.
+  - Testul nu putea da clic pe plăcuța „Apă” (un input transparent stă peste ea, intenționat). Corect era să aleagă radio-ul după nume, cum face un cititor de ecran.
+  - Anunțătorul de rută al Next are tot `role="alert"`; testul trebuie să caute în dialog.
+- Timp: 22:45 → 22:49.
