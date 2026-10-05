@@ -134,14 +134,15 @@ describe("cityActivity", () => {
 
 describe("reportSeries", () => {
   it("returns 96 buckets of 15 minutes, oldest first, with zeros", async () => {
-    await insertAt(1, "republicii", "apa", HASH_A);
-    await insertAt(2, "republicii", "apa", HASH_B);
+    // „acum” cade mereu în ultimul interval; „acum 1 minut” nu, în primul minut al unui sfert de oră.
+    await insertAt(0, "republicii", "apa", HASH_A);
+    await insertAt(0, "republicii", "apa", HASH_B);
     await insertAt(25 * 60, "republicii", "apa", HASH_C);
 
     const series = await store.reportSeries("bacau", "apa", null);
 
     expect(series).toHaveLength(96);
-    expect(series.at(-1)).toBeGreaterThanOrEqual(1);
+    expect(series.at(-1)).toBe(2);
     expect(series.reduce((sum, value) => sum + value, 0)).toBe(2);
   });
 
