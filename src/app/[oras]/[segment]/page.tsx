@@ -4,9 +4,11 @@ import { notFound } from "next/navigation";
 
 import { Axis, Bars } from "@/components/bars";
 import { ServiceIcon } from "@/components/icons";
+import { ReportDialog } from "@/components/report-dialog";
 import { StatusBadge } from "@/components/status-badge";
 import { type City, SERVICES, type Service, type Zone, findCity, resolveCitySegment } from "@/config/locations";
 import { countRo, joinRo, timeAgo } from "@/lib/format";
+import { reportProps } from "@/lib/report-props";
 import { serviceView, zoneView } from "@/lib/views";
 import { serverReportsStore } from "@/server/supabase";
 
@@ -63,13 +65,14 @@ async function ServicePage({ city, service }: { city: City; service: Service }) 
   return (
     <main className="page">
       <nav className="crumbs" aria-label="Ești aici">
-        <Link href={`/${city.slug}/`}>{city.name}</Link>
+        <Link prefetch={false} href={`/${city.slug}/`}>{city.name}</Link>
         <span aria-hidden="true">/</span>
         <span>{service.name}</span>
       </nav>
       <div className="head">
         <h1>{`${service.name} ${city.name} acum: avarii raportate pe cartiere`}</h1>
         <p className="lead">{view.affected.some((row) => row.status === "avarie") ? <strong>{view.headline}</strong> : view.headline}</p>
+        <ReportDialog {...reportProps(city, `Raportează ${service.missingPhrase}`, { service: service.slug })} />
       </div>
       <div className="split">
         <div className="stack">
@@ -89,7 +92,7 @@ async function ServicePage({ city, service }: { city: City; service: Service }) 
                 {view.affected.map((row) => (
                   <li key={row.zone.slug} className="item">
                     <div className="row-top">
-                      <Link className="row-title" href={`/${city.slug}/${row.zone.slug}/`}>
+                      <Link prefetch={false} className="row-title" href={`/${city.slug}/${row.zone.slug}/`}>
                         {row.zone.name}
                       </Link>
                       <StatusBadge status={row.status}>
@@ -119,7 +122,7 @@ async function ServicePage({ city, service }: { city: City; service: Service }) 
           </p>
           <nav className="inline-links" aria-label="Alte servicii">
             {SERVICES.filter((other) => other !== service).map((other) => (
-              <Link key={other.slug} className="btn" href={`/${city.slug}/${other.slug}/`}>
+              <Link prefetch={false} key={other.slug} className="btn" href={`/${city.slug}/${other.slug}/`}>
                 <ServiceIcon slug={other.slug} />
                 {other.shortName}
               </Link>
@@ -145,13 +148,14 @@ async function ZonePage({ city, zone }: { city: City; zone: Zone }) {
   return (
     <main className="page">
       <nav className="crumbs" aria-label="Ești aici">
-        <Link href={`/${city.slug}/`}>{city.name}</Link>
+        <Link prefetch={false} href={`/${city.slug}/`}>{city.name}</Link>
         <span aria-hidden="true">/</span>
         <span>{zone.name}</span>
       </nav>
       <div className="head">
         <h1>{`${zone.name}, ${city.name}: avarii acum`}</h1>
         <p className="lead">{view.services.some((row) => row.status === "avarie") ? <strong>{view.headline}</strong> : view.headline}</p>
+        <ReportDialog {...reportProps(city, `Raportează în ${zone.name}`, { zone: zone.slug })} />
       </div>
       <div className="split">
         <ul className="rows panel">
@@ -171,7 +175,7 @@ async function ZonePage({ city, zone }: { city: City; zone: Zone }) {
               <Bars series={series[index] ?? []} mini tone={row.status} />
               <Axis middle={row.lastReportAt ? `ultimul raport ${timeAgo(row.lastReportAt, now)}` : "niciun raport azi"} />
               {row.status === "liniste" ? null : (
-                <Link className="small" href={`/${city.slug}/${row.service.slug}/`}>
+                <Link prefetch={false} className="small" href={`/${city.slug}/${row.service.slug}/`}>
                   {`${row.service.shortName} în tot ${city.nameDefinite}`}
                 </Link>
               )}
@@ -184,7 +188,7 @@ async function ZonePage({ city, zone }: { city: City; zone: Zone }) {
             {city.zones
               .filter((other) => other !== zone)
               .map((other) => (
-                <Link key={other.slug} href={`/${city.slug}/${other.slug}/`}>
+                <Link prefetch={false} key={other.slug} href={`/${city.slug}/${other.slug}/`}>
                   {other.name}
                 </Link>
               ))}

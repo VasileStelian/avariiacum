@@ -11,6 +11,8 @@ export type Service = {
   outagePhrase: string;
   // „Nicio problemă cu apa”
   aboutPhrase: string;
+  // „Raportează lipsa apei”
+  missingPhrase: string;
 };
 
 export type Zone = {
@@ -37,10 +39,10 @@ export type City = {
 export type CitySegment = { kind: "service"; service: Service } | { kind: "zone"; zone: Zone };
 
 export const SERVICES: readonly Service[] = [
-  { slug: "apa", name: "Apă", shortName: "Apă", outagePhrase: "de apă", aboutPhrase: "cu apa" },
-  { slug: "curent", name: "Curent", shortName: "Curent", outagePhrase: "de curent", aboutPhrase: "cu curentul" },
-  { slug: "gaz", name: "Gaz", shortName: "Gaz", outagePhrase: "de gaz", aboutPhrase: "cu gazul" },
-  { slug: "caldura", name: "Apă caldă și căldură", shortName: "Căldură", outagePhrase: "de căldură", aboutPhrase: "cu căldura" },
+  { slug: "apa", name: "Apă", shortName: "Apă", outagePhrase: "de apă", aboutPhrase: "cu apa", missingPhrase: "lipsa apei" },
+  { slug: "curent", name: "Curent", shortName: "Curent", outagePhrase: "de curent", aboutPhrase: "cu curentul", missingPhrase: "lipsa curentului" },
+  { slug: "gaz", name: "Gaz", shortName: "Gaz", outagePhrase: "de gaz", aboutPhrase: "cu gazul", missingPhrase: "lipsa gazului" },
+  { slug: "caldura", name: "Apă caldă și căldură", shortName: "Căldură", outagePhrase: "de căldură", aboutPhrase: "cu căldura", missingPhrase: "lipsa căldurii" },
 ];
 
 export function slugify(name: string): string {

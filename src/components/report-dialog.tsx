@@ -1,0 +1,228 @@
+"use client";
+
+import { useActionState, useEffect, useRef, useState } from "react";
+
+import { submitReport } from "@/app/actions";
+import { clockRo, countRo } from "@/lib/format";
+import type { ReportOutcome } from "@/server/report";
+
+import { ServiceIcon } from "./icons";
+import { StatusBadge } from "./status-badge";
+
+type Option = {
+  slug: string;
+  name: string;
+};
+
+type ServiceOption = Option & {
+  slug: "apa" | "curent" | "gaz" | "caldura";
+  provider: string;
+  phone: string | null;
+};
+
+export type ReportDialogProps = {
+  city: Option;
+  zones: Option[];
+  services: ServiceOption[];
+  zone?: string;
+  service?: string;
+  label: string;
+};
+
+const clock = (iso: string): string => clockRo(new Date(iso));
+
+function rememberedZoneKey(city: string): string {
+  return `avariiacum:${city}:cartier`;
+}
+
+function readRememberedZone(city: string): string | null {
+  try {
+    return window.localStorage.getItem(rememberedZoneKey(city));
+  } catch {
+    return null;
+  }
+}
+
+function rememberZone(city: string, zone: string): void {
+  try {
+    window.localStorage.setItem(rememberedZoneKey(city), zone);
+  } catch {
+    // Fără stocare locală (navigare privată): raportarea merge oricum.
+  }
+}
+
+const people = (count: number): string => countRo(count, { one: "persoană a raportat", many: "persoane au raportat" });
+
+function Thanks({ outcome, props, onClose }: { outcome: Extract<ReportOutcome, { status: "trimis" }>; props: ReportDialogProps; onClose: () => void }) {
+  const zone = props.zones.find((candidate) => candidate.slug === outcome.zone);
+  const service = props.services.find((candidate) => candidate.slug === outcome.service);
+  const [shared, setShared] = useState<string | null>(null);
+  const zoneUrl = `/${props.city.slug}/${outcome.zone}/`;
+
+  if (!zone || !service) {
+    return null;
+  }
+
+  async function share(): Promise<void> {
+    const url = new URL(zoneUrl, window.location.origin).toString();
+    const title = `${service?.name} în ${zone?.name}, ${props.city.name}: Avarii Acum`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({ title, url });
+
+        return;
+      }
+
+      await navigator.clipboard.writeText(url);
+      setShared("Linkul e copiat. Trimite-l vecinilor.");
+    } catch {
+      setShared(`Linkul: ${url}`);
+    }
+  }
+
+  return (
+    <div className="done" role="status">
+      <div className="sheet-head">
+        <h2 id="raport-titlu">Raport trimis. Mulțumim.</h2>
+        <button type="button" className="x" aria-label="Închide" onClick={onClose}>
+          ×
+        </button>
+      </div>
+      <div className="panel now">
+        <div className="row-top">
+          <span className="row-title">
+            <ServiceIcon slug={service.slug} />
+            {`${service.name} în ${zone.name}`}
+          </span>
+          {outcome.reporters >= 3 ? <StatusBadge status="avarie">Probabil avarie</StatusBadge> : null}
+        </div>
+        <p className="small">{`${people(outcome.reporters)} în ultima oră, inclusiv tu.`}</p>
+      </div>
+      <div className="provider-inline">
+        <p className="small muted">{`Nu suntem ${service.provider}. Ca să afle și ei, sună la dispecerat:`}</p>
+        <p className="num">{service.phone ?? "număr de verificat la sursă"}</p>
+      </div>
+      <div className="btns">
+        <a className="btn btn-primary btn-wide" href={zoneUrl}>
+          {`Vezi situația din ${zone.name}`}
+        </a>
+        <button type="button" className="btn btn-wide" onClick={share}>
+          Trimite linkul vecinilor
+        </button>
+        {shared ? <p className="small">{shared}</p> : null}
+      </div>
+      <p className="fine">{`Poți raporta din nou ${service.name.toLowerCase()} în ${zone.name} după ora ${clock(outcome.retryAfter)}.`}</p>
+    </div>
+  );
+}
+
+function ReportForm({ props, onClose }: { props: ReportDialogProps; onClose: () => void }) {
+  const [outcome, action, pending] = useActionState(submitReport, null);
+  const [zone, setZone] = useState(props.zone ?? "");
+
+  useEffect(() => {
+    if (props.zone) {
+      return;
+    }
+
+    const remembered = readRememberedZone(props.city.slug);
+
+    if (remembered && props.zones.some((candidate) => candidate.slug === remembered)) {
+      setZone(remembered);
+    }
+  }, [props.city.slug, props.zone, props.zones]);
+
+  useEffect(() => {
+    if (outcome?.status === "trimis") {
+      rememberZone(props.city.slug, outcome.zone);
+    }
+  }, [outcome, props.city.slug]);
+
+  if (outcome?.status === "trimis") {
+    return <Thanks outcome={outcome} props={props} onClose={onClose} />;
+  }
+
+  const tooEarly = outcome?.status === "prea-devreme" ? outcome : null;
+
+  return (
+    <form action={action} className="report-form">
+      <div className="sheet-head">
+        <h2 id="raport-titlu">Ce nu funcționează?</h2>
+        <button type="button" className="x" aria-label="Închide" onClick={onClose}>
+          ×
+        </button>
+      </div>
+      <input type="hidden" name="oras" value={props.city.slug} />
+      <div className="field">
+        <label className="label" htmlFor="raport-cartier">
+          Cartierul
+        </label>
+        <select id="raport-cartier" name="cartier" required value={zone} onChange={(event) => setZone(event.target.value)}>
+          <option value="" disabled>
+            Alege cartierul
+          </option>
+          {props.zones.map((candidate) => (
+            <option key={candidate.slug} value={candidate.slug}>
+              {`${candidate.name}, ${props.city.name}`}
+            </option>
+          ))}
+        </select>
+      </div>
+      <fieldset className="field">
+        <legend className="label">Serviciul</legend>
+        <div className="tiles">
+          {props.services.map((candidate) => (
+            <label key={candidate.slug} className="tile">
+              <input type="radio" name="serviciu" value={candidate.slug} required defaultChecked={candidate.slug === props.service} />
+              <ServiceIcon slug={candidate.slug} size={28} />
+              <span>{candidate.name}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+      {tooEarly ? (
+        <p className="notice" role="alert">
+          {`Ai raportat deja ${props.services.find((candidate) => candidate.slug === tooEarly.service)?.name.toLowerCase() ?? "acest serviciu"} în acest cartier. Poți raporta din nou după ora ${clock(tooEarly.retryAfter)}.`}
+        </p>
+      ) : null}
+      {outcome?.status === "eroare" ? (
+        <p className="notice" role="alert">
+          Nu am putut salva raportul. Încearcă din nou peste un minut.
+        </p>
+      ) : null}
+      {outcome?.status === "invalid" ? (
+        <p className="notice" role="alert">
+          Alege cartierul și serviciul.
+        </p>
+      ) : null}
+      <p className="fine">Raportul e anonim: nu cerem nume, telefon sau locație. Poți raporta același serviciu o dată la 2 ore.</p>
+      <button type="submit" className="btn btn-primary btn-wide" disabled={pending}>
+        {pending ? "Se trimite…" : "Trimite raportul"}
+      </button>
+    </form>
+  );
+}
+
+export function ReportDialog(props: ReportDialogProps) {
+  const dialog = useRef<HTMLDialogElement>(null);
+  // Fiecare deschidere pornește un formular nou (după „Mulțumim”, nu rămâne vechiul rezultat).
+  const [round, setRound] = useState(0);
+
+  const close = (): void => dialog.current?.close();
+
+  return (
+    <>
+      <div className="report-cta">
+        <button type="button" className="btn btn-primary btn-wide" onClick={() => dialog.current?.showModal()}>
+          <span aria-hidden="true">+</span>
+          {props.label}
+        </button>
+      </div>
+      <dialog ref={dialog} className="sheet" aria-labelledby="raport-titlu" onClose={() => setRound((value) => value + 1)}>
+        <div className="grab" aria-hidden="true" />
+        <ReportForm key={round} props={props} onClose={close} />
+      </dialog>
+    </>
+  );
+}
