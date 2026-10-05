@@ -182,6 +182,287 @@ p {
   color: var(--ink-2);
 }
 
+.i {
+  flex: none;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.small {
+  font-size: 15px;
+}
+
+.lead strong {
+  color: var(--bad);
+}
+
+.stack {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.split {
+  display: grid;
+  gap: 32px;
+}
+
+.crumbs {
+  font-size: 15px;
+  color: var(--ink-2);
+  display: flex;
+  gap: 8px;
+}
+
+.crumbs a {
+  color: var(--ink-2);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  font: 700 17px/1 var(--f-display);
+  text-decoration: none;
+}
+
+.inline-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+/* Stări: culoare + iconiță + text */
+.st {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1;
+  padding: 6px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.st-bad {
+  color: var(--bad);
+  background: var(--bad-bg);
+}
+
+.st-warn {
+  color: var(--warn);
+  background: var(--warn-bg);
+}
+
+.st-ok {
+  color: var(--ok-quiet);
+  padding-inline: 0;
+}
+
+/* Tabelul cartiere × servicii */
+.matrix {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.matrix th,
+.matrix td {
+  padding: 0;
+  text-align: center;
+}
+
+.matrix thead th {
+  font: 700 13px/1.2 var(--f-body);
+  color: var(--ink-2);
+  padding: 12px 4px 10px;
+  border-bottom: 1px solid var(--line-strong);
+  vertical-align: bottom;
+}
+
+.matrix thead th a {
+  color: inherit;
+  text-decoration: none;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+}
+
+.matrix thead th:first-child {
+  text-align: left;
+  padding-left: 16px;
+}
+
+.matrix tbody tr {
+  border-bottom: 1px solid var(--line);
+}
+
+.matrix tbody tr:last-child {
+  border-bottom: 0;
+}
+
+.matrix tbody th {
+  text-align: left;
+  font: 700 17px/1.25 var(--f-display);
+}
+
+/* Tot rândul cartierului e țintă de atingere, nu doar textul */
+.matrix tbody th a {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 8px 8px 8px 16px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.matrix td {
+  width: 17%;
+  height: 52px;
+}
+
+.matrix td .st {
+  min-width: 44px;
+  justify-content: center;
+}
+
+.matrix tbody tr.quiet th {
+  font-weight: 600;
+}
+
+.matrix .group th {
+  font: 700 13px/1 var(--f-body);
+  color: var(--ink-2);
+  text-align: left;
+  padding: 18px 16px 8px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Grafic 24h: 96 bare, una la 15 minute */
+.chart {
+  padding: 20px 16px 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.chart-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  align-items: baseline;
+}
+
+.bars {
+  display: grid;
+  grid-template-columns: repeat(96, 1fr);
+  gap: 1px;
+  align-items: end;
+  height: 120px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.bars i {
+  display: block;
+  background: var(--bar);
+  min-height: 2px;
+  border-radius: 1px 1px 0 0;
+}
+
+.bars i.hot {
+  background: var(--bad);
+}
+
+.bars i.warm {
+  background: var(--warn);
+}
+
+.bars.mini {
+  height: 40px;
+}
+
+.axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.axis b {
+  color: var(--ink);
+}
+
+/* Rânduri în panouri */
+.rows > li.item {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.row-title {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font: 700 18px/1.2 var(--f-display);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.item > a.small,
+.inline-links > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.provider {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+}
+
+.provider .num {
+  font: 700 20px/1.2 var(--f-display);
+  color: var(--ink-2);
+}
+
 @media (min-width: 1024px) {
   :root {
     --gutter: 32px;
@@ -198,5 +479,19 @@ p {
   .cities {
     margin-left: 24px;
     margin-right: auto;
+  }
+
+  .split {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+  }
+
+  .matrix thead th {
+    font-size: 15px;
+  }
+
+  .matrix td {
+    height: 56px;
   }
 }
