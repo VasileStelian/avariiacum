@@ -58,3 +58,18 @@ Sursa articolului despre vibe coding de pe fanvora.ro. O intrare per etapă: dat
   - Next nu are metrici pentru fontul Atkinson Hyperlegible Next, deci nu poate face fontul de rezervă ajustat; de măsurat CLS la verificare.
 - Ideile noi ale lui Vasile (date oficiale de la furnizori, partajare cu imagine, raportare dintr-un clic) au devenit issue-urile #9, #10, #11.
 - Timp: 21:20 → 21:41.
+
+## 2026-10-05 · Pasul 3 (Supabase) și 4a (paginile de citire)
+
+- Pasul 3 (PR #14): tabelul de rapoarte cu RLS, funcții SQL pentru raportare (limita de 2 ore, atomică), activitate, seria pe 24h și ștergerea amprentelor IP; cron zilnic. Testate pe Supabase local, în Docker. Mutații prinse: fără blocaj pică testul de concurență; un drept dat cheii publice pică testul de drepturi. Primul test de drepturi NU prindea mutația (apărarea pe straturi o masca); rescris strat cu strat.
+- Vasile a creat proiectul Supabase (Irlanda) și l-a legat la Vercel și GitHub, cu migrările aplicate automat la merge pe `main`. Funcțiile Vercel mutate în Dublin, lângă baza de date.
+- Pasul 4a (PR pentru #15): paginile orașului (tabel cartiere × servicii), serviciului și cartierului, cu date reale, cache 60 s, 404, adrese cu majuscule redirecționate.
+- Ce s-a stricat:
+  - **Am raportat greșit CI-ul verde pe PR #14.** Am citit codul de ieșire al comenzii care urmărea CI-ul, nu al CI-ului. Jobul `check` picase: configurarea testelor pe HTML includea și testele de bază de date. Prins abia când aceeași eroare a apărut local. Lecție: statusul se citește din sursă (`gh pr checks`), nu dintr-un rezumat.
+  - Un test de pagini a picat intermitent. Cauza, dovedită A/B: Next 16 ține paginile ISR pe disc între porniri și servește întâi versiunea veche. Testul golește acum cache-ul. Consecința pentru produs: după un raport nou, pagina trebuie regenerată explicit (pasul 4b).
+  - React pune comentarii în textul interpolat („Avarii în <!-- -->Bacău”); titlurile au devenit șiruri unice.
+  - Pe macOS, cache-ul găsea `/bacau/Apa/` ca `/bacau/apa/` (sistem de fișiere fără majuscule). Rezolvat cu redirecționare spre litere mici.
+  - Minigraficul de apă abia se vedea la 7 persoane (scara 10 era prea mare); corectat la 4, cu culoarea stării.
+  - Acordul numeralelor: „20 de persoane”, „1 persoană a raportat”; prinse de teste, nu de ochi.
+  - Deploy-ul de previzualizare Vercel pe PR #14 a picat; cauza necunoscută până la logarea în Vercel.
+- Timp: 21:40 → 22:13.
