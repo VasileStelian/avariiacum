@@ -171,3 +171,104 @@ describe("unknown addresses", () => {
     expect(response.headers.get("location")).toBe("/bacau/");
   });
 });
+
+describe("info pages", () => {
+  it("/despre/ explains the threshold and gives a real contact for a missing neighbourhood", async () => {
+    const { status, html } = await page("/despre/");
+
+    expect(status).toBe(200);
+    expect(html).toContain("<h1>Despre Avarii Acum</h1>");
+    expect(html).toContain("cel puțin 3 persoane diferite");
+    expect(html).toContain('href="mailto:contact@fanvora.ro');
+  });
+
+  it("/confidentialitate/ says what is kept, for how long, and what stays in the browser", async () => {
+    const { status, html } = await page("/confidentialitate/");
+
+    expect(status).toBe(200);
+    expect(html).toContain("<h1>Confidențialitate</h1>");
+    expect(html).toContain("24 de ore");
+    expect(html).toContain("pe dispozitivul tău");
+    expect(html).not.toMatch(/Google Analytics|cookie de urmărire activ/);
+  });
+
+  it("are linked from every page footer", async () => {
+    const { html } = await page("/bacau/");
+
+    expect(html).toContain('href="/despre/"');
+    expect(html).toContain('href="/confidentialitate/"');
+  });
+});
+
+describe("search engines", () => {
+  it("serves a sitemap with every page and the public address", async () => {
+    const response = await fetch(`${BASE}/sitemap.xml`);
+    const xml = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(xml).toContain("<loc>https://avariiacum.vercel.app/bacau/republicii/</loc>");
+    expect(xml.match(/<loc>/g)).toHaveLength(3 + 1 + 4 + 12);
+  });
+
+  it("serves robots.txt that keeps crawlers out of the API and points to the sitemap", async () => {
+    const text = await (await fetch(`${BASE}/robots.txt`)).text();
+
+    expect(text).toContain("Disallow: /api/");
+    expect(text).toContain("Sitemap: https://avariiacum.vercel.app/sitemap.xml");
+  });
+
+  it("describes the breadcrumb of a service page as structured data", async () => {
+    const { html } = await page("/bacau/apa/");
+    const json = html.match(/<script type="application\/ld\+json">(.*?)<\/script>/)?.[1] ?? "";
+
+    expect(JSON.parse(json)).toMatchObject({
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { position: 1, name: "Bacău", item: "https://avariiacum.vercel.app/bacau/" },
+        { position: 2, name: "Apă", item: "https://avariiacum.vercel.app/bacau/apa/" },
+      ],
+    });
+  });
+});
+
+describe("sharing", () => {
+  it("gives city, service and zone pages a generated preview image", async () => {
+    for (const path of ["/bacau/", "/bacau/apa/", "/bacau/republicii/"]) {
+      const { html } = await page(path);
+      const image = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
+
+      expect(image, path).toBeDefined();
+
+      const response = await fetch(new URL(new URL(image ?? "").pathname + new URL(image ?? "").search, BASE));
+
+      expect(response.status, path).toBe(200);
+      expect(response.headers.get("content-type"), path).toBe("image/png");
+    }
+  });
+});
+
+describe("error pages", () => {
+  it("say „pagina nu există” in Romanian, with a way back", async () => {
+    // Adresă fără rută: pagina 404 completă, în HTML.
+    const unmatched = await page("/a/b/c/d/");
+
+    expect(unmatched.status).toBe(404);
+    expect(unmatched.html).toContain("<h1>Pagina nu există</h1>");
+    expect(unmatched.html).toContain('href="/"');
+
+    // Oraș necunoscut: Next 16 trimite un schelet, iar textul vine în payload (apare cu JavaScript).
+    const unknownCity = await page("/cluj/");
+
+    expect(unknownCity.status).toBe(404);
+    expect(unknownCity.html).toContain("Pagina nu există");
+    expect(unknownCity.html).not.toContain("This page could not be found");
+  });
+
+  it("has an icon, so browsers do not get a 404 for it", async () => {
+    const { html } = await page("/");
+    const icon = html.match(/<link rel="icon" href="([^"]+)"/)?.[1];
+
+    expect(icon).toBeDefined();
+    expect((await fetch(`${BASE}${icon}`)).status).toBe(200);
+  });
+});
