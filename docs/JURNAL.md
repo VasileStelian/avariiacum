@@ -36,3 +36,11 @@ Sursa articolului despre vibe coding de pe fanvora.ro. O intrare per etapă: dat
 - Prins la revizia capturilor: un singur raport de căldură urca bara la maxim în minigrafic și arăta ca o avarie (scara se ajusta după maxim). Acum scara e fixă.
 - Timp: 21:08 → 21:18 (10 min), fără Stitch. Comparativ: prima versiune, prin Stitch, a durat peste 5 ore, mai ales din așteptare.
 - Lecție pentru articol: unealta de design dă un prim draft bun, dar „aspectul de AI” vine din valorile implicite (card pentru orice, pastile peste tot). Se repară cu decizii de conținut, nu cu alte culori.
+
+## 2026-10-05 · Repo-ul pe GitHub
+
+- Făcut: repo public https://github.com/VasileStelian/avariiacum, licență AGPL-3.0 (detectată de GitHub), README, `.gitignore` cu `.env*` din primul commit.
+- Decizie: strategia (motivele Fanvora, datele de căutare, planul de lansare și de reclame) a ieșit din `docs/PLAN.md` în `docs/private/`, ignorat de git. Motiv: un jurnalist care deschide codul trebuie să vadă o unealtă civică, nu un plan de SEO.
+- Backlog-ul din plan a devenit 7 issue-uri (#1-#7), plus etichete. Două sunt P1 și blochează lansarea: cartierele din Iași și numerele de avarii.
+- Verificat înainte de push: căutare după chei, tokenuri, emailuri și căi locale în fișierele din commit; nimic găsit.
+- Timp: aproximativ 10 minute (21:30 la final).

@@ -125,11 +125,14 @@ Ton: calm, pe date, fără alarmism (fără roșu intermitent, fără „ALERTĂ
 - README: „Numele «Avarii Acum» și sigla nu sunt acoperite de licență.”
 - Secretele doar în variabilele de mediu Vercel. `.env*` în `.gitignore` din primul commit.
 
-## Backlog (issue-uri GitHub de creat după primul push)
+## Backlog
 
-- Harta orașului cu zone pe care se poate da clic (după listă)
-- Pornirea Cloudflare Turnstile, dacă apar abuzuri
-- Alte orașe
-- Pornirea reclamelor proprii
-- Buton „A revenit”, doar dacă îl cer utilizatorii
+Urmărit în issue-uri GitHub: https://github.com/VasileStelian/avariiacum/issues
 
+- #1 Lista cartierelor din Iași, cu sursă (P1)
+- #2 Numerele de avarii ale furnizorilor, verificate la sursă (P1)
+- #3 Harta orașului cu zone pe care se poate da clic
+- #4 Pornirea Cloudflare Turnstile, dacă apar abuzuri
+- #5 Alte orașe
+- #6 Pornirea spațiului „Susținut de”
+- #7 Buton „A revenit”, doar dacă îl cer utilizatorii
