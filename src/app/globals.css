@@ -657,6 +657,23 @@ p {
   gap: 10px;
 }
 
+/* Pagini de text (Despre, Confidențialitate) */
+.doc {
+  max-width: 680px;
+  display: grid;
+  gap: 28px;
+}
+
+.doc p {
+  max-width: 62ch;
+}
+
+.share {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
 @media (min-width: 1024px) {
   :root {
     --gutter: 32px;

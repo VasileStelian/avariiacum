@@ -4,6 +4,7 @@ import { useActionState, useEffect, useRef, useState } from "react";
 
 import { submitReport } from "@/app/actions";
 import { clockRo, countRo } from "@/lib/format";
+import { shareLinks, shareText } from "@/lib/site";
 import type { ReportOutcome } from "@/server/report";
 
 import { ServiceIcon } from "./icons";
@@ -16,6 +17,8 @@ type Option = {
 
 type ServiceOption = Option & {
   slug: "apa" | "curent" | "gaz" | "caldura";
+  // „apă”, „curent”, „gaz”, „căldură”, pentru textul de partajare
+  noun: string;
   provider: string;
   phone: string | null;
 };
@@ -58,10 +61,15 @@ function Thanks({ outcome, props, onClose }: { outcome: Extract<ReportOutcome, {
   const service = props.services.find((candidate) => candidate.slug === outcome.service);
   const [shared, setShared] = useState<string | null>(null);
   const zoneUrl = `/${props.city.slug}/${outcome.zone}/`;
+  const [origin, setOrigin] = useState("");
+
+  useEffect(() => setOrigin(window.location.origin), []);
 
   if (!zone || !service) {
     return null;
   }
+
+  const links = shareLinks(`${origin}${zoneUrl}`, shareText(service.noun, zone.name, props.city.name, outcome.reporters));
 
   async function share(): Promise<void> {
     const url = new URL(zoneUrl, window.location.origin).toString();
@@ -111,6 +119,14 @@ function Thanks({ outcome, props, onClose }: { outcome: Extract<ReportOutcome, {
           Trimite linkul vecinilor
         </button>
         {shared ? <p className="small">{shared}</p> : null}
+        <div className="share">
+          <a className="btn" href={links.whatsapp} target="_blank" rel="noopener noreferrer">
+            WhatsApp
+          </a>
+          <a className="btn" href={links.facebook} target="_blank" rel="noopener noreferrer">
+            Facebook
+          </a>
+        </div>
       </div>
       <p className="fine">{`Poți raporta din nou ${service.name.toLowerCase()} în ${zone.name} după ora ${clock(outcome.retryAfter)}.`}</p>
     </div>

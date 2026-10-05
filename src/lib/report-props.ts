@@ -9,6 +9,7 @@ export function reportProps(city: City, label: string, preset: { zone?: string; 
     services: SERVICES.map((service) => ({
       slug: service.slug,
       name: service.name,
+      noun: service.outagePhrase.replace(/^de /, ""),
       provider: city.providers[service.slug].name,
       phone: city.providers[service.slug].phone,
     })),
