@@ -22,18 +22,21 @@ export const metadata: Metadata = {
   description: "Raportări anonime de la locuitori despre avariile de apă, curent, gaz și căldură, pe cartiere. Bacău și Iași.",
 };
 
+// Linkurile interne nu preîncarcă: după o raportare, Next 16 reface preîncărcarea pe segmente, iar
+// pentru paginile ISR încă negenerate serverul răspunde 404 (erori în consola utilizatorului).
+// Navigarea merge la fel; costul e o mică așteptare la clic. Verificat în test/db/report-flow.test.ts.
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ro" className={`${display.variable} ${body.variable}`}>
       <body>
         <header className="top">
           <div className="top-in">
-            <Link className="mark" href="/">
+            <Link prefetch={false} className="mark" href="/">
               Avarii <span>Acum</span>
             </Link>
             <nav className="cities" aria-label="Orașe">
               {CITIES.map((city) => (
-                <Link key={city.slug} href={`/${city.slug}/`}>
+                <Link prefetch={false} key={city.slug} href={`/${city.slug}/`}>
                   {city.name}
                 </Link>
               ))}
