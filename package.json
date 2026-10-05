@@ -30,6 +30,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "oxlint": "1.87.0",
+    "playwright": "1.63.0",
     "postgres": "3.4.9",
     "supabase": "2.119.0",
     "typescript": "^5",
