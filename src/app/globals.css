@@ -463,6 +463,200 @@ p {
   color: var(--ink-2);
 }
 
+/* Raportarea: butonul fix jos pe mobil, panoul care urcă de jos (dialog nativ) */
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+}
+
+.btn-wide {
+  width: 100%;
+  min-height: 56px;
+}
+
+.report-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom, 0px));
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+/* Loc pentru butonul fix de jos, doar pe paginile care îl au */
+.page:has(.report-cta) {
+  padding-bottom: 120px;
+}
+
+.sheet {
+  margin: auto 0 0;
+  width: 100%;
+  max-width: 100%;
+  max-height: 92dvh;
+  border: 0;
+  border-radius: 16px 16px 0 0;
+  padding: 12px var(--gutter) calc(16px + env(safe-area-inset-bottom, 0px));
+  background: var(--surface);
+  color: var(--ink);
+  overflow-y: auto;
+}
+
+.sheet::backdrop {
+  background: rgb(22 25 29 / 0.45);
+}
+
+.sheet[open] {
+  display: grid;
+  gap: 16px;
+}
+
+.grab {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line-strong);
+  justify-self: center;
+}
+
+.report-form,
+.done {
+  display: grid;
+  gap: 20px;
+}
+
+.sheet-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.x {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: none;
+  color: var(--ink-2);
+  font-size: 28px;
+  line-height: 1;
+  border-radius: 8px;
+  margin-right: -10px;
+  cursor: pointer;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 15px;
+  padding: 0;
+}
+
+.field select {
+  min-height: 52px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: 400 17px/1.2 var(--f-body);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.tile {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 8px;
+  min-height: 96px;
+  padding: 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface);
+  font: 700 16px/1.2 var(--f-body);
+  text-align: center;
+  cursor: pointer;
+}
+
+.tile input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.tile:has(input:checked) {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  background: #f3f6fe;
+}
+
+.tile:has(input:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.notice {
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--warn-bg);
+  color: var(--warn);
+  font-weight: 700;
+}
+
+.fine {
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.now {
+  padding: 14px 16px;
+  display: grid;
+  gap: 8px;
+}
+
+.provider-inline {
+  display: grid;
+  gap: 4px;
+}
+
+.provider-inline .num {
+  font: 700 20px/1.2 var(--f-display);
+  color: var(--ink-2);
+}
+
+.btns {
+  display: grid;
+  gap: 10px;
+}
+
 @media (min-width: 1024px) {
   :root {
     --gutter: 32px;
@@ -479,6 +673,33 @@ p {
   .cities {
     margin-left: 24px;
     margin-right: auto;
+  }
+
+  .report-cta {
+    position: static;
+    padding: 8px 0 0;
+    background: none;
+    border: 0;
+  }
+
+  .report-cta .btn-wide {
+    width: auto;
+    min-height: 48px;
+  }
+
+  .page:has(.report-cta) {
+    padding-bottom: 64px;
+  }
+
+  .sheet {
+    margin: auto;
+    width: 520px;
+    border-radius: 12px;
+    padding: 24px;
+  }
+
+  .grab {
+    display: none;
   }
 
   .split {

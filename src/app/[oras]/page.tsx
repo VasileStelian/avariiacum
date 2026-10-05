@@ -3,9 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ServiceIcon } from "@/components/icons";
+import { ReportDialog } from "@/components/report-dialog";
 import { StatusBadge } from "@/components/status-badge";
 import { SERVICES, findCity } from "@/config/locations";
 import { clockRo, countRo } from "@/lib/format";
+import { reportProps } from "@/lib/report-props";
 import { type Cell, type CityRow, cityView } from "@/lib/views";
 import { serverReportsStore } from "@/server/supabase";
 
@@ -46,7 +48,7 @@ function Row({ citySlug, row, quiet }: { citySlug: string; row: CityRow; quiet: 
   return (
     <tr className={quiet ? "quiet" : undefined}>
       <th scope="row">
-        <Link href={`/${citySlug}/${row.zone.slug}/`}>{row.zone.name}</Link>
+        <Link prefetch={false} href={`/${citySlug}/${row.zone.slug}/`}>{row.zone.name}</Link>
       </th>
       {row.cells.map((cell) => (
         <td key={cell.service.slug} aria-label={cellLabel(row.zone.name, cell)}>
@@ -74,6 +76,7 @@ export default async function CityPage({ params }: PageProps<"/[oras]">) {
           {view.headline.outage ? <strong>{view.headline.outage}</strong> : null} {view.headline.isolated} {view.headline.quiet}
         </p>
         <p className="small muted">{`Raportări anonime de la locuitori, ultima oră. Actualizat la ${clockRo(new Date())}.`}</p>
+        <ReportDialog {...reportProps(city, "Raportează o problemă")} />
       </div>
       <div className="split">
         <div className="stack">
@@ -85,7 +88,7 @@ export default async function CityPage({ params }: PageProps<"/[oras]">) {
                   <th scope="col">Cartier</th>
                   {SERVICES.map((service) => (
                     <th key={service.slug} scope="col">
-                      <Link href={`/${city.slug}/${service.slug}/`}>
+                      <Link prefetch={false} href={`/${city.slug}/${service.slug}/`}>
                         <ServiceIcon slug={service.slug} />
                         <span>{service.shortName}</span>
                       </Link>
