@@ -66,6 +66,13 @@ describe("cities", () => {
     }
   });
 
+  it("have a definite form of the name for phrases like „în tot Bacăul”", () => {
+    for (const city of CITIES) {
+      expect(city.nameDefinite.startsWith(city.name.slice(0, -1)), city.slug).toBe(true);
+      expect(city.nameDefinite.length, city.slug).toBeGreaterThan(city.name.length);
+    }
+  });
+
   it("name a provider for every service in every city", () => {
     for (const city of CITIES) {
       for (const service of SERVICES) {
