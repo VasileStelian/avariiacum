@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html lang="ro"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Raportează Avarie - Avarii Acum</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            cobalt: '#1D4ED8',
+            surface: '#FFFFFF',
+            canvas: '#F5F6F8',
+            'ink-primary': '#16191D',
+            'ink-secondary': '#4A5361',
+            'status-ok': '#166534',
+            'status-ok-bg': '#ECF5EF',
+            'status-few': '#8A4B00',
+            'status-few-bg': '#FFF3DF',
+            'status-alert': '#9F2A14',
+            'status-alert-bg': '#FCEBE7'
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Public Sans", "sans-serif"],
+            display: ["Public Sans", "sans-serif"],
+            body: ["Public Sans", "sans-serif"],
+            label: ["Public Sans", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 350, 'GRAD' 0, 'opsz' 24;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+      user-select: none;
+    }
+    .sheet-shadow {
+      box-shadow: 0 -8px 24px -4px rgba(22, 25, 29, 0.12), 0 -2px 6px -1px rgba(22, 25, 29, 0.04);
+    }
+    body {
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-slate-900 font-body text-ink-primary antialiased flex justify-center items-center min-h-screen selection:bg-blue-100 selection:text-blue-900">
+<!-- Ecran mobil 390px -->
+<main class="w-[390px] h-[844px] relative overflow-hidden bg-[#F5F6F8] shadow-2xl flex flex-col justify-between select-none">
+<!-- ========================================== -->
+<!-- 1. FUNDALUL PAGINII DE CARTIER (ESTOMPAT)  -->
+<!-- ========================================== -->
+<div aria-hidden="true" class="absolute inset-0 flex flex-col pointer-events-none filter blur-[3px] scale-[1.01] transition-all">
+<!-- TopAppBar (Conform Shared Components JSON) -->
+<header class="bg-white border-b border-slate-200 flat no shadows">
+<div class="flex justify-between items-center h-14 px-4 w-full max-w-md mx-auto">
+<div class="flex items-center gap-1.5 text-blue-700">
+<span class="material-symbols-outlined text-[24px]">water_drop</span>
+<span class="font-headline font-bold text-lg text-slate-900 tracking-tight">Avarii Acum</span>
+</div>
+<button class="text-slate-600 font-medium text-sm flex items-center gap-0.5" tabindex="-1" type="button">
+            Bacău ▾
+          </button>
+</div>
+</header>
+<!-- Conținut pagină de cartier -->
+<div class="p-4 space-y-4">
+<!-- Titlu cartier -->
+<div>
+<span class="text-xs font-semibold text-slate-500">Situație live</span>
+<h1 class="font-headline font-bold text-xl text-ink-primary leading-snug">Cartierul Republicii, Bacău: avarii acum</h1>
+</div>
+<!-- Card utilitate: Apă (în stare de alertă) -->
+<div class="bg-white rounded-lg p-3.5 border border-slate-200">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">water_drop</span>
+</div>
+<div>
+<div class="font-bold text-sm text-ink-primary">Apă rece</div>
+<div class="text-xs text-ink-secondary">7 persoane în ultima oră</div>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 text-xs font-medium px-2 py-1 rounded bg-[#FCEBE7] text-[#9F2A14]">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+              Probabil avarie: 7
+            </span>
+</div>
+<!-- Bare grafic 24h simulate -->
+<div class="mt-3 pt-3 border-t border-slate-100 flex items-end gap-[2px] h-9">
+<div class="w-1 h-2 bg-slate-300 rounded-xs"></div>
+<div class="w-1 h-2 bg-slate-300 rounded-xs"></div>
+<div class="w-1 h-2 bg-slate-300 rounded-xs"></div>
+<div class="w-1 h-3 bg-slate-300 rounded-xs"></div>
+<div class="w-1 h-2 bg-slate-300 rounded-xs"></div>
+<div class="w-1 h-2 bg-slate-300 rounded-xs"></div>
+<div class="w-1 h-4 bg-slate-400 rounded-xs"></div>
+<div class="w-1 h-6 bg-[#9F2A14] rounded-xs"></div>
+<div class="w-1 h-8 bg-[#9F2A14] rounded-xs"></div>
+<div class="w-1 h-9 bg-[#9F2A14] rounded-xs"></div>
+</div>
+<div class="flex justify-between text-[10px] text-slate-500 mt-1">
+<span>-24h</span>
+<span>acum</span>
+</div>
+</div>
+<!-- Card utilitate: Curent (Normal) -->
+<div class="bg-white rounded-lg p-3.5 border border-slate-200">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">bolt</span>
+</div>
+<span class="font-bold text-sm text-ink-primary">Curent electric</span>
+</div>
+<span class="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded bg-[#ECF5EF] text-[#166534]">
+<span class="material-symbols-outlined text-[14px]">check</span>
+              Fără probleme
+            </span>
+</div>
+</div>
+<!-- Card utilitate: Gaz (Normal) -->
+<div class="bg-white rounded-lg p-3.5 border border-slate-200">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-9 h-9 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">local_fire_department</span>
+</div>
+<span class="font-bold text-sm text-ink-primary">Gaze naturale</span>
+</div>
+<span class="inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded bg-[#ECF5EF] text-[#166534]">
+<span class="material-symbols-outlined text-[14px]">check</span>
+              Fără probleme
+            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- ========================================== -->
+<!-- 2. OVERLAY ÎNTUNECAT CU BACKDROP BLUR      -->
+<!-- ========================================== -->
+<div class="absolute inset-0 bg-black/50 backdrop-blur-[2px] z-10 transition-opacity"></div>
+<!-- ========================================== -->
+<!-- 3. PRIM-PLAN: BOTTOM SHEET (MODALĂ RAPORT) -->
+<!-- ========================================== -->
+<section aria-labelledby="modal-title" aria-modal="true" class="relative z-20 mt-auto w-full bg-surface rounded-t-[16px] sheet-shadow flex flex-col px-5 pt-2 pb-6 max-h-[78%] h-auto border-t border-slate-100" role="dialog">
+<!-- Mâner mic gri (drag handle) -->
+<div aria-hidden="true" class="w-10 h-1 bg-slate-300 rounded-full mx-auto my-1.5 flex-shrink-0"></div>
+<!-- Header foaie: Titlu clar + Buton Închidere -->
+<div class="flex items-center justify-between pt-1 pb-3">
+<h2 class="font-headline font-bold text-xl text-slate-900 tracking-tight" id="modal-title">
+          Ce nu funcționează?
+        </h2>
+<button aria-label="Închide fereastra" class="w-10 h-10 -mr-2 rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-100 active:scale-95 transition-all focus:outline-none focus:ring-2 focus:ring-blue-600" type="button">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+<!-- Secțiunea 1: Cartierul curent -->
+<div class="space-y-1.5 mb-4">
+<label class="block text-sm font-medium text-slate-700">Cartierul</label>
+<div class="border border-slate-200 rounded-xl p-3.5 flex items-center justify-between bg-white shadow-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-500 text-[20px]">location_on</span>
+<span class="font-medium text-sm text-slate-900">Republicii, Bacău</span>
+</div>
+<button class="text-blue-700 font-semibold text-sm hover:underline focus:outline-none" type="button">
+            Schimbă
+          </button>
+</div>
+</div>
+<!-- Secțiunea 2: Selecție Serviciu -->
+<div class="mb-3">
+<span class="block text-sm font-medium text-slate-700 mb-2">Serviciul</span>
+<!-- Grilă 2x2 plăci utilități -->
+<div aria-label="Alege serviciul întrerupt" class="grid grid-cols-2 gap-2.5" role="radiogroup">
+<!-- Placă 1: Apă (STARE SELECTATĂ) -->
+<button aria-checked="true" class="relative h-24 rounded-xl border-2 border-blue-700 bg-blue-50/70 p-2.5 flex flex-col items-center justify-center transition-all text-center focus:outline-none focus:ring-2 focus:ring-blue-600" role="radio" type="button">
+<!-- Indicator bifat colț dreapta sus -->
+<div class="absolute top-2 right-2 w-5 h-5 rounded-full bg-blue-700 text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1, 'wght' 700;">check</span>
+</div>
+<!-- Iconiță Apă -->
+<div class="text-blue-700 mb-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">water_drop</span>
+</div>
+<span class="text-sm font-semibold text-blue-900 leading-none">Apă</span>
+</button>
+<!-- Placă 2: Curent (STARE NESELECTATĂ) -->
+<button aria-checked="false" class="relative h-24 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 p-2.5 flex flex-col items-center justify-center transition-all text-center focus:outline-none focus:ring-2 focus:ring-blue-600 active:scale-[0.98]" role="radio" type="button">
+<div class="text-slate-700 mb-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">bolt</span>
+</div>
+<span class="text-sm font-medium text-slate-800 leading-none">Curent</span>
+</button>
+<!-- Placă 3: Gaz (STARE NESELECTATĂ) -->
+<button aria-checked="false" class="relative h-24 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 p-2.5 flex flex-col items-center justify-center transition-all text-center focus:outline-none focus:ring-2 focus:ring-blue-600 active:scale-[0.98]" role="radio" type="button">
+<div class="text-slate-700 mb-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">local_fire_department</span>
+</div>
+<span class="text-sm font-medium text-slate-800 leading-none">Gaz</span>
+</button>
+<!-- Placă 4: Apă caldă și căldură (STARE NESELECTATĂ) -->
+<button aria-checked="false" class="relative h-24 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 p-2 flex flex-col items-center justify-center transition-all text-center focus:outline-none focus:ring-2 focus:ring-blue-600 active:scale-[0.98]" role="radio" type="button">
+<!-- Pictogramă contur clară Calorifer / Radiator termoficare -->
+<div aria-hidden="true" class="text-slate-700 mb-1 flex items-center justify-center">
+<svg class="w-7 h-7" fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="28">
+<!-- Tub superior și inferior conexiuni -->
+<path d="M4 6h16"></path>
+<path d="M4 18h16"></path>
+<!-- Coloane/bare verticale radiator -->
+<path d="M7 6v12"></path>
+<path d="M10 6v12"></path>
+<path d="M13 6v12"></path>
+<path d="M17 6v12"></path>
+<!-- Picioare suport calorifer -->
+<path d="M6 18v2.5"></path>
+<path d="M18 18v2.5"></path>
+<!-- Robinet tur stânga -->
+<path d="M3 6h1"></path>
+</svg>
+</div>
+<span class="text-xs text-center font-medium text-slate-800 leading-tight px-1">
+              Apă caldă și căldură
+            </span>
+</button>
+</div>
+</div>
+<!-- Notă civică anonimat -->
+<p class="text-xs text-slate-500 leading-relaxed mt-2 mb-5">
+        Raportul e anonim. Nu cerem nume, telefon sau locație. Poți raporta același serviciu o dată la 2 ore.
+      </p>
+<!-- Buton Principal Trimitere -->
+<button class="w-full h-14 bg-cobalt hover:bg-blue-800 active:bg-blue-900 text-white font-semibold text-base rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 active:scale-[0.99]" type="button">
+<span>Trimite raportul</span>
+</button>
+</section>
+</main>
+<script>
+    // Interacțiune minimală pentru selecția plăcilor
+    document.querySelectorAll('[role="radio"]').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('[role="radio"]').forEach(b => {
+          b.setAttribute('aria-checked', 'false');
+          b.className = 'relative h-24 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 p-2.5 flex flex-col items-center justify-center transition-all text-center focus:outline-none focus:ring-2 focus:ring-blue-600 active:scale-[0.98]';
+          
+          // Ascunde orice indicator bifat
+          const checkIcon = b.querySelector('.absolute.top-2.right-2');
+          if (checkIcon) checkIcon.remove();
+
+          // Resetează stilul de text
+          const label = b.querySelector('span:last-child');
+          if (label) {
+            label.classList.remove('text-blue-900', 'font-semibold');
+            label.classList.add('text-slate-800', 'font-medium');
+          }
+          
+          // Resetează culoarea iconiței
+          const iconContainer = b.querySelector('div:first-child');
+          if (iconContainer) {
+            iconContainer.classList.remove('text-blue-700');
+            iconContainer.classList.add('text-slate-700');
+          }
+        });
+
+        // Aplică starea selectată pe elementul curent
+        button.setAttribute('aria-checked', 'true');
+        button.className = 'relative h-24 rounded-xl border-2 border-blue-700 bg-blue-50/70 p-2.5 flex flex-col items-center justify-center transition-all text-center focus:outline-none focus:ring-2 focus:ring-blue-600';
+        
+        // Adaugă bifa
+        const badge = document.createElement('div');
+        badge.className = 'absolute top-2 right-2 w-5 h-5 rounded-full bg-blue-700 text-white flex items-center justify-center';
+        badge.innerHTML = '<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: \'FILL\' 1, \'wght\' 700;">check</span>';
+        button.appendChild(badge);
+
+        const label = button.querySelector('span:last-child');
+        if (label) {
+          label.classList.remove('text-slate-800');
+          label.classList.add('text-blue-900', 'font-semibold');
+        }
+
+        const iconContainer = button.querySelector('div:first-child');
+        if (iconContainer) {
+          iconContainer.classList.remove('text-slate-700');
+          iconContainer.classList.add('text-blue-700');
+        }
+      });
+    });
+  </script>
+</body></html>

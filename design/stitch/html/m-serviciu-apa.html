@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="ro"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apă Bacău - Avarii Acum</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: "#1D4ED8",
+              blueHover: "#1E40AF"
+            }
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            headline: ["Public Sans", "sans-serif"],
+            display: ["Public Sans", "sans-serif"],
+            body: ["Public Sans", "sans-serif"],
+            label: ["Public Sans", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Public Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-color: #F5F6F8;
+      color: #16191D;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen text-[#16191D] antialiased flex flex-col items-center">
+<!-- Container ecran mobil de serviciu public (Max 448px / max-w-md) -->
+<div class="w-full max-w-md bg-[#F5F6F8] min-h-screen flex flex-col relative pb-32">
+<!-- 1. Antet conform specificatiilor Shared Component TopAppBar -->
+<header class="bg-white sticky top-0 z-40 w-full border-b border-slate-200">
+<div class="flex justify-between items-center h-14 px-4 w-full">
+<!-- Brand / Leading -->
+<div class="flex items-center gap-2">
+<span aria-hidden="true" class="material-symbols-outlined text-blue-700 text-2xl">water_drop</span>
+<span class="font-headline font-bold text-lg text-slate-900 tracking-tight">Avarii Acum</span>
+</div>
+<!-- Selector oraș / Trailing action -->
+<div>
+<button aria-label="Selectează orașul" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-sm font-medium text-slate-800 hover:bg-slate-50 transition-colors" type="button">
+<span>Bacău</span>
+<span class="text-xs text-slate-500">▾</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Conținut principal -->
+<main class="px-4 pt-4 flex-1 flex flex-col gap-4">
+<!-- 2. Firimituri (Breadcrumbs) -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-1.5 text-xs text-[#4A5361] font-medium">
+<span>Bacău</span>
+<span class="text-slate-300">/</span>
+<span aria-current="page" class="text-slate-900 font-semibold">Apă</span>
+</nav>
+<!-- 3. Titlu principal H1 -->
+<div class="flex items-start gap-2.5 pt-1">
+<span aria-hidden="true" class="material-symbols-outlined text-blue-700 text-[30px] shrink-0 mt-0.5">water_drop</span>
+<h1 class="text-2xl font-bold text-slate-900 leading-tight tracking-tight font-headline">
+          Apă Bacău acum: avarii raportate pe cartiere
+        </h1>
+</div>
+<!-- 4. Stare pe oraș (Bandă de alertă calmă) -->
+<section aria-live="polite" class="bg-[#FCEBE7] border border-[#F8D5CE] rounded-lg p-3.5 flex items-start gap-3">
+<span aria-hidden="true" class="material-symbols-outlined text-[#9F2A14] text-xl shrink-0 mt-0.5">warning</span>
+<div class="flex flex-col">
+<span class="text-base font-bold text-[#9F2A14] leading-snug">Probabil avarie în 1 cartier</span>
+<span class="text-xs text-[#9F2A14]/90 font-medium tabular-nums mt-0.5">Ultimul raport acum 4 min</span>
+</div>
+</section>
+<!-- 5. Card Ultimele 24 de ore în Bacău -->
+<section class="bg-white border border-slate-200 rounded-lg p-4">
+<div class="flex justify-between items-baseline mb-3">
+<h2 class="text-base font-bold text-slate-900 font-headline">Ultimele 24 de ore în Bacău</h2>
+<span class="text-xs text-[#4A5361] tabular-nums">intervale 15m</span>
+</div>
+<!-- Grafic cronologic minimalist (28 de intervale) -->
+<div class="w-full pt-4 pb-1">
+<div aria-label="Grafic activitate rapoarte 24h" class="h-20 flex items-end justify-between gap-1 border-b border-slate-200 pb-1">
+<!-- -24h spre -18h: Activitate nulă sau rară -->
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]" title="-24h: normal"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[8px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[6px]"></div>
+<!-- -18h spre -12h -->
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[10px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[6px]"></div>
+<!-- -12h spre -6h -->
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[8px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[6px]"></div>
+<!-- -6h spre acum -->
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[8px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[4px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[12px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[16px]"></div>
+<div class="w-full bg-slate-300 rounded-t-sm h-[10px]"></div>
+<!-- Recente: Spike roșu cărămiziu peste prag -->
+<div class="w-full bg-[#9F2A14] rounded-t-sm h-[32px]" title="Creștere raportări"></div>
+<div class="w-full bg-[#9F2A14] rounded-t-sm h-[52px]" title="Creștere raportări"></div>
+<div class="w-full bg-[#9F2A14] rounded-t-sm h-[68px]" title="7 persoane în ultima oră"></div>
+<div class="w-full bg-[#9F2A14] rounded-t-sm h-[60px]" title="Raportări active"></div>
+</div>
+<!-- Axa orizontală temporală -->
+<div class="flex justify-between items-center text-xs text-[#4A5361] mt-1.5 font-medium tabular-nums">
+<span>-24h</span>
+<span>-18h</span>
+<span>-12h</span>
+<span>-6h</span>
+<span class="font-bold text-slate-800">acum</span>
+</div>
+</div>
+<p class="text-xs text-[#4A5361] mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between">
+<span>Prag: minim 3 persoane diferite într-o oră</span>
+<span class="font-medium text-slate-700">Actualizat la minut</span>
+</p>
+</section>
+<!-- 6. Secțiunea Cartiere afectate -->
+<section class="flex flex-col gap-2.5">
+<h2 class="text-base font-bold text-slate-900 font-headline pt-1">Cartiere afectate</h2>
+<!-- Card 1: Republicii -->
+<article class="bg-white border border-slate-200 rounded-lg p-3.5 flex items-center justify-between">
+<div>
+<h3 class="font-bold text-slate-900 text-base">Republicii</h3>
+<p class="text-xs text-[#4A5361] tabular-nums mt-0.5">7 persoane în ultima oră</p>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FCEBE7] border border-[#F8D5CE] text-xs font-bold text-[#9F2A14]">
+<span aria-hidden="true" class="material-symbols-outlined text-sm">warning</span>
+<span>Probabil avarie</span>
+</div>
+</article>
+<!-- Card 2: Bistrița-Lac -->
+<article class="bg-white border border-slate-200 rounded-lg p-3.5 flex items-center justify-between">
+<div>
+<h3 class="font-bold text-slate-900 text-base">Bistrița-Lac</h3>
+<p class="text-xs text-[#4A5361] tabular-nums mt-0.5">acum 35 min</p>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#FFF3DF] border border-[#FFE2BA] text-xs font-bold text-[#8A4B00]">
+<span aria-hidden="true" class="material-symbols-outlined text-sm">info</span>
+<span>1 raportare</span>
+</div>
+</article>
+<!-- Rând pliabil (acordeon / listă colapsabilă compactă) -->
+<details class="group bg-white border border-slate-200 rounded-lg overflow-hidden transition-all">
+<summary class="p-3.5 flex items-center justify-between cursor-pointer select-none text-sm font-medium text-slate-800 hover:bg-slate-50">
+<span class="flex items-center gap-2">
+<span aria-hidden="true" class="material-symbols-outlined text-emerald-700 text-base">check_circle</span>
+<span>Fără probleme raportate în 10 cartiere</span>
+</span>
+<span aria-hidden="true" class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform duration-200 text-lg">expand_more</span>
+</summary>
+<div class="px-4 pb-3.5 pt-1 text-xs text-[#4A5361] border-t border-slate-100 flex flex-wrap gap-1.5 bg-slate-50/50">
+<span class="px-2 py-1 bg-white border border-slate-200 rounded">Centru</span>
+<span class="px-2 py-1 bg-white border border-slate-200 rounded">Cornișa</span>
+<span class="px-2 py-1 bg-white border border-slate-200 rounded">Mioriței</span>
+<span class="px-2 py-1 bg-white border border-slate-200 rounded">Nord</span>
+<span class="px-2 py-1 bg-white border border-slate-200 rounded">Șerbănești</span>
+<span class="px-2 py-1 bg-white border border-slate-200 rounded">Gherăiești</span>
+<span class="px-2 py-1 bg-white border border-slate-200 rounded">Izvoare</span>
+<span class="px-2 py-1 bg-white border border-slate-200 rounded">Aviatori</span>
+<span class="px-2 py-1 bg-white border border-slate-200 rounded">CFR</span>
+<span class="px-2 py-1 bg-white border border-slate-200 rounded">Autogară</span>
+</div>
+</details>
+</section>
+<!-- 7. Casetă neutră informativă (Dispecerat) -->
+<section class="bg-slate-100 border border-slate-200 rounded-lg p-4">
+<div class="flex items-start gap-3">
+<span aria-hidden="true" class="material-symbols-outlined text-[#4A5361] text-xl shrink-0 mt-0.5">call</span>
+<div class="text-sm text-slate-700 leading-relaxed">
+<p>Nu suntem CRAB (Compania Regională de Apă Bacău). Pentru avarii, sunați la dispeceratul CRAB:</p>
+<div class="mt-2 flex items-center justify-between flex-wrap gap-2">
+<span class="font-medium text-slate-900 bg-white px-2.5 py-1 rounded border border-slate-200 text-xs">număr în curs de verificare</span>
+<a class="text-blue-700 font-medium underline text-xs hover:text-blue-800 inline-flex items-center gap-0.5" href="https://apabacau.ro" rel="noopener noreferrer" target="_blank">
+<span>apabacau.ro</span>
+<span aria-hidden="true" class="material-symbols-outlined text-xs">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. Secțiune explicativă: Cum funcționează -->
+<section class="bg-white border border-slate-200 rounded-lg p-4">
+<h2 class="text-sm font-bold text-slate-900 font-headline mb-1.5 flex items-center gap-1.5">
+<span aria-hidden="true" class="material-symbols-outlined text-slate-500 text-base">help_outline</span>
+<span>Cum funcționează</span>
+</h2>
+<p class="text-sm text-[#4A5361] leading-relaxed">
+          Afișăm „Probabil avarie” doar când cel puțin 3 persoane diferite raportează în aceeași oră. Starea dispare singură când rapoartele se opresc.
+        </p>
+</section>
+<!-- 9. Linkuri spre celelalte servicii din Bacău -->
+<section class="mt-1">
+<h2 class="text-base font-bold text-slate-900 font-headline mb-2">Alte servicii în Bacău</h2>
+<div class="grid grid-cols-3 gap-2">
+<!-- Curent -->
+<a class="bg-white border border-slate-200 hover:border-slate-300 rounded-lg p-3 flex flex-col items-center justify-center gap-1.5 text-center transition-colors" href="#">
+<span aria-hidden="true" class="material-symbols-outlined text-amber-600 text-xl">bolt</span>
+<span class="text-xs font-semibold text-slate-800">Curent</span>
+</a>
+<!-- Gaz -->
+<a class="bg-white border border-slate-200 hover:border-slate-300 rounded-lg p-3 flex flex-col items-center justify-center gap-1.5 text-center transition-colors" href="#">
+<span aria-hidden="true" class="material-symbols-outlined text-amber-700 text-xl">local_fire_department</span>
+<span class="text-xs font-semibold text-slate-800">Gaz</span>
+</a>
+<!-- Căldură (Radiator cu elemenți verticali) -->
+<a class="bg-white border border-slate-200 hover:border-slate-300 rounded-lg p-3 flex flex-col items-center justify-center gap-1.5 text-center transition-colors" href="#">
+<svg aria-hidden="true" class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M4 4v16M20 4v16M8 4v16M12 4v16M16 4v16M3 7h18M3 17h18"></path>
+</svg>
+<span class="text-xs font-semibold text-slate-800">Căldură</span>
+</a>
+</div>
+</section>
+<!-- 10. Subsol (Footer) -->
+<footer class="mt-6 pt-4 border-t border-slate-200 text-center pb-8 flex flex-col items-center gap-2">
+<nav class="flex items-center justify-center gap-3 text-xs text-blue-700 font-medium">
+<a class="underline hover:text-blue-900" href="#">Despre</a>
+<span class="text-slate-300">·</span>
+<a class="underline hover:text-blue-900" href="#">Confidențialitate</a>
+</nav>
+<p class="text-xs text-[#4A5361] mt-1">
+          Făcut de Fanvora Digital Studio, Bacău.
+        </p>
+</footer>
+</main>
+<!-- 11. Buton fix jos (Floating CTA bar - fără bară de navigare) -->
+<div class="fixed bottom-0 left-0 right-0 w-full z-50 pointer-events-none">
+<div class="max-w-md mx-auto p-4 bg-white/95 backdrop-blur border-t border-slate-200 pointer-events-auto">
+<button class="w-full h-14 bg-[#1D4ED8] hover:bg-[#1E40AF] active:scale-[0.99] text-white font-bold rounded-lg flex items-center justify-center gap-2 text-base transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2" type="button">
+<!-- Plus SVG simplu -->
+<svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M12 4.5v15m7.5-7.5h-15" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Raportează lipsa apei</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

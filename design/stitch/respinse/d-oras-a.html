@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="ro"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Avarii Acum - Panoul orașului Bacău</title>
+<!-- Google Fonts: Public Sans & Atkinson Hyperlegible Next -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {},
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          fontFamily: {
+            headline: ["Public Sans", "sans-serif"],
+            display: ["Public Sans", "sans-serif"],
+            body: ["Public Sans", "sans-serif"],
+            label: ["Public Sans", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      background-color: #F5F6F8;
+      color: #16191D;
+      font-family: 'Public Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+<!-- 1. ANTET DESKTOP (1440px target, responsive container) -->
+<header class="bg-white border-b border-[#E2E5EA] sticky top-0 z-40">
+<div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+<!-- Brand Identitate -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-700 text-2xl" data-icon="water_drop">water_drop</span>
+<span class="font-headline font-bold text-lg text-slate-900 tracking-tight">Avarii Acum</span>
+</div>
+<!-- Navigare Orașe -->
+<nav class="flex items-center gap-8 h-full">
+<a class="text-blue-700 font-bold border-b-2 border-blue-700 h-full flex items-center text-sm tracking-normal" href="#bacau">
+          Bacău
+        </a>
+<a class="text-slate-600 hover:text-slate-900 font-medium h-full flex items-center text-sm transition-colors" href="#iasi">
+          Iași
+        </a>
+</nav>
+<!-- Buton Principal Acțiune -->
+<div>
+<button class="bg-[#1D4ED8] hover:bg-blue-800 text-white font-medium px-4 py-2 rounded-lg flex items-center gap-2 text-sm transition-colors cursor-pointer shadow-none" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+<span>Raportează o problemă</span>
+</button>
+</div>
+</div>
+</header>
+<!-- 2. CONȚINUT PRINCIPAL -->
+<main class="max-w-[1200px] w-full mx-auto px-6 py-8 flex-1">
+<!-- Antet Secțiune -->
+<div class="mb-6">
+<h1 class="font-headline font-bold text-3xl text-slate-900 tracking-tight mb-2">
+        Avarii în Bacău acum
+      </h1>
+<p class="text-slate-600 text-base">
+        Raportări anonime de la locuitori, pe cartiere. Actualizat acum 1 min.
+      </p>
+</div>
+<!-- Rând Filtre & Rezumat -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+<!-- Filtre Pastilă -->
+<div aria-label="Filtrează după utilitate" class="flex flex-wrap items-center gap-2" role="group">
+<button class="bg-[#1D4ED8] text-white px-4 py-1.5 rounded-full text-sm font-medium transition-colors" type="button">
+          Toate
+        </button>
+<button class="bg-white border border-[#E2E5EA] text-slate-700 hover:border-slate-400 px-3.5 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-base" data-icon="water_drop">water_drop</span>
+<span>Apă</span>
+</button>
+<button class="bg-white border border-[#E2E5EA] text-slate-700 hover:border-slate-400 px-3.5 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-base" data-icon="bolt">bolt</span>
+<span>Curent</span>
+</button>
+<button class="bg-white border border-[#E2E5EA] text-slate-700 hover:border-slate-400 px-3.5 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-base" data-icon="local_fire_department">local_fire_department</span>
+<span>Gaz</span>
+</button>
+<button class="bg-white border border-[#E2E5EA] text-slate-700 hover:border-slate-400 px-3.5 py-1.5 rounded-full text-sm font-medium flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-base" data-icon="hvac">hvac</span>
+<span>Căldură</span>
+</button>
+</div>
+<!-- Rezumat Numeric Actualizat -->
+<div class="text-slate-600 text-sm font-medium tabular-nums">
+        Acum: 1 cartier cu probabil avarie, 2 cu raportări izolate.
+      </div>
+</div>
+<!-- Grilă de 3 coloane cu carduri de cartier -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+<!-- Card 1: Republicii -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-5 flex flex-col justify-between hover:border-slate-300 transition-colors shadow-none">
+<div>
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-bold text-lg text-slate-900 tracking-tight">Republicii</h2>
+<span class="text-[#9F2A14] bg-[#FCEBE7] border border-[#F8D7DA] rounded px-2.5 py-1 text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="warning">warning</span>
+<span>Probabil avarie</span>
+</span>
+</div>
+<p class="text-sm text-slate-700 font-medium mt-3 mb-4 tabular-nums">
+            Apă: 7 persoane în ultima oră
+          </p>
+</div>
+<div class="flex items-center gap-3 pt-3 border-t border-[#F5F6F8]">
+<span class="material-symbols-outlined text-lg text-red-700" data-icon="water_drop" title="Apă afectată">water_drop</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="bolt" title="Curent fără probleme">bolt</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="local_fire_department" title="Gaz fără probleme">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="hvac" title="Căldură fără probleme">hvac</span>
+</div>
+</div>
+<!-- Card 2: Mioriței -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-5 flex flex-col justify-between hover:border-slate-300 transition-colors shadow-none">
+<div>
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-bold text-lg text-slate-900 tracking-tight">Mioriței</h2>
+<span class="text-[#8A4B00] bg-[#FFF3DF] border border-[#FFE8BD] rounded px-2.5 py-1 text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="info">info</span>
+<span>2 raportări</span>
+</span>
+</div>
+<p class="text-sm text-slate-700 font-medium mt-3 mb-4 tabular-nums">
+            Curent: 2 raportări în ultima oră
+          </p>
+</div>
+<div class="flex items-center gap-3 pt-3 border-t border-[#F5F6F8]">
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="water_drop" title="Apă fără probleme">water_drop</span>
+<span class="material-symbols-outlined text-lg text-[#8A4B00]" data-icon="bolt" title="Curent raportat">bolt</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="local_fire_department" title="Gaz fără probleme">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="hvac" title="Căldură fără probleme">hvac</span>
+</div>
+</div>
+<!-- Card 3: George Bacovia -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-5 flex flex-col justify-between hover:border-slate-300 transition-colors shadow-none">
+<div>
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-bold text-lg text-slate-900 tracking-tight">George Bacovia</h2>
+<span class="text-[#8A4B00] bg-[#FFF3DF] border border-[#FFE8BD] rounded px-2.5 py-1 text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="info">info</span>
+<span>1 raportare</span>
+</span>
+</div>
+<p class="text-sm text-slate-700 font-medium mt-3 mb-4 tabular-nums">
+            Căldură: 1 raportare în ultima oră
+          </p>
+</div>
+<div class="flex items-center gap-3 pt-3 border-t border-[#F5F6F8]">
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="water_drop" title="Apă fără probleme">water_drop</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="bolt" title="Curent fără probleme">bolt</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="local_fire_department" title="Gaz fără probleme">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-[#8A4B00]" data-icon="hvac" title="Căldură raportată">hvac</span>
+</div>
+</div>
+<!-- Card 4: Centru -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-5 flex flex-col justify-between hover:border-slate-300 transition-colors shadow-none">
+<div>
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-bold text-lg text-slate-900 tracking-tight">Centru</h2>
+<span class="text-[#166534] bg-[#ECF5EF] border border-[#D1E7DD] rounded px-2.5 py-1 text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<p class="text-sm text-slate-500 mt-3 mb-4 tabular-nums">
+            Niciun raport în ultima oră
+          </p>
+</div>
+<div class="flex items-center gap-3 pt-3 border-t border-[#F5F6F8]">
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="water_drop" title="Apă în parametri">water_drop</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="bolt" title="Curent în parametri">bolt</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="local_fire_department" title="Gaz în parametri">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="hvac" title="Căldură în parametri">hvac</span>
+</div>
+</div>
+<!-- Card 5: Nord -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-5 flex flex-col justify-between hover:border-slate-300 transition-colors shadow-none">
+<div>
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-bold text-lg text-slate-900 tracking-tight">Nord</h2>
+<span class="text-[#166534] bg-[#ECF5EF] border border-[#D1E7DD] rounded px-2.5 py-1 text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<p class="text-sm text-slate-500 mt-3 mb-4 tabular-nums">
+            Niciun raport în ultima oră
+          </p>
+</div>
+<div class="flex items-center gap-3 pt-3 border-t border-[#F5F6F8]">
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="water_drop">water_drop</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="bolt">bolt</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="local_fire_department">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="hvac">hvac</span>
+</div>
+</div>
+<!-- Card 6: CFR -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-5 flex flex-col justify-between hover:border-slate-300 transition-colors shadow-none">
+<div>
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-bold text-lg text-slate-900 tracking-tight">CFR</h2>
+<span class="text-[#166534] bg-[#ECF5EF] border border-[#D1E7DD] rounded px-2.5 py-1 text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<p class="text-sm text-slate-500 mt-3 mb-4 tabular-nums">
+            Niciun raport în ultima oră
+          </p>
+</div>
+<div class="flex items-center gap-3 pt-3 border-t border-[#F5F6F8]">
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="water_drop">water_drop</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="bolt">bolt</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="local_fire_department">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="hvac">hvac</span>
+</div>
+</div>
+<!-- Card 7: Cornișa -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-5 flex flex-col justify-between hover:border-slate-300 transition-colors shadow-none">
+<div>
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-bold text-lg text-slate-900 tracking-tight">Cornișa</h2>
+<span class="text-[#166534] bg-[#ECF5EF] border border-[#D1E7DD] rounded px-2.5 py-1 text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<p class="text-sm text-slate-500 mt-3 mb-4 tabular-nums">
+            Niciun raport în ultima oră
+          </p>
+</div>
+<div class="flex items-center gap-3 pt-3 border-t border-[#F5F6F8]">
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="water_drop">water_drop</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="bolt">bolt</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="local_fire_department">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="hvac">hvac</span>
+</div>
+</div>
+<!-- Card 8: Izvoare -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-5 flex flex-col justify-between hover:border-slate-300 transition-colors shadow-none">
+<div>
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-bold text-lg text-slate-900 tracking-tight">Izvoare</h2>
+<span class="text-[#166534] bg-[#ECF5EF] border border-[#D1E7DD] rounded px-2.5 py-1 text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<p class="text-sm text-slate-500 mt-3 mb-4 tabular-nums">
+            Niciun raport în ultima oră
+          </p>
+</div>
+<div class="flex items-center gap-3 pt-3 border-t border-[#F5F6F8]">
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="water_drop">water_drop</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="bolt">bolt</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="local_fire_department">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="hvac">hvac</span>
+</div>
+</div>
+<!-- Card 9: Bistrița-Lac -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-5 flex flex-col justify-between hover:border-slate-300 transition-colors shadow-none">
+<div>
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-bold text-lg text-slate-900 tracking-tight">Bistrița-Lac</h2>
+<span class="text-[#166534] bg-[#ECF5EF] border border-[#D1E7DD] rounded px-2.5 py-1 text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<p class="text-sm text-slate-500 mt-3 mb-4 tabular-nums">
+            Niciun raport în ultima oră
+          </p>
+</div>
+<div class="flex items-center gap-3 pt-3 border-t border-[#F5F6F8]">
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="water_drop">water_drop</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="bolt">bolt</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="local_fire_department">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="hvac">hvac</span>
+</div>
+</div>
+<!-- Card 10: Gherăiești -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-5 flex flex-col justify-between hover:border-slate-300 transition-colors shadow-none">
+<div>
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-bold text-lg text-slate-900 tracking-tight">Gherăiești</h2>
+<span class="text-[#166534] bg-[#ECF5EF] border border-[#D1E7DD] rounded px-2.5 py-1 text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<p class="text-sm text-slate-500 mt-3 mb-4 tabular-nums">
+            Niciun raport în ultima oră
+          </p>
+</div>
+<div class="flex items-center gap-3 pt-3 border-t border-[#F5F6F8]">
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="water_drop">water_drop</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="bolt">bolt</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="local_fire_department">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="hvac">hvac</span>
+</div>
+</div>
+<!-- Card 11: Șerbănești -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-5 flex flex-col justify-between hover:border-slate-300 transition-colors shadow-none">
+<div>
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-bold text-lg text-slate-900 tracking-tight">Șerbănești</h2>
+<span class="text-[#166534] bg-[#ECF5EF] border border-[#D1E7DD] rounded px-2.5 py-1 text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<p class="text-sm text-slate-500 mt-3 mb-4 tabular-nums">
+            Niciun raport în ultima oră
+          </p>
+</div>
+<div class="flex items-center gap-3 pt-3 border-t border-[#F5F6F8]">
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="water_drop">water_drop</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="bolt">bolt</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="local_fire_department">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="hvac">hvac</span>
+</div>
+</div>
+<!-- Card 12: Orizont -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-5 flex flex-col justify-between hover:border-slate-300 transition-colors shadow-none">
+<div>
+<div class="flex items-center justify-between gap-2">
+<h2 class="font-bold text-lg text-slate-900 tracking-tight">Orizont</h2>
+<span class="text-[#166534] bg-[#ECF5EF] border border-[#D1E7DD] rounded px-2.5 py-1 text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<p class="text-sm text-slate-500 mt-3 mb-4 tabular-nums">
+            Niciun raport în ultima oră
+          </p>
+</div>
+<div class="flex items-center gap-3 pt-3 border-t border-[#F5F6F8]">
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="water_drop">water_drop</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="bolt">bolt</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="local_fire_department">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-slate-400" data-icon="hvac">hvac</span>
+</div>
+</div>
+</div>
+<!-- Feedback / Cartiere lipsă -->
+<div class="text-center my-6">
+<a class="text-slate-700 hover:text-blue-700 underline font-medium text-sm transition-colors" href="#solicita-cartier">
+        Lipsește cartierul tău? Spune-ne
+      </a>
+</div>
+</main>
+<!-- 3. SUBSOL -->
+<footer class="border-t border-[#E2E5EA] bg-white py-8 mt-12 text-center text-sm text-slate-600">
+<div class="max-w-[1200px] mx-auto px-6">
+<p class="mb-2">
+        Nu suntem furnizorul de apă, curent sau gaz.
+        <a class="text-[#1D4ED8] underline mx-2 hover:text-blue-800" href="#despre">Despre</a>
+<a class="text-[#1D4ED8] underline mx-2 hover:text-blue-800" href="#confidentialitate">Confidențialitate</a>
+</p>
+<span class="text-[#4A5361] mt-2 block text-xs">
+        Făcut de Fanvora Digital Studio, Bacău.
+      </span>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,25 @@
+# Secrete: niciodată în repo
+.env*
+!.env.example
+
+# Strategie și note interne (doar local)
+docs/private/
+
+# Dependențe și build
+node_modules/
+.next/
+out/
+build/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# Teste
+playwright-report/
+test-results/
+
+# Sistem și editor
+.DS_Store
+*.log
+.vercel
+.claude/settings.local.json

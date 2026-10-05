@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html lang="ro"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Avarii Acum - Cartierul Republicii, Bacău</title>
+<!-- Google Fonts: Public Sans & Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with configuration -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {},
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {},
+          fontFamily: {
+            headline: ["Public Sans", "sans-serif"],
+            display: ["Public Sans", "sans-serif"],
+            body: ["Public Sans", "sans-serif"],
+            label: ["Public Sans", "sans-serif"]
+          },
+          fontSize: {}
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Public Sans', sans-serif;
+      background-color: #F5F6F8;
+      color: #16191D;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .font-tabular {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-blue-100 selection:text-blue-900">
+<!-- 1. Antet alb (Desktop Top Navigation) -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+<div class="max-w-[1200px] mx-auto h-16 px-4 sm:px-6 flex items-center justify-between">
+<!-- Stânga: Brand / Logo + Linkuri Orașe -->
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 group transition-opacity active:opacity-80" href="#">
+<span class="material-symbols-outlined text-blue-700 text-2xl font-bold select-none">water_drop</span>
+<span class="font-headline font-bold text-lg text-slate-900 tracking-tight">Avarii Acum</span>
+</a>
+<!-- Switcher orașe -->
+<nav aria-label="Navigare orașe" class="hidden sm:flex items-center gap-6 text-sm font-medium">
+<a aria-current="page" class="text-blue-700 font-bold border-b-2 border-blue-700 pb-0.5" href="#">Bacău</a>
+<a class="text-slate-600 hover:text-slate-900 transition-colors" href="#">Iași</a>
+</nav>
+</div>
+<!-- Dreapta: Buton principal Raportează -->
+<div class="flex items-center gap-3">
+<button class="bg-[#1D4ED8] hover:bg-blue-800 text-white px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-1.5 transition-colors focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 outline-none" type="button">
+<span class="material-symbols-outlined text-lg leading-none select-none">add</span>
+<span>Raportează în Republicii</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Conținut principal centrat -->
+<main class="w-full max-w-[1200px] mx-auto px-4 sm:px-6 py-6 flex-grow">
+<!-- 2. Firimituri de pâine (Breadcrumbs) -->
+<nav aria-label="Breadcrumb" class="mb-3 text-sm text-slate-500 font-medium">
+<ol class="flex items-center gap-1.5">
+<li>
+<a class="hover:text-slate-900 transition-colors" href="#">Bacău</a>
+</li>
+<li class="select-none text-slate-400">/</li>
+<li aria-current="page" class="text-slate-800 font-semibold">Republicii</li>
+</ol>
+</nav>
+<!-- 3. Titlu principal și subtitlu -->
+<div class="mb-6">
+<h1 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight font-headline">
+        Cartierul Republicii, Bacău: avarii acum
+      </h1>
+<p class="text-slate-600 text-base mt-1">
+        Ce raportează vecinii în ultimele 24 de ore.
+      </p>
+</div>
+<!-- 4. Grilă 2x2 carduri per serviciu -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+<!-- Card 1: Apă -->
+<div class="bg-white border border-[#E2E5EA] rounded-lg p-5 flex flex-col justify-between">
+<div>
+<!-- Header card -->
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-slate-800 text-[24px]">water_drop</span>
+<h2 class="font-bold text-lg text-slate-900">Apă</h2>
+</div>
+<!-- Badge: Probabil avarie -->
+<span class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold bg-[#FCEBE7] text-[#9F2A14]">
+<span class="material-symbols-outlined text-sm">warning</span>
+              Probabil avarie
+            </span>
+</div>
+<!-- Stare / Detaliu -->
+<div class="mb-4">
+<p class="text-[#9F2A14] font-medium text-sm">7 persoane în ultima oră</p>
+</div>
+<!-- Grafic 24h -->
+<div class="bg-[#F5F6F8] rounded-lg p-3 pt-4 mb-4">
+<div aria-hidden="true" class="h-16 flex items-end gap-[2px] w-full">
+<!-- Reprezentare 24 ore: 96 bare (15 min interval). Bare plate cu spike în ultimele 2 ore -->
+<!-- 0h -> 20h (80 bare plate de 3px) -->
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<span class="flex-1 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<!-- Ultimele 2 ore: vârf roșu avarie (#9F2A14) -->
+<span class="flex-1 bg-[#9F2A14] h-6 rounded-t-sm"></span>
+<span class="flex-1 bg-[#9F2A14] h-8 rounded-t-sm"></span>
+<span class="flex-1 bg-[#9F2A14] h-11 rounded-t-sm"></span>
+<span class="flex-1 bg-[#9F2A14] h-14 rounded-t-sm"></span>
+<span class="flex-1 bg-[#9F2A14] h-12 rounded-t-sm"></span>
+<span class="flex-1 bg-[#9F2A14] h-16 rounded-t-sm"></span>
+<span class="flex-1 bg-[#9F2A14] h-14 rounded-t-sm"></span>
+<span class="flex-1 bg-[#9F2A14] h-10 rounded-t-sm"></span>
+</div>
+<!-- Axă timp -->
+<div class="flex justify-between items-center text-[11px] text-slate-500 font-tabular mt-2 pt-1 border-t border-slate-200">
+<span>-24h</span>
+<span>-12h</span>
+<span class="font-medium text-slate-700">acum</span>
+</div>
+</div>
+</div>
+<!-- Sub grafic: Detalii și link extern -->
+<div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100">
+<span class="text-slate-500">Ultimul raport acum 4 min</span>
+<a class="text-[#1D4ED8] font-medium hover:underline inline-flex items-center gap-0.5" href="#">
+            Vezi apa în tot Bacăul →
+          </a>
+</div>
+</div>
+<!-- Card 2: Curent -->
+<div class="bg-white border border-[#E2E5EA] rounded-lg p-5 flex flex-col justify-between">
+<div>
+<!-- Header card -->
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-slate-800 text-[24px]">bolt</span>
+<h2 class="font-bold text-lg text-slate-900">Curent</h2>
+</div>
+<!-- Badge: Fără probleme raportate -->
+<span class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold bg-[#ECF5EF] text-[#166534]">
+<span class="material-symbols-outlined text-sm">check</span>
+              Fără probleme raportate
+            </span>
+</div>
+<!-- Stare / Detaliu -->
+<div class="mb-4">
+<p class="text-slate-600 font-medium text-sm">Niciun raport în ultima oră</p>
+</div>
+<!-- Grafic 24h: gol / plat -->
+<div class="bg-[#F5F6F8] rounded-lg p-3 pt-4 mb-4">
+<div aria-hidden="true" class="h-16 flex items-end gap-[2px] w-full">
+<span class="w-full bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+</div>
+<!-- Axă timp -->
+<div class="flex justify-between items-center text-[11px] text-slate-500 font-tabular mt-2 pt-1 border-t border-slate-200">
+<span>-24h</span>
+<span>-12h</span>
+<span class="font-medium text-slate-700">acum</span>
+</div>
+</div>
+</div>
+<!-- Sub grafic -->
+<div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100">
+<span class="text-slate-500">Niciun raport azi</span>
+</div>
+</div>
+<!-- Card 3: Gaz -->
+<div class="bg-white border border-[#E2E5EA] rounded-lg p-5 flex flex-col justify-between">
+<div>
+<!-- Header card -->
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-slate-800 text-[24px]">local_fire_department</span>
+<h2 class="font-bold text-lg text-slate-900">Gaz</h2>
+</div>
+<!-- Badge: Fără probleme raportate -->
+<span class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold bg-[#ECF5EF] text-[#166534]">
+<span class="material-symbols-outlined text-sm">check</span>
+              Fără probleme raportate
+            </span>
+</div>
+<!-- Stare / Detaliu -->
+<div class="mb-4">
+<p class="text-slate-600 font-medium text-sm">Niciun raport în ultima oră</p>
+</div>
+<!-- Grafic 24h: gol / plat -->
+<div class="bg-[#F5F6F8] rounded-lg p-3 pt-4 mb-4">
+<div aria-hidden="true" class="h-16 flex items-end gap-[2px] w-full">
+<span class="w-full bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+</div>
+<!-- Axă timp -->
+<div class="flex justify-between items-center text-[11px] text-slate-500 font-tabular mt-2 pt-1 border-t border-slate-200">
+<span>-24h</span>
+<span>-12h</span>
+<span class="font-medium text-slate-700">acum</span>
+</div>
+</div>
+</div>
+<!-- Sub grafic -->
+<div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100">
+<span class="text-slate-500">Niciun raport azi</span>
+</div>
+</div>
+<!-- Card 4: Apă caldă și căldură -->
+<div class="bg-white border border-[#E2E5EA] rounded-lg p-5 flex flex-col justify-between">
+<div>
+<!-- Header card -->
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-slate-800 text-[24px]">heat</span>
+<h2 class="font-bold text-lg text-slate-900">Apă caldă și căldură</h2>
+</div>
+<!-- Badge: 1 raportare -->
+<span class="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold bg-[#FFF3DF] text-[#8A4B00]">
+<span class="material-symbols-outlined text-sm">info</span>
+              1 raportare
+            </span>
+</div>
+<!-- Stare / Detaliu -->
+<div class="mb-4">
+<p class="text-[#8A4B00] font-medium text-sm">1 raportare, sub pragul de 3 persoane</p>
+</div>
+<!-- Grafic 24h: o bară mică spre sfârșit -->
+<div class="bg-[#F5F6F8] rounded-lg p-3 pt-4 mb-4">
+<div aria-hidden="true" class="h-16 flex items-end gap-[2px] w-full">
+<span class="flex-grow bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+<!-- Raportare izolată acum 2h (#8A4B00) -->
+<span class="w-2.5 bg-[#8A4B00] h-5 rounded-t-sm mx-1"></span>
+<span class="w-8 bg-[#D1D5DB] h-[3px] rounded-t-sm"></span>
+</div>
+<!-- Axă timp -->
+<div class="flex justify-between items-center text-[11px] text-slate-500 font-tabular mt-2 pt-1 border-t border-slate-200">
+<span>-24h</span>
+<span>-12h</span>
+<span class="font-medium text-slate-700">acum</span>
+</div>
+</div>
+</div>
+<!-- Sub grafic -->
+<div class="flex items-center justify-between text-xs pt-2 border-t border-slate-100">
+<span class="text-slate-500">Ultimul raport acum 2 h</span>
+</div>
+</div>
+</div>
+<!-- 5. Notă explicativă -->
+<div class="bg-white border border-[#E2E5EA] p-4 rounded-lg mb-8 text-sm text-slate-600 flex items-start gap-2.5">
+<span class="material-symbols-outlined text-slate-400 text-lg flex-shrink-0 mt-0.5">info</span>
+<p class="leading-relaxed">
+        Starea „Probabil avarie” apare la cel puțin 3 persoane diferite în aceeași oră și dispare singură.
+      </p>
+</div>
+<!-- 6. Secțiune „Alte cartiere din Bacău” -->
+<section aria-labelledby="other-neighborhoods-heading" class="mb-12">
+<h2 class="text-lg font-bold text-slate-900 mb-3" id="other-neighborhoods-heading">
+        Alte cartiere din Bacău
+      </h2>
+<div class="flex flex-wrap gap-2">
+<a class="bg-white border border-[#E2E5EA] text-slate-700 text-sm font-medium px-4 py-2 rounded-lg hover:border-slate-400 transition-colors" href="#">Centru</a>
+<a class="bg-white border border-[#E2E5EA] text-slate-700 text-sm font-medium px-4 py-2 rounded-lg hover:border-slate-400 transition-colors" href="#">Nord</a>
+<a class="bg-white border border-[#E2E5EA] text-slate-700 text-sm font-medium px-4 py-2 rounded-lg hover:border-slate-400 transition-colors" href="#">CFR</a>
+<a class="bg-white border border-[#E2E5EA] text-slate-700 text-sm font-medium px-4 py-2 rounded-lg hover:border-slate-400 transition-colors" href="#">Mioriței</a>
+<a class="bg-white border border-[#E2E5EA] text-slate-700 text-sm font-medium px-4 py-2 rounded-lg hover:border-slate-400 transition-colors" href="#">George Bacovia</a>
+<a class="bg-white border border-[#E2E5EA] text-slate-700 text-sm font-medium px-4 py-2 rounded-lg hover:border-slate-400 transition-colors" href="#">Cornișa</a>
+<a class="bg-white border border-[#E2E5EA] text-slate-700 text-sm font-medium px-4 py-2 rounded-lg hover:border-slate-400 transition-colors" href="#">Bistrița-Lac</a>
+<a class="bg-white border border-[#E2E5EA] text-slate-700 text-sm font-medium px-4 py-2 rounded-lg hover:border-slate-400 transition-colors" href="#">Izvoare</a>
+<a class="bg-white border border-[#E2E5EA] text-slate-700 text-sm font-medium px-4 py-2 rounded-lg hover:border-slate-400 transition-colors" href="#">Gherăiești</a>
+<a class="bg-white border border-[#E2E5EA] text-slate-700 text-sm font-medium px-4 py-2 rounded-lg hover:border-slate-400 transition-colors" href="#">Șerbănești</a>
+<a class="bg-white border border-[#E2E5EA] text-slate-700 text-sm font-medium px-4 py-2 rounded-lg hover:border-slate-400 transition-colors" href="#">Orizont</a>
+</div>
+</section>
+</main>
+<!-- 7. Subsol (Footer) -->
+<footer class="border-t border-slate-200 py-8 bg-[#F5F6F8]">
+<div class="max-w-[1200px] mx-auto px-4 sm:px-6 text-center text-sm text-slate-600">
+<p class="mb-2">Nu suntem furnizorul de utilități.</p>
+<div class="flex items-center justify-center gap-2 mb-3">
+<a class="text-[#1D4ED8] underline hover:text-blue-900 transition-colors" href="#">Despre</a>
+<span aria-hidden="true" class="text-slate-400">•</span>
+<a class="text-[#1D4ED8] underline hover:text-blue-900 transition-colors" href="#">Confidențialitate</a>
+</div>
+<p class="text-[#4A5361] text-xs">Făcut de Fanvora Digital Studio, Bacău.</p>
+</div>
+</footer>
+</body></html>

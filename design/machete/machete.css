@@ -1,0 +1,170 @@
+/* Avarii Acum, machete v2 (trecerea anti-slop). Tokenii vin din design/DESIGN.md.
+   Mobil întâi; de la 1024px, pagina capătă o coloană laterală. */
+:root {
+  --bg: #F5F6F8;
+  --surface: #FFFFFF;
+  --line: #E2E5EA;
+  --line-strong: #CDD2DA;
+  --ink: #16191D;
+  --ink-2: #4A5361;
+  --accent: #1D4ED8;
+  --accent-ink: #FFFFFF;
+  --ok: #166534;
+  --ok-quiet: #76927F;
+  --warn: #8A4B00;
+  --warn-bg: #FFF3DF;
+  --bad: #9F2A14;
+  --bad-bg: #FCEBE7;
+  --bar: #868F9C;
+  --f-display: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+  --gutter: 16px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 17px/1.5 var(--f-body);
+  font-variant-numeric: tabular-nums;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h1 { font-size: 28px; line-height: 1.15; }
+h2 { font-size: 20px; line-height: 1.25; }
+h3 { font-size: 17px; line-height: 1.3; }
+p { margin: 0; }
+.i { width: 20px; height: 20px; flex: none; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Antet */
+.top { background: var(--surface); border-bottom: 1px solid var(--line); }
+.top-in { max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); height: 56px; display: flex; align-items: center; gap: 24px; }
+.mark { font-family: var(--f-display); font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+.mark span { color: var(--accent); }
+.cities { display: flex; gap: 4px; margin-left: auto; }
+.cities a { color: var(--ink-2); text-decoration: none; padding: 6px 10px; border-radius: 6px; font-size: 16px; }
+.cities a[aria-current] { color: var(--ink); font-weight: 700; background: var(--bg); }
+.top .btn { display: none; }
+
+/* Butoane */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 8px; border: 0; font: 700 17px/1 var(--f-display); text-decoration: none; cursor: pointer; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:active { transform: translateY(1px); }
+.btn-ghost { background: var(--surface); color: var(--ink); border: 1px solid var(--line-strong); }
+.btn-wide { width: 100%; min-height: 56px; }
+.dock { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--surface); border-top: 1px solid var(--line); }
+
+/* Pagină */
+.page { max-width: 1200px; margin: 0 auto; padding: 24px var(--gutter) 120px; display: grid; gap: 32px; }
+.crumbs { font-size: 15px; color: var(--ink-2); display: flex; gap: 8px; }
+.crumbs a { color: var(--ink-2); }
+.head { display: grid; gap: 10px; }
+.lead { font-size: 19px; line-height: 1.45; max-width: 40ch; }
+.lead strong { color: var(--bad); }
+.muted { color: var(--ink-2); }
+.small { font-size: 15px; }
+.stack { display: grid; gap: 16px; align-content: start; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+
+/* Stări */
+.st { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 15px; line-height: 1; padding: 6px 8px; border-radius: 6px; white-space: nowrap; }
+.st .i { width: 16px; height: 16px; }
+.st-bad { color: var(--bad); background: var(--bad-bg); }
+.st-warn { color: var(--warn); background: var(--warn-bg); }
+.st-ok { color: var(--ok-quiet); padding-inline: 0; }
+
+/* Tabelul cartiere × servicii */
+.matrix { width: 100%; border-collapse: collapse; }
+.matrix th, .matrix td { padding: 0; text-align: center; }
+.matrix thead th { font: 700 13px/1.2 var(--f-body); color: var(--ink-2); padding: 12px 4px 10px; border-bottom: 1px solid var(--line-strong); vertical-align: bottom; }
+.matrix thead th a { color: inherit; text-decoration: none; display: grid; justify-items: center; gap: 4px; }
+.matrix thead th:first-child { text-align: left; padding-left: 16px; }
+.matrix tbody tr { border-bottom: 1px solid var(--line); }
+.matrix tbody tr:last-child { border-bottom: 0; }
+.matrix tbody th { text-align: left; font: 700 17px/1.25 var(--f-display); padding: 14px 8px 14px 16px; }
+.matrix tbody th a { color: var(--ink); text-decoration: none; }
+.matrix td { width: 17%; height: 52px; }
+.matrix td .st { min-width: 44px; justify-content: center; }
+.matrix tbody tr.quiet th { font-weight: 600; }
+.matrix-group th { font: 700 13px/1 var(--f-body) !important; color: var(--ink-2); text-align: left; padding: 18px 16px 8px !important; background: var(--bg); border-bottom: 1px solid var(--line); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 15px; color: var(--ink-2); }
+.legend > span { display: inline-flex; align-items: center; gap: 8px; }
+
+/* Grafic 24h: 96 bare, una la 15 minute */
+.chart { padding: 20px 16px 16px; display: grid; gap: 12px; }
+.chart-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; }
+.bars { display: grid; grid-template-columns: repeat(96, 1fr); gap: 1px; align-items: end; height: 120px; border-bottom: 1px solid var(--line-strong); }
+.bars i { display: block; background: var(--bar); min-height: 2px; border-radius: 1px 1px 0 0; }
+.bars i.hot { background: var(--bad); }
+.bars i.warm { background: var(--warn); }
+.axis { display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-2); }
+.axis b { color: var(--ink); }
+.bars.mini { height: 40px; }
+
+/* Liste cu rânduri */
+.rows { list-style: none; margin: 0; padding: 0; }
+.rows > li { display: grid; gap: 8px; padding: 16px; border-bottom: 1px solid var(--line); }
+.rows > li:last-child { border-bottom: 0; }
+.row-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.row-name { display: inline-flex; align-items: center; gap: 10px; font: 700 18px/1.2 var(--f-display); color: var(--ink); text-decoration: none; }
+
+/* Furnizor */
+.provider { display: grid; gap: 6px; padding: 16px; }
+.provider .num { font: 700 20px/1.2 var(--f-display); color: var(--ink-2); }
+
+.split { display: grid; gap: 32px; }
+.inline-links { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.foot { max-width: 1200px; margin: 0 auto; padding: 24px var(--gutter) 120px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 15px; color: var(--ink-2); }
+.foot p:first-child { flex-basis: 100%; }
+
+/* Raportare: panou de jos pe mobil, dialog pe desktop */
+.scrim { position: fixed; inset: 0; background: rgb(22 25 29 / .45); }
+.sheet { position: fixed; left: 0; right: 0; bottom: 0; background: var(--surface); border-radius: 16px 16px 0 0; padding: 12px var(--gutter) calc(16px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 20px; max-height: 92dvh; overflow-y: auto; }
+.grab { width: 40px; height: 4px; border-radius: 2px; background: var(--line-strong); justify-self: center; }
+.sheet-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.x { width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: none; color: var(--ink-2); border-radius: 8px; margin-right: -10px; }
+.field { display: grid; gap: 8px; }
+.label { font-weight: 700; font-size: 15px; }
+.where { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 8px; }
+.where a { margin-left: auto; font-weight: 700; }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tile { display: grid; justify-items: center; align-content: center; gap: 8px; min-height: 96px; padding: 12px; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--surface); font: 700 16px/1.2 var(--f-body); color: var(--ink); text-align: center; }
+.tile .i { width: 28px; height: 28px; }
+.tile[aria-checked="true"] { border: 2px solid var(--accent); color: var(--accent); background: #F3F6FE; }
+.fine { font-size: 15px; color: var(--ink-2); }
+.done { display: grid; gap: 16px; }
+.done-head { display: flex; align-items: center; gap: 10px; color: var(--ok); }
+.done-head .i { width: 28px; height: 28px; }
+.now { padding: 14px 16px; display: grid; gap: 8px; }
+.btns { display: grid; gap: 10px; }
+
+/* Text lung (Despre) */
+.doc { max-width: 680px; display: grid; gap: 28px; }
+.doc section { display: grid; gap: 10px; }
+.doc p { max-width: 62ch; }
+.how { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.how li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; }
+.how .i { color: var(--ink-2); margin-top: 2px; }
+.states { display: grid; gap: 10px; justify-items: start; }
+.states div { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
+
+@media (min-width: 1024px) {
+  :root { --gutter: 32px; }
+  h1 { font-size: 36px; }
+  .top-in { height: 64px; }
+  .cities { margin-left: 24px; margin-right: auto; }
+  .top .btn { display: inline-flex; }
+  .dock { display: none; }
+  .page { padding-bottom: 64px; }
+  .foot { padding-bottom: 32px; }
+  .split { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+  .matrix thead th { font-size: 15px; }
+  .matrix td { height: 56px; }
+  .sheet { left: 50%; right: auto; bottom: auto; top: 50%; transform: translate(-50%, -50%); width: 520px; border-radius: 12px; padding: 24px; }
+  .grab { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

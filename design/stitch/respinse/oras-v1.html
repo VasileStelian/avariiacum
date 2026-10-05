@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html lang="ro"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Avarii Acum - Bacău</title>
+<!-- Google Fonts: Public Sans & Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with configuration -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#F5F6F8',
+              surface: '#FFFFFF',
+              primary: '#1D4ED8',
+              text: '#16191D',
+              muted: '#4A5361',
+              border: '#E2E5EA',
+              subtle: '#64748B'
+            },
+            status: {
+              normalBg: '#ECF5EF',
+              normalText: '#166534',
+              watchBg: '#FFF3DF',
+              watchText: '#8A4B00',
+              alertBg: '#FCEBE7',
+              alertText: '#9F2A14'
+            }
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {},
+          fontFamily: {
+            headline: ["Public Sans", "sans-serif"],
+            display: ["Public Sans", "sans-serif"],
+            body: ["Public Sans", "sans-serif"],
+            label: ["Public Sans", "sans-serif"]
+          },
+          fontSize: {}
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Public Sans', sans-serif;
+      background-color: #F5F6F8;
+      color: #16191D;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "tnum" on, "lnum" on;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#F5F6F8] min-h-screen text-[#16191D] flex justify-center selection:bg-blue-100 selection:text-blue-900">
+<!-- Mobile Container viewport: exactly 390px locked -->
+<div class="w-full max-w-[390px] min-h-screen bg-[#F5F6F8] flex flex-col relative pb-32">
+<!-- 1. Antet subțire alb (Shared Component TopAppBar spec: 56px, border-b #E2E5EA) -->
+<header class="sticky top-0 z-30 bg-white border-b border-[#E2E5EA] h-14 px-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#1D4ED8] text-xl" data-icon="water_drop">water_drop</span>
+<span class="font-headline font-bold text-lg text-[#16191D] tracking-tight">Avarii Acum</span>
+</div>
+<button aria-label="Selectează orașul" class="flex items-center gap-0.5 text-sm font-semibold text-[#16191D] hover:bg-slate-50 px-2.5 py-1.5 rounded-lg border border-[#E2E5EA] transition-colors" type="button">
+<span>Bacău</span>
+<span class="material-symbols-outlined text-lg text-[#4A5361]" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 px-4 pt-4">
+<!-- 2. Secțiune Titlu & Info -->
+<section class="mb-4">
+<h1 class="text-2xl font-bold text-[#16191D] leading-tight tracking-tight">Avarii în Bacău acum</h1>
+<p class="text-sm text-[#4A5361] mt-1 leading-normal">Raportări anonime de la locuitori, pe cartiere. Actualizat acum 1 min.</p>
+</section>
+<!-- 3. Rând de filtre tip pastile / segment -->
+<section class="overflow-x-auto no-scrollbar flex items-center gap-2 py-1 -mx-4 px-4">
+<!-- Pastilă Activă: Toate -->
+<button class="shrink-0 flex items-center justify-center px-3 py-1.5 text-sm font-semibold rounded-lg bg-[#1D4ED8] text-white border border-[#1D4ED8] transition-colors" type="button">
+          Toate
+        </button>
+<!-- Pastilă: Apă -->
+<button class="shrink-0 flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-white border border-[#E2E5EA] text-[#16191D] hover:bg-slate-50 transition-colors" type="button">
+<span class="material-symbols-outlined text-base text-[#4A5361]" data-icon="water_drop">water_drop</span>
+<span>Apă</span>
+</button>
+<!-- Pastilă: Curent -->
+<button class="shrink-0 flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-white border border-[#E2E5EA] text-[#16191D] hover:bg-slate-50 transition-colors" type="button">
+<span class="material-symbols-outlined text-base text-[#4A5361]" data-icon="bolt">bolt</span>
+<span>Curent</span>
+</button>
+<!-- Pastilă: Gaz -->
+<button class="shrink-0 flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-white border border-[#E2E5EA] text-[#16191D] hover:bg-slate-50 transition-colors" type="button">
+<span class="material-symbols-outlined text-base text-[#4A5361]" data-icon="local_fire_department">local_fire_department</span>
+<span>Gaz</span>
+</button>
+<!-- Pastilă: Căldură -->
+<button class="shrink-0 flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-lg bg-white border border-[#E2E5EA] text-[#16191D] hover:bg-slate-50 transition-colors" type="button">
+<span class="material-symbols-outlined text-base text-[#4A5361]" data-icon="heat_pump">heat_pump</span>
+<span>Căldură</span>
+</button>
+</section>
+<!-- 4. Card rezumat oraș -->
+<section class="bg-white border border-[#E2E5EA] rounded-lg p-3.5 mt-3 flex items-center gap-3">
+<span class="material-symbols-outlined text-[#8A4B00] text-xl shrink-0" data-icon="info">info</span>
+<p class="text-sm font-medium text-[#16191D] leading-snug">
+          Acum: 1 cartier cu probabil avarie, 2 cu raportări izolate.
+        </p>
+</section>
+<!-- 5. Lista cartierelor -->
+<section aria-label="Situație cartiere Bacău" class="space-y-3 mt-4">
+<!-- Cartier a: Republicii (Probabil avarie) -->
+<article class="bg-white rounded-lg border border-[#E2E5EA] p-4 transition-all">
+<div class="flex items-center justify-between gap-2">
+<h2 class="text-base font-bold text-[#16191D] leading-tight">Republicii</h2>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-[#FCEBE7] text-[#9F2A14]">
+<span class="material-symbols-outlined text-xs leading-none" data-icon="warning">warning</span>
+<span>Probabil avarie</span>
+</span>
+</div>
+<!-- Rând servicii compacte: Apă afectată (#9F2A14) -->
+<div class="flex items-center gap-3.5 mt-2.5 text-[#94A3B8]">
+<span class="material-symbols-outlined text-lg text-[#9F2A14]" data-icon="water_drop" title="Apă afectată">water_drop</span>
+<span class="material-symbols-outlined text-lg text-[#94A3B8]" data-icon="bolt" title="Curent">bolt</span>
+<span class="material-symbols-outlined text-lg text-[#94A3B8]" data-icon="local_fire_department" title="Gaz">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-[#94A3B8]" data-icon="heat_pump" title="Căldură">heat_pump</span>
+</div>
+<p class="text-xs text-[#4A5361] mt-1.5 font-normal">Apă: 7 persoane în ultima oră</p>
+</article>
+<!-- Cartier b: Mioriței (2 raportări) -->
+<article class="bg-white rounded-lg border border-[#E2E5EA] p-4 transition-all">
+<div class="flex items-center justify-between gap-2">
+<h2 class="text-base font-bold text-[#16191D] leading-tight">Mioriței</h2>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-[#FFF3DF] text-[#8A4B00]">
+<span class="material-symbols-outlined text-xs leading-none" data-icon="info">info</span>
+<span>2 raportări</span>
+</span>
+</div>
+<!-- Rând servicii compacte: Curent afectat (#8A4B00) -->
+<div class="flex items-center gap-3.5 mt-2.5">
+<span class="material-symbols-outlined text-lg text-[#94A3B8]" data-icon="water_drop" title="Apă">water_drop</span>
+<span class="material-symbols-outlined text-lg text-[#8A4B00]" data-icon="bolt" title="Curent afectat">bolt</span>
+<span class="material-symbols-outlined text-lg text-[#94A3B8]" data-icon="local_fire_department" title="Gaz">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-[#94A3B8]" data-icon="heat_pump" title="Căldură">heat_pump</span>
+</div>
+<p class="text-xs text-[#4A5361] mt-1.5 font-normal">Curent: 2 raportări în ultima oră</p>
+</article>
+<!-- Cartier c: George Bacovia (1 raportare) -->
+<article class="bg-white rounded-lg border border-[#E2E5EA] p-4 transition-all">
+<div class="flex items-center justify-between gap-2">
+<h2 class="text-base font-bold text-[#16191D] leading-tight">George Bacovia</h2>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-[#FFF3DF] text-[#8A4B00]">
+<span class="material-symbols-outlined text-xs leading-none" data-icon="info">info</span>
+<span>1 raportare</span>
+</span>
+</div>
+<!-- Rând servicii compacte: Căldură afectată (#8A4B00) -->
+<div class="flex items-center gap-3.5 mt-2.5">
+<span class="material-symbols-outlined text-lg text-[#94A3B8]" data-icon="water_drop" title="Apă">water_drop</span>
+<span class="material-symbols-outlined text-lg text-[#94A3B8]" data-icon="bolt" title="Curent">bolt</span>
+<span class="material-symbols-outlined text-lg text-[#94A3B8]" data-icon="local_fire_department" title="Gaz">local_fire_department</span>
+<span class="material-symbols-outlined text-lg text-[#8A4B00]" data-icon="heat_pump" title="Căldură afectată">heat_pump</span>
+</div>
+<p class="text-xs text-[#4A5361] mt-1.5 font-normal">Căldură: 1 raportare în ultima oră</p>
+</article>
+<!-- Cartier d1: Centru (Fără probleme) -->
+<article class="bg-white rounded-lg border border-[#E2E5EA] p-4">
+<div class="flex items-center justify-between gap-2">
+<h2 class="text-base font-bold text-[#16191D] leading-tight">Centru</h2>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-[#ECF5EF] text-[#166534]">
+<span class="material-symbols-outlined text-xs leading-none" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<!-- Toate serviciile neutre -->
+<div class="flex items-center gap-3.5 mt-2.5 text-[#94A3B8]">
+<span class="material-symbols-outlined text-lg" data-icon="water_drop" title="Apă funcțională">water_drop</span>
+<span class="material-symbols-outlined text-lg" data-icon="bolt" title="Curent funcțional">bolt</span>
+<span class="material-symbols-outlined text-lg" data-icon="local_fire_department" title="Gaz funcțional">local_fire_department</span>
+<span class="material-symbols-outlined text-lg" data-icon="heat_pump" title="Căldură funcțională">heat_pump</span>
+</div>
+</article>
+<!-- Cartier d2: Nord (Fără probleme) -->
+<article class="bg-white rounded-lg border border-[#E2E5EA] p-4">
+<div class="flex items-center justify-between gap-2">
+<h2 class="text-base font-bold text-[#16191D] leading-tight">Nord</h2>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-[#ECF5EF] text-[#166534]">
+<span class="material-symbols-outlined text-xs leading-none" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<div class="flex items-center gap-3.5 mt-2.5 text-[#94A3B8]">
+<span class="material-symbols-outlined text-lg" data-icon="water_drop" title="Apă funcțională">water_drop</span>
+<span class="material-symbols-outlined text-lg" data-icon="bolt" title="Curent funcțional">bolt</span>
+<span class="material-symbols-outlined text-lg" data-icon="local_fire_department" title="Gaz funcțional">local_fire_department</span>
+<span class="material-symbols-outlined text-lg" data-icon="heat_pump" title="Căldură funcțională">heat_pump</span>
+</div>
+</article>
+<!-- Cartier d3: CFR (Fără probleme) -->
+<article class="bg-white rounded-lg border border-[#E2E5EA] p-4">
+<div class="flex items-center justify-between gap-2">
+<h2 class="text-base font-bold text-[#16191D] leading-tight">CFR</h2>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-[#ECF5EF] text-[#166534]">
+<span class="material-symbols-outlined text-xs leading-none" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<div class="flex items-center gap-3.5 mt-2.5 text-[#94A3B8]">
+<span class="material-symbols-outlined text-lg" data-icon="water_drop" title="Apă funcțională">water_drop</span>
+<span class="material-symbols-outlined text-lg" data-icon="bolt" title="Curent funcțional">bolt</span>
+<span class="material-symbols-outlined text-lg" data-icon="local_fire_department" title="Gaz funcțional">local_fire_department</span>
+<span class="material-symbols-outlined text-lg" data-icon="heat_pump" title="Căldură funcțională">heat_pump</span>
+</div>
+</article>
+<!-- Cartier d4: Cornișa (Fără probleme) -->
+<article class="bg-white rounded-lg border border-[#E2E5EA] p-4">
+<div class="flex items-center justify-between gap-2">
+<h2 class="text-base font-bold text-[#16191D] leading-tight">Cornișa</h2>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-[#ECF5EF] text-[#166534]">
+<span class="material-symbols-outlined text-xs leading-none" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<div class="flex items-center gap-3.5 mt-2.5 text-[#94A3B8]">
+<span class="material-symbols-outlined text-lg" data-icon="water_drop" title="Apă funcțională">water_drop</span>
+<span class="material-symbols-outlined text-lg" data-icon="bolt" title="Curent funcțional">bolt</span>
+<span class="material-symbols-outlined text-lg" data-icon="local_fire_department" title="Gaz funcțional">local_fire_department</span>
+<span class="material-symbols-outlined text-lg" data-icon="heat_pump" title="Căldură funcțională">heat_pump</span>
+</div>
+</article>
+<!-- Cartier d5: Izvoare (Fără probleme) -->
+<article class="bg-white rounded-lg border border-[#E2E5EA] p-4">
+<div class="flex items-center justify-between gap-2">
+<h2 class="text-base font-bold text-[#16191D] leading-tight">Izvoare</h2>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium bg-[#ECF5EF] text-[#166534]">
+<span class="material-symbols-outlined text-xs leading-none" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</span>
+</div>
+<div class="flex items-center gap-3.5 mt-2.5 text-[#94A3B8]">
+<span class="material-symbols-outlined text-lg" data-icon="water_drop" title="Apă funcțională">water_drop</span>
+<span class="material-symbols-outlined text-lg" data-icon="bolt" title="Curent funcțional">bolt</span>
+<span class="material-symbols-outlined text-lg" data-icon="local_fire_department" title="Gaz funcțional">local_fire_department</span>
+<span class="material-symbols-outlined text-lg" data-icon="heat_pump" title="Căldură funcțională">heat_pump</span>
+</div>
+</article>
+</section>
+<!-- 6. Sub listă: link feedback cartier lipsă -->
+<section class="mt-5 mb-6 text-center">
+<a class="text-sm text-[#4A5361] hover:text-[#16191D] underline underline-offset-4 decoration-[#E2E5EA] hover:decoration-[#16191D] transition-colors" href="#feedback">
+          Lipsește cartierul tău? Spune-ne
+        </a>
+</section>
+<!-- 7. Subsol simplu & civic -->
+<footer class="text-center text-xs text-[#64748B] space-y-2 pb-6">
+<p class="leading-relaxed">Nu suntem furnizorul. Pentru avarii urgente sau avize oficiale, apelați dispeceratele furnizorilor de utilități.</p>
+<div class="flex items-center justify-center gap-2 text-xs pt-1">
+<a class="text-[#4A5361] hover:underline" href="#despre">Despre</a>
+<span class="text-[#CBD5E1]">·</span>
+<a class="text-[#4A5361] hover:underline" href="#confidentialitate">Confidențialitate</a>
+<span class="text-[#CBD5E1]">·</span>
+<a class="text-[#4A5361] hover:underline" href="#metodologie">Metodologie</a>
+</div>
+</footer>
+</main>
+<!-- Shared Component: BottomNavBar (Active tab: Panou - destination match) -->
+<nav aria-label="Navigație principală" class="fixed bottom-14 left-0 right-0 w-full max-w-[390px] mx-auto z-40 bg-white border-t border-[#E2E5EA] h-14 flex justify-around items-center px-4">
+<!-- Item 1: Panou (Active) -->
+<a aria-current="page" class="flex flex-col items-center justify-center text-blue-700 font-bold py-1 active:scale-95 transition-transform duration-100" href="#panou">
+<span class="material-symbols-outlined text-xl" data-icon="dashboard">dashboard</span>
+<span class="font-headline text-[11px] font-bold mt-0.5">Panou</span>
+</a>
+<!-- Item 2: Istoric (Inactive) -->
+<a class="flex flex-col items-center justify-center text-slate-600 font-medium py-1 active:scale-95 transition-transform duration-100 hover:text-blue-700" href="#istoric">
+<span class="material-symbols-outlined text-xl" data-icon="history">history</span>
+<span class="font-headline text-[11px] font-medium mt-0.5">Istoric</span>
+</a>
+<!-- Item 3: Notificări (Inactive) -->
+<a class="flex flex-col items-center justify-center text-slate-600 font-medium py-1 active:scale-95 transition-transform duration-100 hover:text-blue-700" href="#notificari">
+<span class="material-symbols-outlined text-xl" data-icon="notifications">notifications</span>
+<span class="font-headline text-[11px] font-medium mt-0.5">Notificări</span>
+</a>
+</nav>
+<!-- 8. Buton fix jos (CTA Principal civic pe toată lățimea mobilă - h-14/56px) -->
+<div class="fixed bottom-0 left-0 right-0 w-full max-w-[390px] mx-auto bg-white border-t border-[#E2E5EA] p-2 z-50">
+<button class="w-full h-12 bg-[#1D4ED8] hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-base rounded-lg flex items-center justify-center gap-2 shadow-none transition-colors" type="button">
+<span class="material-symbols-outlined text-xl" data-icon="report_problem">report_problem</span>
+<span>Raportează o problemă</span>
+</button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html lang="ro"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Despre - Avarii Acum</title>
+<!-- Typography: Public Sans for titles & clean civic feel -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#F5F6F8',
+              text: '#16191D',
+              secondary: '#4A5361',
+              accent: '#1D4ED8',
+              line: '#E2E5EA',
+              // State colors
+              normalText: '#166534',
+              normalBg: '#ECF5EF',
+              warningText: '#8A4B00',
+              warningBg: '#FFF3DF',
+              dangerText: '#9F2A14',
+              dangerBg: '#FCEBE7'
+            }
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            headline: ["Public Sans", "sans-serif"],
+            display: ["Public Sans", "sans-serif"],
+            body: ["Public Sans", "sans-serif"],
+            label: ["Public Sans", "sans-serif"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Public Sans', sans-serif;
+      background-color: #F5F6F8;
+      color: #16191D;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#F5F6F8] text-[#16191D] flex flex-col justify-between selection:bg-blue-100 selection:text-blue-900">
+<!-- Antet (Header) Desktop 1440px wide layout target -->
+<header class="w-full bg-white h-16 border-b border-slate-200 sticky top-0 z-40">
+<div class="max-w-6xl mx-auto px-8 h-full flex items-center justify-between">
+<!-- Brand & City Links -->
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 group text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-700 rounded-sm" href="/">
+<span class="material-symbols-outlined text-blue-700 text-2xl" data-icon="water_drop">water_drop</span>
+<span class="font-headline font-bold text-lg text-slate-900 tracking-tight">Avarii Acum</span>
+</a>
+<nav aria-label="Orașe" class="flex items-center gap-6">
+<a class="text-slate-600 hover:text-slate-900 text-sm font-medium transition-colors" href="/bacau/">Bacău</a>
+<a class="text-slate-600 hover:text-slate-900 text-sm font-medium transition-colors" href="/iasi/">Iași</a>
+</nav>
+</div>
+<!-- Right Navigation Tab -->
+<nav aria-label="Navigare primară" class="flex items-center">
+<a aria-current="page" class="text-blue-700 font-semibold text-sm py-1 border-b-2 border-blue-700" href="/despre/">Despre</a>
+</nav>
+</div>
+</header>
+<!-- Conținut principal (O singură coloană centrată ~680px) -->
+<main class="w-full flex-grow">
+<div class="max-w-[680px] mx-auto py-12 px-6">
+<!-- 1. Firimituri (Breadcrumbs) -->
+<nav aria-label="Firimituri" class="mb-3">
+<ol class="flex items-center gap-1.5 text-xs text-slate-500">
+<li>
+<a class="hover:text-slate-800 transition-colors" href="/">Avarii Acum</a>
+</li>
+<li class="select-none text-slate-400">/</li>
+<li aria-current="location" class="text-slate-700 font-medium">Despre</li>
+</ol>
+</nav>
+<!-- 2. H1 Titlu Principal -->
+<h1 class="text-3xl font-bold text-slate-900 tracking-tight mt-1 mb-4">
+        Despre Avarii Acum
+      </h1>
+<!-- 3. Paragraf Introductiv -->
+<p class="text-lg text-slate-700 leading-relaxed mb-10">
+        Un loc unde vecinii spun ce nu funcționează: apă, curent, gaz, apă caldă și căldură. Gratuit, fără cont, pe cartiere. Începem cu Bacău și Iași.
+      </p>
+<div class="border-t border-slate-200"></div>
+<!-- 4. Cum funcționează -->
+<section class="py-8">
+<h2 class="text-xl font-bold text-slate-900 mb-6">Cum funcționează</h2>
+<div class="space-y-4">
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0 text-slate-700 mt-0.5">
+<span class="material-symbols-outlined text-lg" data-icon="touch_app">touch_app</span>
+</div>
+<p class="text-slate-700 text-base leading-relaxed pt-0.5">
+              Alegi cartierul și serviciul care lipsește.
+            </p>
+</div>
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0 text-slate-700 mt-0.5">
+<span class="material-symbols-outlined text-lg" data-icon="group">group</span>
+</div>
+<p class="text-slate-700 text-base leading-relaxed pt-0.5">
+              Când cel puțin 3 persoane diferite raportează același lucru în aceeași oră, afișăm „Probabil avarie”.
+            </p>
+</div>
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0 text-slate-700 mt-0.5">
+<span class="material-symbols-outlined text-lg" data-icon="schedule">schedule</span>
+</div>
+<p class="text-slate-700 text-base leading-relaxed pt-0.5">
+              Nu există buton „A revenit”. Când rapoartele se opresc, starea dispare singură.
+            </p>
+</div>
+</div>
+<!-- 5. Casetă de evidențiere stări -->
+<div class="bg-white border border-slate-200 rounded-lg p-5 my-8">
+<p class="font-semibold text-slate-900 text-sm mb-3">Stările pe care le vei vedea:</p>
+<div class="flex flex-col gap-2.5">
+<!-- Stare 1: Normal -->
+<div class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[#ECF5EF] text-[#166534] text-sm font-medium w-full sm:w-auto">
+<span class="material-symbols-outlined text-base flex-shrink-0" data-icon="check">check</span>
+<span>Fără probleme raportate</span>
+</div>
+<!-- Stare 2: Sub prag -->
+<div class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[#FFF3DF] text-[#8A4B00] text-sm font-medium w-full sm:w-auto">
+<span class="material-symbols-outlined text-base flex-shrink-0" data-icon="info">info</span>
+<span>2 raportări în ultima oră</span>
+</div>
+<!-- Stare 3: Probabil avarie -->
+<div class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[#FCEBE7] text-[#9F2A14] text-sm font-medium w-full sm:w-auto">
+<span class="material-symbols-outlined text-base flex-shrink-0" data-icon="warning">warning</span>
+<span>Probabil avarie: 7 persoane în ultima oră</span>
+</div>
+</div>
+</div>
+</section>
+<div class="border-t border-slate-200"></div>
+<!-- 6. Ce nu suntem -->
+<section class="py-8">
+<h2 class="text-xl font-bold text-slate-900 mb-2">Ce nu suntem</h2>
+<p class="text-slate-700 leading-relaxed text-base">
+          Nu suntem CRAB, ApaVital, Delgaz, Thermoenergy sau Veolia. Nu primim date de la ei. Pentru avarii, sunați la furnizor.
+        </p>
+</section>
+<div class="border-t border-slate-200"></div>
+<!-- 7. Ce păstrăm -->
+<section class="py-8">
+<h2 class="text-xl font-bold text-slate-900 mb-2">Ce păstrăm</h2>
+<p class="text-slate-700 leading-relaxed text-base mb-2">
+          Cartierul, serviciul și ora. Adresa IP doar ca amprentă criptată, ștearsă după 24 de ore. Fără cookie-uri de urmărire.
+        </p>
+<div>
+<a class="text-[#1D4ED8] underline hover:text-blue-800 text-base transition-colors font-medium" href="/confidentialitate/">
+            Citește politica de confidențialitate
+          </a>
+</div>
+</section>
+<div class="border-t border-slate-200"></div>
+<!-- 8. Cine a făcut aplicația -->
+<section class="py-8">
+<h2 class="text-xl font-bold text-slate-900 mb-2">Cine a făcut aplicația</h2>
+<p class="text-slate-700 leading-relaxed text-base mb-2">
+          Fanvora Digital Studio, din Bacău. Codul e public pe GitHub.
+        </p>
+<div class="flex items-center gap-4 text-base font-medium">
+<a class="text-[#1D4ED8] underline hover:text-blue-800 transition-colors" href="https://fanvora.ro" rel="noopener noreferrer" target="_blank">fanvora.ro</a>
+<span class="text-slate-300">·</span>
+<a class="text-[#1D4ED8] underline hover:text-blue-800 transition-colors" href="https://github.com" rel="noopener noreferrer" target="_blank">Codul pe GitHub</a>
+</div>
+</section>
+<div class="border-t border-slate-200"></div>
+<!-- 9. Lipsește cartierul tău? -->
+<section class="py-8">
+<h2 class="text-xl font-bold text-slate-900 mb-2">Lipsește cartierul tău?</h2>
+<p class="text-slate-700 text-base mb-3 leading-relaxed">
+          Scrie-ne și îl adăugăm.
+        </p>
+<div>
+<span class="font-mono text-sm bg-slate-100 border border-slate-200 px-3 py-1.5 rounded inline-block text-slate-600 select-all">
+            adresă în curs de stabilire
+          </span>
+</div>
+</section>
+</div>
+</main>
+<!-- Subsol simplu și curat -->
+<footer class="w-full border-t border-slate-200 bg-transparent">
+<div class="max-w-6xl mx-auto px-8 py-12 text-center">
+<p class="text-slate-500 text-sm">
+        Avarii Acum: serviciu civic gratuit și anonim.
+      </p>
+</div>
+</footer>
+</body></html>

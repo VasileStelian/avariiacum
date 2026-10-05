@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="ro"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Despre Avarii Acum: serviciu civic gratuit</title>
+<!-- Google Fonts: Public Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: "#1D4ED8",
+              bg: "#F5F6F8",
+              surface: "#FFFFFF",
+              text: "#16191D",
+              muted: "#4A5361",
+              border: "#E2E5EA"
+            },
+            status: {
+              normalText: "#166534",
+              normalBg: "#ECF5EF",
+              midText: "#8A4B00",
+              midBg: "#FFF3DF",
+              alertText: "#9F2A14",
+              alertBg: "#FCEBE7"
+            }
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          spacing: {},
+          fontFamily: {
+            headline: ["Public Sans", "sans-serif"],
+            display: ["Public Sans", "sans-serif"],
+            body: ["Public Sans", "sans-serif"],
+            label: ["Public Sans", "sans-serif"]
+          },
+          fontSize: {}
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Public Sans', sans-serif;
+      background-color: #F5F6F8;
+      color: #16191D;
+      -webkit-font-smoothing: antialiased;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen bg-[#F5F6F8] text-[#16191D] antialiased flex flex-col items-center">
+<!-- Antet TopAppBar conform Shared Components JSON (cu adaptare de navigare lineară: link 'Înapoi') -->
+<header class="w-full bg-white border-b border-[#E2E5EA]">
+<div class="max-w-md mx-auto h-14 px-4 flex items-center justify-between">
+<!-- Brand & Leading -->
+<a class="flex items-center gap-2 group active:opacity-80 transition-opacity" href="/">
+<span class="material-symbols-outlined text-[#1D4ED8] text-xl" data-icon="water_drop">water_drop</span>
+<span class="font-headline font-bold text-lg text-[#16191D] tracking-tight">Avarii Acum</span>
+</a>
+<!-- Link subtil Înapoi spre Panou -->
+<a class="inline-flex items-center gap-1 text-sm font-medium text-[#4A5361] hover:text-[#1D4ED8] transition-colors py-1.5 px-2 rounded-lg hover:bg-[#F5F6F8]" href="/">
+<span class="material-symbols-outlined text-base leading-none" data-icon="arrow_back">arrow_back</span>
+<span>Bacău</span>
+</a>
+</div>
+</header>
+<!-- Canvas Conținut Principal (max-w-md, stil editorial aerisit) -->
+<main class="w-full max-w-md px-5 pt-6 pb-16 flex-1">
+<!-- Breadcrumb discret -->
+<nav aria-label="Cale navigare" class="mb-4 text-xs font-medium text-[#4A5361]">
+<ol class="flex items-center space-x-1.5">
+<li>
+<a class="hover:text-[#1D4ED8] transition-colors" href="/">Avarii Acum</a>
+</li>
+<li aria-hidden="true" class="text-[#4A5361]/60">/</li>
+<li aria-current="page" class="text-[#16191D] font-semibold">Despre</li>
+</ol>
+</nav>
+<!-- Titlu Principal și Introducere -->
+<section class="mb-8">
+<h1 class="font-headline font-bold text-2xl sm:text-[28px] text-[#16191D] leading-tight tracking-tight mb-3">
+        Despre Avarii Acum
+      </h1>
+<p class="text-base text-[#4A5361] leading-relaxed">
+        Un loc unde vecinii spun ce nu funcționează: apă, curent, gaz, apă caldă și căldură. Gratuit, fără cont, pe cartiere. Începem cu Bacău și Iași.
+      </p>
+</section>
+<hr class="border-[#E2E5EA] mb-8"/>
+<!-- Secțiune: Cum funcționează -->
+<section class="mb-8">
+<h2 class="font-headline font-bold text-lg text-[#16191D] tracking-tight mb-4">
+        Cum funcționează
+      </h2>
+<!-- Lista pașilor explicativi -->
+<div class="space-y-4 mb-6">
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-lg bg-white border border-[#E2E5EA] flex items-center justify-center shrink-0 mt-0.5 text-[#1D4ED8]">
+<span class="material-symbols-outlined text-lg" data-icon="touch_app">touch_app</span>
+</div>
+<p class="text-base text-[#16191D] leading-normal pt-1">
+            Alegi cartierul și serviciul care lipsește.
+          </p>
+</div>
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-lg bg-white border border-[#E2E5EA] flex items-center justify-center shrink-0 mt-0.5 text-[#1D4ED8]">
+<span class="material-symbols-outlined text-lg" data-icon="group">group</span>
+</div>
+<p class="text-base text-[#16191D] leading-normal pt-1">
+            Când cel puțin 3 persoane diferite raportează același lucru în aceeași oră, afișăm „Probabil avarie”.
+          </p>
+</div>
+<div class="flex items-start gap-3.5">
+<div class="w-8 h-8 rounded-lg bg-white border border-[#E2E5EA] flex items-center justify-center shrink-0 mt-0.5 text-[#1D4ED8]">
+<span class="material-symbols-outlined text-lg" data-icon="history_toggle_off">history_toggle_off</span>
+</div>
+<p class="text-base text-[#16191D] leading-normal pt-1">
+            Nu există buton „A revenit”. Când rapoartele se opresc, starea dispare singură.
+          </p>
+</div>
+</div>
+<!-- Calup de etichete de stare reale -->
+<div class="bg-white rounded-lg border border-[#E2E5EA] p-4">
+<p class="text-xs font-semibold text-[#4A5361] mb-3">
+          Stările pe care le vei vedea:
+        </p>
+<div class="flex flex-col gap-2">
+<!-- Stare 1: Normal -->
+<div class="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-[#ECF5EF] text-[#166534] text-sm font-medium">
+<span class="material-symbols-outlined text-base shrink-0" data-icon="check_circle">check_circle</span>
+<span>Fără probleme raportate</span>
+</div>
+<!-- Stare 2: Sub prag -->
+<div class="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-[#FFF3DF] text-[#8A4B00] text-sm font-medium">
+<span class="material-symbols-outlined text-base shrink-0" data-icon="info">info</span>
+<span>2 raportări în ultima oră</span>
+</div>
+<!-- Stare 3: Probabil avarie -->
+<div class="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-[#FCEBE7] text-[#9F2A14] text-sm font-medium">
+<span class="material-symbols-outlined text-base shrink-0" data-icon="warning">warning</span>
+<span>Probabil avarie: 7 persoane în ultima oră</span>
+</div>
+</div>
+</div>
+</section>
+<hr class="border-[#E2E5EA] mb-8"/>
+<!-- Secțiune: Ce nu suntem -->
+<section class="mb-8">
+<h2 class="font-headline font-bold text-lg text-[#16191D] tracking-tight mb-2">
+        Ce nu suntem
+      </h2>
+<p class="text-base text-[#4A5361] leading-relaxed">
+        Nu suntem CRAB, ApaVital, Delgaz, Thermoenergy sau Veolia. Nu primim date de la ei. Pentru avarii, sunați la furnizor.
+      </p>
+</section>
+<hr class="border-[#E2E5EA] mb-8"/>
+<!-- Secțiune: Ce păstrăm -->
+<section class="mb-8">
+<h2 class="font-headline font-bold text-lg text-[#16191D] tracking-tight mb-2">
+        Ce păstrăm
+      </h2>
+<p class="text-base text-[#4A5361] leading-relaxed mb-2">
+        Cartierul, serviciul și ora. Adresa IP doar ca amprentă criptată, ștearsă după 24 de ore. Fără cookie-uri de urmărire.
+      </p>
+<div>
+<a class="text-sm font-semibold text-[#1D4ED8] underline underline-offset-4 hover:opacity-80 transition-opacity" href="#politica">
+          Citește politica de confidențialitate
+        </a>
+</div>
+</section>
+<hr class="border-[#E2E5EA] mb-8"/>
+<!-- Secțiune: Cine a făcut aplicația -->
+<section class="mb-8">
+<h2 class="font-headline font-bold text-lg text-[#16191D] tracking-tight mb-2">
+        Cine a făcut aplicația
+      </h2>
+<p class="text-base text-[#4A5361] leading-relaxed mb-2">
+        Fanvora Digital Studio, din Bacău. Codul e public pe GitHub.
+      </p>
+<div class="flex items-center gap-4 text-sm font-semibold text-[#1D4ED8]">
+<a class="underline underline-offset-4 hover:opacity-80 transition-opacity" href="https://fanvora.ro" rel="noopener noreferrer" target="_blank">
+          fanvora.ro
+        </a>
+<span class="text-[#E2E5EA] font-normal">•</span>
+<a class="underline underline-offset-4 hover:opacity-80 transition-opacity" href="https://github.com" rel="noopener noreferrer" target="_blank">
+          Codul pe GitHub
+        </a>
+</div>
+</section>
+<hr class="border-[#E2E5EA] mb-8"/>
+<!-- Secțiune: Lipsește cartierul tău? -->
+<section class="mb-10">
+<h2 class="font-headline font-bold text-lg text-[#16191D] tracking-tight mb-2">
+        Lipsește cartierul tău?
+      </h2>
+<p class="text-base text-[#4A5361] leading-relaxed mb-1">
+        Scrie-ne și îl adăugăm.
+      </p>
+<p class="text-sm font-mono text-[#4A5361] bg-white border border-[#E2E5EA] rounded-lg px-3 py-2 inline-block">
+        adresă în curs de stabilire
+      </p>
+</section>
+<!-- Subsol discret -->
+<footer class="pt-6 border-t border-[#E2E5EA] text-xs text-[#4A5361] leading-normal flex flex-col gap-1.5">
+<p class="font-medium text-[#16191D]">
+        Avarii Acum: serviciu civic gratuit și anonim.
+      </p>
+<p>
+        Informații raportate de comunitate în mod independent.
+      </p>
+</footer>
+</main>
+</body></html>
