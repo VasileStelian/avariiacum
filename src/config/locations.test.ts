@@ -107,7 +107,7 @@ describe("Bacău", () => {
       for (const service of SERVICES) {
         const provider = city.providers[service.slug];
 
-        expect(provider.phone, `${city.slug}/${service.slug}`).toMatch(/^0\d{3} ?\d{2,3} ?\d{2,3}( ?\d{3})?$/);
+        expect(provider.phone.replace(/ /g, ""), `${city.slug}/${service.slug}`).toMatch(/^0\d{6,9}$/);
         expect(provider.source, `${city.slug}/${service.slug}`).toMatch(/^https:\/\//);
         expect(provider.verified, `${city.slug}/${service.slug}`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       }
@@ -119,6 +119,24 @@ describe("Bacău", () => {
 
     expect(bacau?.providers.curent.phone).toBe("0800 800 929");
     expect(bacau?.providers.gaz.phone).toBe("0800 800 928");
+  });
+});
+
+describe("Iași", () => {
+  it("lists the 22 neighbourhoods found in at least two sources (see docs/PLAN.md)", () => {
+    const iasi = findCity("iasi");
+
+    expect(iasi?.name).toBe("Iași");
+    expect(iasi?.zones).toHaveLength(22);
+    expect(iasi?.zones.map((zone) => zone.name)).toEqual(expect.arrayContaining(["Copou", "Tătărași", "Nicolina", "Păcurari", "Țicău", "CUG", "Podu Roș"]));
+  });
+
+  it("has Termo-Service for heating, not Veolia, and ApaVital for water", () => {
+    const iasi = findCity("iasi");
+
+    expect(iasi?.providers.caldura.name).toBe("Termo-Service");
+    expect(iasi?.providers.apa.name).toBe("ApaVital");
+    expect(iasi?.providers.apa.phone).toBe("0232 969");
   });
 });
 
