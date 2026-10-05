@@ -9,7 +9,9 @@ import type { Status } from "@/lib/status";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
-const COLORS: Record<Status, { fg: string; bg: string }> = {
+// „neutru”: pentru paginile fără stare (acasă, Despre), ca verdele să nu sugereze „fără probleme”.
+const COLORS: Record<Status | "neutru", { fg: string; bg: string }> = {
+  neutru: { fg: "#16191D", bg: "#FFFFFF" },
   avarie: { fg: "#9F2A14", bg: "#FCEBE7" },
   raportari: { fg: "#8A4B00", bg: "#FFF3DF" },
   liniste: { fg: "#166534", bg: "#ECF5EF" },
@@ -18,7 +20,7 @@ const COLORS: Record<Status, { fg: string; bg: string }> = {
 const font = (file: string): Promise<Buffer> => readFile(join(process.cwd(), "assets/fonts", file));
 
 // Imaginea de previzualizare la partajare (WhatsApp, Facebook): starea curentă, mare și lizibilă.
-export async function statusImage(place: string, headline: string, status: Status, footer: string): Promise<ImageResponse> {
+export async function statusImage(place: string, headline: string, status: Status | "neutru", footer: string): Promise<ImageResponse> {
   // Fișiere complete (latin + latin-ext într-unul): cu subseturi separate, generatorul lua „ă” din
   // primul font care o avea, adică din cel subțire, și în titlul îngroșat.
   const [regular, bold] = await Promise.all([font("PublicSans-Regular.ttf"), font("PublicSans-Bold.ttf")]);
