@@ -1,20 +1,27 @@
 import type { Metadata } from "next";
-import { Atkinson_Hyperlegible_Next, Public_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import Link from "next/link";
 
 import { CITIES } from "@/config/locations";
 
 import "./globals.css";
 
-const display = Public_Sans({ subsets: ["latin", "latin-ext"], weight: ["600", "700"], variable: "--font-display" });
+// Fonturi găzduite în repo (subset: latin + ă â î ș ț + punctuație), ca build-ul să nu depindă de
+// Google Fonts: o cerere eșuată spre Google a picat build-ul din CI. Licențe OFL în ./fonts.
+const display = localFont({
+  src: [
+    { path: "./fonts/ps-600.woff2", weight: "600" },
+    { path: "./fonts/ps-700.woff2", weight: "700" },
+  ],
+  variable: "--font-display",
+});
 
-// Next nu are metrici pentru acest font, deci nu poate genera o rezervă ajustată; CLS se măsoară la verificare.
-const body = Atkinson_Hyperlegible_Next({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "700"],
+const body = localFont({
+  src: [
+    { path: "./fonts/atk-400.woff2", weight: "400" },
+    { path: "./fonts/atk-700.woff2", weight: "700" },
+  ],
   variable: "--font-body",
-  fallback: ["system-ui", "Arial", "sans-serif"],
-  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
