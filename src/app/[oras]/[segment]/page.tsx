@@ -8,7 +8,7 @@ import { Breadcrumbs } from "@/components/json-ld";
 import { ReportDialog } from "@/components/report-dialog";
 import { StatusBadge } from "@/components/status-badge";
 import { type City, SERVICES, type Service, type Zone, findCity, resolveCitySegment } from "@/config/locations";
-import { countRo, joinRo, timeAgo } from "@/lib/format";
+import { countRo, joinRo, telHref, timeAgo } from "@/lib/format";
 import { reportProps } from "@/lib/report-props";
 import { serviceView, zoneView } from "@/lib/views";
 import { serverReportsStore } from "@/server/supabase";
@@ -122,7 +122,14 @@ async function ServicePage({ city, service }: { city: City; service: Service }) 
           <section className="panel provider" aria-labelledby="furnizor">
             <h2 id="furnizor">{`Avarii ${service.shortName.toLowerCase()}: ${provider.name}`}</h2>
             <p className="small muted">{`${provider.fullName === provider.name ? "" : `${provider.fullName}. `}Nu suntem ${provider.name}; sună-i ca să afle și ei.`}</p>
-            <p className="num">{provider.phone ?? "număr de verificat la sursă"}</p>
+            <a className="num" href={telHref(provider.phone)}>
+              {provider.phone}
+            </a>
+            <p className="small muted">{provider.phoneNote}</p>
+            <p className="small muted">
+              {`Verificat pe ${new Date(provider.verified).toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Bucharest" })} pe `}
+              <a href={provider.source}>{new URL(provider.source).hostname.replace(/^www\./, "")}</a>
+            </p>
           </section>
           <p className="small muted">
             Afișăm „Probabil avarie” când cel puțin 3 persoane diferite din același cartier raportează în aceeași oră. Starea dispare singură când rapoartele se opresc.

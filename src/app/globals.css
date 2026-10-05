@@ -458,9 +458,13 @@ p {
   padding: 16px;
 }
 
-.provider .num {
-  font: 700 20px/1.2 var(--f-display);
-  color: var(--ink-2);
+.provider .num,
+.provider-inline .num {
+  font: 700 24px/1.2 var(--f-display);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 /* Raportarea: butonul fix jos pe mobil, panoul care urcă de jos (dialog nativ) */
@@ -647,10 +651,6 @@ p {
   gap: 4px;
 }
 
-.provider-inline .num {
-  font: 700 20px/1.2 var(--f-display);
-  color: var(--ink-2);
-}
 
 .btns {
   display: grid;

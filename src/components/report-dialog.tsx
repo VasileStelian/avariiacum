@@ -3,7 +3,7 @@
 import { useActionState, useEffect, useRef, useState } from "react";
 
 import { submitReport } from "@/app/actions";
-import { clockRo, countRo } from "@/lib/format";
+import { clockRo, countRo, telHref } from "@/lib/format";
 import { shareLinks, shareText } from "@/lib/site";
 import type { ReportOutcome } from "@/server/report";
 
@@ -20,7 +20,8 @@ type ServiceOption = Option & {
   // „apă”, „curent”, „gaz”, „căldură”, pentru textul de partajare
   noun: string;
   provider: string;
-  phone: string | null;
+  phone: string;
+  phoneNote: string;
 };
 
 export type ReportDialogProps = {
@@ -109,7 +110,10 @@ function Thanks({ outcome, props, onClose }: { outcome: Extract<ReportOutcome, {
       </div>
       <div className="provider-inline">
         <p className="small muted">{`Nu suntem ${service.provider}. Ca să afle și ei, sună la dispecerat:`}</p>
-        <p className="num">{service.phone ?? "număr de verificat la sursă"}</p>
+        <a className="num" href={telHref(service.phone)}>
+          {service.phone}
+        </a>
+        <p className="small muted">{service.phoneNote}</p>
       </div>
       <div className="btns">
         <a className="btn btn-primary btn-wide" href={zoneUrl}>
