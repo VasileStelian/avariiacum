@@ -679,6 +679,111 @@ p {
   gap: 10px;
 }
 
+/* Feedback la clic (#29): apăsarea se vede imediat, din CSS, chiar înainte de JavaScript. */
+.btn,
+.tile,
+.x,
+.matrix tbody th a,
+.matrix thead th a,
+.row-link,
+.row-title {
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 80ms ease-out,
+    background-color 80ms ease-out;
+}
+
+.btn:active,
+.tile:active,
+.x:active {
+  transform: scale(0.97);
+}
+
+.btn-primary:active {
+  background: #1a44bf;
+}
+
+.btn:not(.btn-primary):active,
+.tile:active {
+  background: var(--bg);
+}
+
+.matrix tbody th a:active,
+.matrix thead th a:active,
+.row-link:active {
+  transform: scale(0.98);
+  background: var(--bg);
+}
+
+/* Linkul apăsat cât se încarcă pagina nouă (useLinkStatus): pulsează, cursorul arată „în lucru”. */
+.link-hint {
+  display: none;
+}
+
+a:has(> .link-hint[data-pending="true"]) {
+  cursor: progress;
+  animation: link-pending 0.8s ease-in-out infinite alternate;
+}
+
+.matrix tbody th a:has(> .link-hint[data-pending="true"]),
+.row-link:has(> .link-hint[data-pending="true"]) {
+  background: var(--bg);
+}
+
+@keyframes link-pending {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.45;
+  }
+}
+
+/* Indicatorul de pe „Trimite raportul” */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  flex: none;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+button[aria-busy="true"]:disabled {
+  opacity: 1;
+  cursor: progress;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:active,
+  .tile:active,
+  .x:active,
+  .matrix tbody th a:active,
+  .matrix thead th a:active,
+  .row-link:active {
+    transform: none;
+  }
+
+  a:has(> .link-hint[data-pending="true"]) {
+    animation: none;
+    opacity: 0.55;
+  }
+
+  .spinner {
+    animation: none;
+    border-right-color: currentColor;
+    opacity: 0.6;
+  }
+}
+
 @media (min-width: 1024px) {
   :root {
     --gutter: 32px;

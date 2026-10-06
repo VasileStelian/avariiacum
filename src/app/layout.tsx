@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Link from "next/link";
+import { PendingLink } from "@/components/pending-link";
 
 import { CITIES } from "@/config/locations";
 import { siteUrl } from "@/lib/site";
@@ -41,14 +41,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <header className="top">
           <div className="top-in">
-            <Link prefetch={false} className="mark" href="/">
+            <PendingLink className="mark" href="/">
               Avarii <span>Acum</span>
-            </Link>
+            </PendingLink>
             <nav className="cities" aria-label="Orașe">
               {CITIES.map((city) => (
-                <Link prefetch={false} key={city.slug} href={`/${city.slug}/`}>
+                <PendingLink key={city.slug} href={`/${city.slug}/`}>
                   {city.name}
-                </Link>
+                </PendingLink>
               ))}
             </nav>
           </div>
@@ -57,12 +57,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <footer className="foot">
           <p>Avarii Acum nu este furnizorul de apă, curent, gaz sau căldură. Afișăm ce raportează locuitorii.</p>
           <nav className="inline-links" aria-label="Despre site">
-            <Link prefetch={false} href="/despre/">
+            <PendingLink href="/despre/">
               Despre
-            </Link>
-            <Link prefetch={false} href="/confidentialitate/">
+            </PendingLink>
+            <PendingLink href="/confidentialitate/">
               Confidențialitate
-            </Link>
+            </PendingLink>
           </nav>
           <p>
             Făcut de <a href="https://fanvora.ro">Fanvora Digital Studio</a>, Bacău

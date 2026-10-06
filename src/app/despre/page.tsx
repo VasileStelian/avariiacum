@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { PendingLink } from "@/components/pending-link";
 
 import { StatusBadge } from "@/components/status-badge";
 import { CITIES } from "@/config/locations";
@@ -45,9 +45,9 @@ export default function AboutPage() {
           <h2>Ce păstrăm</h2>
           <p>
             Cartierul, serviciul și ora. Adresa IP nu o salvăm; păstrăm doar o amprentă criptată, ca să nu se poată raporta de mai multe ori, ștearsă în cel mult 48 de ore. Fără cookie-uri de urmărire.{" "}
-            <Link prefetch={false} href="/confidentialitate/">
+            <PendingLink href="/confidentialitate/">
               Detalii despre confidențialitate
-            </Link>
+            </PendingLink>
           </p>
         </section>
         <section className="stack">

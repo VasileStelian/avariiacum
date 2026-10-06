@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { PendingLink } from "@/components/pending-link";
 import { notFound } from "next/navigation";
 
 import { ServiceIcon } from "@/components/icons";
@@ -49,7 +49,7 @@ function Row({ citySlug, row, quiet }: { citySlug: string; row: CityRow; quiet: 
   return (
     <tr className={quiet ? "quiet" : undefined}>
       <th scope="row">
-        <Link prefetch={false} href={`/${citySlug}/${row.zone.slug}/`}>{row.zone.name}</Link>
+        <PendingLink href={`/${citySlug}/${row.zone.slug}/`}>{row.zone.name}</PendingLink>
       </th>
       {row.cells.map((cell) => (
         <td key={cell.service.slug} aria-label={cellLabel(row.zone.name, cell)}>
@@ -90,10 +90,10 @@ export default async function CityPage({ params }: PageProps<"/[oras]">) {
                   <th scope="col">Cartier</th>
                   {SERVICES.map((service) => (
                     <th key={service.slug} scope="col">
-                      <Link prefetch={false} href={`/${city.slug}/${service.slug}/`}>
+                      <PendingLink href={`/${city.slug}/${service.slug}/`}>
                         <ServiceIcon slug={service.slug} />
                         <span>{service.shortName}</span>
-                      </Link>
+                      </PendingLink>
                     </th>
                   ))}
                 </tr>

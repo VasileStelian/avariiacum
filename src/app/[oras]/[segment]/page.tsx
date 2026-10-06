@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { PendingLink } from "@/components/pending-link";
 import { notFound } from "next/navigation";
 
 import { Axis, Bars } from "@/components/bars";
@@ -66,7 +66,7 @@ async function ServicePage({ city, service }: { city: City; service: Service }) 
   return (
     <main className="page">
       <nav className="crumbs" aria-label="Ești aici">
-        <Link prefetch={false} href={`/${city.slug}/`}>{city.name}</Link>
+        <PendingLink href={`/${city.slug}/`}>{city.name}</PendingLink>
         <span aria-hidden="true">/</span>
         <span>{service.name}</span>
       </nav>
@@ -99,9 +99,9 @@ async function ServicePage({ city, service }: { city: City; service: Service }) 
                 {view.affected.map((row) => (
                   <li key={row.zone.slug} className="item">
                     <div className="row-top">
-                      <Link prefetch={false} className="row-title" href={`/${city.slug}/${row.zone.slug}/`}>
+                      <PendingLink className="row-title" href={`/${city.slug}/${row.zone.slug}/`}>
                         {row.zone.name}
-                      </Link>
+                      </PendingLink>
                       <StatusBadge status={row.status}>
                         {row.status === "avarie" ? `Probabil avarie: ${countRo(row.reporters, PEOPLE)}` : countRo(row.reporters, { one: "raportare", many: "raportări" })}
                       </StatusBadge>
@@ -136,10 +136,10 @@ async function ServicePage({ city, service }: { city: City; service: Service }) 
           </p>
           <nav className="inline-links" aria-label="Alte servicii">
             {SERVICES.filter((other) => other !== service).map((other) => (
-              <Link prefetch={false} key={other.slug} className="btn" href={`/${city.slug}/${other.slug}/`}>
+              <PendingLink key={other.slug} className="btn" href={`/${city.slug}/${other.slug}/`}>
                 <ServiceIcon slug={other.slug} />
                 {other.shortName}
-              </Link>
+              </PendingLink>
             ))}
           </nav>
         </aside>
@@ -162,7 +162,7 @@ async function ZonePage({ city, zone }: { city: City; zone: Zone }) {
   return (
     <main className="page">
       <nav className="crumbs" aria-label="Ești aici">
-        <Link prefetch={false} href={`/${city.slug}/`}>{city.name}</Link>
+        <PendingLink href={`/${city.slug}/`}>{city.name}</PendingLink>
         <span aria-hidden="true">/</span>
         <span>{zone.name}</span>
       </nav>
@@ -195,9 +195,9 @@ async function ZonePage({ city, zone }: { city: City; zone: Zone }) {
               <Bars series={series[index] ?? []} mini tone={row.status} />
               <Axis middle={row.lastReportAt ? `ultimul raport ${timeAgo(row.lastReportAt, now)}` : "niciun raport azi"} />
               {row.status === "liniste" ? null : (
-                <Link prefetch={false} className="small" href={`/${city.slug}/${row.service.slug}/`}>
+                <PendingLink className="small" href={`/${city.slug}/${row.service.slug}/`}>
                   {`${row.service.shortName} în tot ${city.nameDefinite}`}
-                </Link>
+                </PendingLink>
               )}
             </li>
           ))}
@@ -208,9 +208,9 @@ async function ZonePage({ city, zone }: { city: City; zone: Zone }) {
             {city.zones
               .filter((other) => other !== zone)
               .map((other) => (
-                <Link prefetch={false} key={other.slug} href={`/${city.slug}/${other.slug}/`}>
+                <PendingLink key={other.slug} href={`/${city.slug}/${other.slug}/`}>
                   {other.name}
-                </Link>
+                </PendingLink>
               ))}
           </nav>
           <p className="small muted">Starea „Probabil avarie” apare la cel puțin 3 persoane diferite în aceeași oră și dispare singură.</p>
