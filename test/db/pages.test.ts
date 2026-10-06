@@ -185,6 +185,14 @@ describe("info pages", () => {
     expect(html).toContain('href="mailto:contact@fanvora.ro');
   });
 
+  it("/despre/ tells the story the app was born from, right after the introduction", async () => {
+    const { html } = await page("/despre/");
+
+    expect(html).toContain("O aplicație născută din povestea unui băcăuan");
+    expect(html).toContain("rezervoare mari cu apă");
+    expect(html.indexOf("O aplicație născută din povestea unui băcăuan")).toBeLessThan(html.indexOf("Cum funcționează"));
+  });
+
   it("/confidentialitate/ says what is kept, for how long, and what stays in the browser", async () => {
     const { status, html } = await page("/confidentialitate/");
 

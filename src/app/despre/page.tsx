@@ -7,7 +7,7 @@ import { OUTAGE_THRESHOLD } from "@/lib/status";
 
 export const metadata: Metadata = {
   title: "Despre Avarii Acum: cum funcționează și cine l-a făcut",
-  description: "Un loc unde vecinii spun ce nu funcționează: apă, curent, gaz, apă caldă și căldură. Gratuit, fără cont, pe cartiere.",
+  description: "O aplicație născută din povestea unui băcăuan rămas fără apă: vecinii spun pe cartiere ce nu funcționează. Gratuit, fără cont.",
   alternates: { canonical: "/despre/" },
 };
 
@@ -19,6 +19,18 @@ export default function AboutPage() {
           <h1>Despre Avarii Acum</h1>
           <p className="lead">{`Un loc unde vecinii spun ce nu funcționează: apă, curent, gaz, apă caldă și căldură. Gratuit, fără cont, pe cartiere. Începem cu ${CITIES.map((city) => city.name).join(" și ")}.`}</p>
         </div>
+        <section className="stack">
+          <h2>O aplicație născută din povestea unui băcăuan</h2>
+          <p>
+            Ideea a pornit de la un băcăuan care tocmai se mutase în chirie. După vreo săptămână, a dat drumul la robinet și apa abia curgea. Prima întrebare a fost: e doar la mine sau e iar
+            problemă cu apa în Bacău? Proprietarul nu știa, iar vecinii nu-i cunoștea încă.
+          </p>
+          <p>
+            Răspunsul l-a aflat abia după-amiaza, la o plimbare prin oraș. În zona Narcisa erau puse pe stradă rezervoare mari cu apă, iar oamenii veneau cu găleți și bidoane să care apa acasă.
+            Abia atunci s-a prins că nu era țeava lui.
+          </p>
+          <p>În Bacău, „are cineva apă?” e aproape un salut. Avarii Acum e locul pentru întrebarea asta, ca să nu mai afli de la rezervoarele din stradă.</p>
+        </section>
         <section className="stack">
           <h2>Cum funcționează</h2>
           <p>Alegi cartierul și serviciul care lipsește. Durează câteva secunde.</p>
