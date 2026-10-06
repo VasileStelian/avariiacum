@@ -2,7 +2,7 @@
 
 Downdetector pentru apă, curent, gaz, apă caldă și căldură, pe cartiere. Locuitorii raportează anonim ce nu funcționează; când cel puțin 3 persoane diferite din același cartier raportează în aceeași oră, pagina afișează „Probabil avarie”. Starea dispare singură când rapoartele se opresc.
 
-**Online:** https://avariiacum.vercel.app (Bacău și Iași)
+**Online:** https://avariiacum.ro (Bacău, Iași și Galați)
 
 ## Cum funcționează
 

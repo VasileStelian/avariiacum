@@ -24,3 +24,6 @@ test-results/
 .vercel
 .claude/settings.local.json
 *.pem
+
+# capturi Playwright MCP
+.playwright-mcp/

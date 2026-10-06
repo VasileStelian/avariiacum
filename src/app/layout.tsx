@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import { PendingLink } from "@/components/pending-link";
 
 import { CITIES } from "@/config/locations";
-import { siteUrl } from "@/lib/site";
+import { siteDescription, siteUrl } from "@/lib/site";
 
 import "./globals.css";
 
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl(process.env.SITE_URL)),
   openGraph: { siteName: "Avarii Acum", locale: "ro_RO", type: "website" },
   title: "Avarii Acum: apă, curent, gaz și căldură, pe cartiere",
-  description: "Raportări anonime de la locuitori despre avariile de apă, curent, gaz și căldură, pe cartiere. Bacău și Iași.",
+  description: siteDescription(),
 };
 
 // Linkurile interne nu preîncarcă: după o raportare, Next 16 reface preîncărcarea pe segmente, iar

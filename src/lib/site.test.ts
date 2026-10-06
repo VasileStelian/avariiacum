@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { shareLinks, shareText, siteUrl, sitemapPaths } from "./site";
+import { CITIES } from "@/config/locations";
+
+import { shareLinks, shareText, siteDescription, siteUrl, sitemapPaths } from "./site";
 
 describe("siteUrl", () => {
   it("uses SITE_URL when set, without a trailing slash", () => {
@@ -10,6 +12,18 @@ describe("siteUrl", () => {
   it("falls back to the Vercel address until the domain is bought", () => {
     expect(siteUrl(undefined)).toBe("https://avariiacum.vercel.app");
     expect(siteUrl("")).toBe("https://avariiacum.vercel.app");
+  });
+});
+
+describe("siteDescription", () => {
+  it("names every configured city, so a new city needs no copy change", () => {
+    const description = siteDescription();
+
+    expect(description.startsWith("Raportări anonime de la locuitori despre avariile de apă, curent, gaz și căldură, pe cartiere.")).toBe(true);
+
+    for (const city of CITIES) {
+      expect(description).toContain(city.name);
+    }
   });
 });
 
