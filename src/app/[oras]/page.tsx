@@ -8,7 +8,7 @@ import { ReportDialog } from "@/components/report-dialog";
 import { StatusBadge } from "@/components/status-badge";
 import { SERVICES, findCity } from "@/config/locations";
 import { clockRo, countRo, telHref } from "@/lib/format";
-import { reportProps } from "@/lib/report-props";
+import { cityReport } from "@/lib/report-props";
 import { type Cell, type CityRow, cityView } from "@/lib/views";
 import { serverReportsStore } from "@/server/supabase";
 
@@ -78,7 +78,7 @@ export default async function CityPage({ params }: PageProps<"/[oras]">) {
           {view.headline.outage ? <strong>{view.headline.outage}</strong> : null} {view.headline.isolated} {view.headline.quiet}
         </p>
         <p className="small muted">{`Raportări anonime de la locuitori, ultima oră. Actualizat la ${clockRo(new Date())}.`}</p>
-        <ReportDialog {...reportProps(city, "Raportează o problemă")} />
+        <ReportDialog label="Raportează o problemă" cities={[cityReport(city)]} />
       </div>
       <div className="split">
         <div className="stack">
