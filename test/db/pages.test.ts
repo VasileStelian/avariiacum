@@ -136,7 +136,15 @@ describe("/bacau/apa/", () => {
   it("names the provider in the title without pretending to be them", async () => {
     const { html } = await page("/bacau/apa/");
 
-    expect(html).toContain("<title>Apă Bacău acum: avarii CRAB raportate pe cartiere</title>");
+    expect(html).toContain("<title>Apă Bacău acum: avarii și întreruperi CRAB</title>");
+    expect(html).toContain('content="Avarii și întreruperi de apă în Bacău, raportate de locuitori pe cartiere în ultima oră.');
+  });
+
+  it("calls a power cut „Pană de curent”, the way people search for it", async () => {
+    const { html } = await page("/bacau/curent/");
+
+    expect(html).toContain("<title>Pană de curent Bacău acum: avarii și întreruperi Delgaz Grid</title>");
+    expect(html).toContain("<h1>Pană de curent Bacău acum: avarii raportate pe cartiere</h1>");
   });
 });
 

@@ -114,3 +114,11 @@ Sursa articolului despre vibe coding de pe fanvora.ro. O intrare per etapă: dat
 - Date demo locale: 351 de rapoarte pe 24 de ore (avarii în desfășurare, avarii trecute, plângeri răzlețe), ca să se vadă graficul plin. Așa s-a văzut un defect: minigraficele din pagina cartierului se umpleau complet la o avarie mare (scara fixă de 4). Acum scara are minim 4, dar urcă după vârf.
 - Ce s-a stricat: un test căuta „Curent în Copou” și găsea și „...din nou curent în Copou” din textul mic; testele de bază de date șterg datele demo, care trebuie reîncărcate după rulare.
 - Timp: 09:35.
+
+## 2026-10-06 · Formulările căutate în paginile de serviciu
+
+- Cerut (Vasile): cuvintele cheie să fie efectiv în pagini.
+- Făcut (PR pentru #43): pagina de curent se numește „Pană de curent Bacău acum”, cum caută oamenii, nu „Curent Bacău”. Titlurile spun „avarii și întreruperi” și numele furnizorului; descrierile spun „întreruperi de apă / de curent / de gaz / de căldură”. Textele vin din configurare (`searchName`) și dintr-un singur modul, testat unitar, cu limita de 160 de caractere pentru descriere.
+- Tot azi: issue #44 cu orașele mari din Moldova, cu populația de la recensământul din 2021.
+- Ce s-a stricat: nimic în cod. Mailurile de eșec din GitHub erau de la testul CLA cu contul svasile26 (Vercel nu face preview pentru commit-uri din afara echipei) și de la prima rulare a acțiunii CLA, care creează fișierul de semnături și raportează mereu eroare.
+- Timp: 19:00 → 19:20.

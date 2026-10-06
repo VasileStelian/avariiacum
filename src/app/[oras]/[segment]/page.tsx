@@ -10,6 +10,7 @@ import { StatusBadge } from "@/components/status-badge";
 import { type City, SERVICES, type Service, type Zone, findCity, resolveCitySegment } from "@/config/locations";
 import { countRo, joinRo, telHref, timeAgo } from "@/lib/format";
 import { cityReport } from "@/lib/report-props";
+import { serviceDescription, serviceHeading, serviceTitle } from "@/lib/service-meta";
 import { serviceView, zoneView } from "@/lib/views";
 import { serverReportsStore } from "@/server/supabase";
 
@@ -40,11 +41,9 @@ export async function generateMetadata({ params }: PageProps<"/[oras]/[segment]"
   const { city, target } = resolved;
 
   if (target.kind === "service") {
-    const provider = city.providers[target.service.slug];
-
     return {
-      title: `${target.service.name} ${city.name} acum: avarii ${provider.name} raportate pe cartiere`,
-      description: `Unde nu e ${target.service.name.toLowerCase()} în ${city.name}, după raportările locuitorilor din ultima oră, pe cartiere. Nu suntem ${provider.name}; numărul lor de avarii e pe pagină.`,
+      title: serviceTitle(city, target.service),
+      description: serviceDescription(city, target.service),
       alternates: { canonical: `/${city.slug}/${target.service.slug}/` },
     };
   }
@@ -77,7 +76,7 @@ async function ServicePage({ city, service }: { city: City; service: Service }) 
         ]}
       />
       <div className="head">
-        <h1>{`${service.name} ${city.name} acum: avarii raportate pe cartiere`}</h1>
+        <h1>{serviceHeading(city, service)}</h1>
         <p className="lead">{view.affected.some((row) => row.status === "avarie") ? <strong>{view.headline}</strong> : view.headline}</p>
         <ReportDialog label={`Raportează ${service.missingPhrase}`} cities={[cityReport(city, { service: service.slug })]} />
       </div>
