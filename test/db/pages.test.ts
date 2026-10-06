@@ -209,6 +209,18 @@ describe("info pages", () => {
     expect(html).toContain('href="/despre/"');
     expect(html).toContain('href="/confidentialitate/"');
   });
+
+  it("offer the source code and name the AGPL-3.0 licence on every page, as the licence requires", async () => {
+    for (const path of ["/", "/bacau/", "/iasi/apa/", "/despre/"]) {
+      const { html } = await page(path);
+      const footer = html.slice(html.lastIndexOf("<footer"));
+
+      expect(footer, path).toContain('href="https://github.com/VasileStelian/avariiacum"');
+      expect(footer, path).toContain("Cod sursă");
+      expect(footer, path).toContain('href="https://github.com/VasileStelian/avariiacum/blob/main/LICENSE"');
+      expect(footer, path).toContain("AGPL-3.0");
+    }
+  });
 });
 
 describe("search engines", () => {

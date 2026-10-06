@@ -63,9 +63,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <PendingLink href="/confidentialitate/">
               Confidențialitate
             </PendingLink>
+            <a href="https://github.com/VasileStelian/avariiacum">Cod sursă pe GitHub</a>
           </nav>
+          {/* AGPL-3.0 (secțiunea 13) cere ca utilizatorii site-ului să găsească ușor codul sursă. */}
           <p>
-            Făcut de <a href="https://fanvora.ro">Fanvora Digital Studio</a>, Bacău
+            Codul e liber, sub licența <a href="https://github.com/VasileStelian/avariiacum/blob/main/LICENSE">AGPL-3.0</a>. Făcut de{" "}
+            <a href="https://fanvora.ro">Fanvora Digital Studio</a>, Bacău.
           </p>
         </footer>
       </body>

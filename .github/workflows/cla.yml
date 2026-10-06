@@ -1,0 +1,38 @@
+name: CLA
+
+# Contribuțiile externe se acceptă doar cu CLA semnat (CLA.md). Semnăturile se păstrează în ramura
+# cla-signatures. pull_request_target rulează în contextul repo-ului, fără să ruleze codul din PR.
+on:
+  issue_comment:
+    types: [created]
+  pull_request_target:
+    types: [opened, closed, synchronize]
+
+permissions:
+  actions: write
+  contents: write
+  pull-requests: write
+  statuses: write
+
+jobs:
+  cla:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request_target' || github.event.comment.body == 'recheck' || github.event.comment.body == 'Am citit CLA-ul si il semnez'
+    steps:
+      - name: CLA Assistant
+        # v2.6.1, fixat pe commit: acțiunea are drept de scriere în repo
+        uses: contributor-assistant/github-action@ca4a40a7d1004f18d9960b404b97e5f30a505a08
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path-to-document: https://github.com/VasileStelian/avariiacum/blob/main/CLA.md
+          path-to-signatures: signatures/cla.json
+          branch: cla-signatures
+          allowlist: VasileStelian,*[bot]
+          custom-pr-sign-comment: Am citit CLA-ul si il semnez
+          custom-notsigned-prcomment: >-
+            Mulțumim pentru contribuție! Înainte s-o putem uni, te rugăm să citești
+            [Acordul de licență pentru contribuitori (CLA)](https://github.com/VasileStelian/avariiacum/blob/main/CLA.md)
+            și să-l semnezi comentând exact textul de mai jos. Îl semnezi o singură dată.
+          custom-allsigned-prcomment: Toți autorii au semnat CLA-ul. Mulțumim!
+          lock-pullrequest-aftermerge: false
