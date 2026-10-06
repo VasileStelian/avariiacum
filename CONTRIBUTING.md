@@ -31,3 +31,5 @@ Ai nevoie de Node 24 și Docker. Pașii de pornire sunt în [README](README.md#r
 ## Licența
 
 Proiectul e sub [GNU AGPL-3.0](LICENSE). Numele „Avarii Acum” și sigla nu sunt acoperite de licență.
+
+<!-- test CLA -->
