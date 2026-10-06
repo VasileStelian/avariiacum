@@ -24,13 +24,20 @@ type ServiceOption = Option & {
   phoneNote: string;
 };
 
-export type ReportDialogProps = {
+// Datele unui oraș pentru formular; zone/service precompletează după pagina pe care ești.
+export type CityReport = {
   city: Option;
   zones: Option[];
   services: ServiceOption[];
   zone?: string;
   service?: string;
+};
+
+// Cu un singur oraș, panoul începe direct cu formularul; cu mai multe (pagina principală), întreabă
+// întâi orașul.
+export type ReportDialogProps = {
   label: string;
+  cities: CityReport[];
 };
 
 const clock = (iso: string): string => clockRo(new Date(iso));
@@ -85,7 +92,7 @@ function rememberZone(city: string, zone: string): void {
 
 const people = (count: number): string => countRo(count, { one: "persoană a raportat", many: "persoane au raportat" });
 
-function Thanks({ outcome, props, onClose }: { outcome: Extract<ReportOutcome, { status: "trimis" }>; props: ReportDialogProps; onClose: () => void }) {
+function Thanks({ outcome, props, onClose }: { outcome: Extract<ReportOutcome, { status: "trimis" }>; props: CityReport; onClose: () => void }) {
   const zone = props.zones.find((candidate) => candidate.slug === outcome.zone);
   const service = props.services.find((candidate) => candidate.slug === outcome.service);
   const [shared, setShared] = useState<string | null>(null);
@@ -165,7 +172,7 @@ function Thanks({ outcome, props, onClose }: { outcome: Extract<ReportOutcome, {
   );
 }
 
-function ReportForm({ props, onClose }: { props: ReportDialogProps; onClose: () => void }) {
+function ReportForm({ props, onClose, onChangeCity }: { props: CityReport; onClose: () => void; onChangeCity?: () => void }) {
   const [outcome, action, pending] = useActionState(submitReport, null);
   const [zone, setZone] = useState(props.zone ?? "");
   const [slow, setSlow] = useState(false);
@@ -215,6 +222,14 @@ function ReportForm({ props, onClose }: { props: ReportDialogProps; onClose: () 
           ×
         </button>
       </div>
+      {onChangeCity ? (
+        <p className="city-picked">
+          {`Orașul: ${props.city.name}`}
+          <button type="button" className="link-button" onClick={onChangeCity}>
+            Schimbă orașul
+          </button>
+        </p>
+      ) : null}
       <input type="hidden" name="oras" value={props.city.slug} />
       <div className="field">
         <label className="label" htmlFor="raport-cartier">
@@ -272,10 +287,36 @@ function ReportForm({ props, onClose }: { props: ReportDialogProps; onClose: () 
   );
 }
 
-export function ReportDialog(props: ReportDialogProps) {
+function CityStep({ cities, onPick, onClose }: { cities: CityReport[]; onPick: (index: number) => void; onClose: () => void }) {
+  const hydrated = useHydrated();
+
+  return (
+    <div className="report-form">
+      <div className="sheet-head">
+        <h2 id="raport-titlu">În ce oraș?</h2>
+        <button type="button" className="x" aria-label="Închide" {...nativeCommand("close")} onClick={onClose}>
+          ×
+        </button>
+      </div>
+      <div className="btns">
+        {cities.map((option, index) => (
+          <button key={option.city.slug} type="button" className="btn btn-wide city-choice" disabled={!hydrated} onClick={() => onPick(index)}>
+            {option.city.name}
+          </button>
+        ))}
+      </div>
+      <p className="fine">{hydrated ? "Apoi alegi cartierul și ce nu funcționează." : "Se încarcă…"}</p>
+    </div>
+  );
+}
+
+export function ReportDialog({ label, cities }: ReportDialogProps) {
   const dialog = useRef<HTMLDialogElement>(null);
-  // Fiecare deschidere pornește un formular nou (după „Mulțumim”, nu rămâne vechiul rezultat).
+  const single = cities.length === 1;
+  // Fiecare deschidere pornește de la capăt: formular nou și, pe pagina principală, întrebarea orașului.
   const [round, setRound] = useState(0);
+  const [chosen, setChosen] = useState<number | null>(single ? 0 : null);
+  const current = chosen === null ? undefined : cities[chosen];
 
   const close = (): void => dialog.current?.close();
 
@@ -293,12 +334,25 @@ export function ReportDialog(props: ReportDialogProps) {
           }}
         >
           <span aria-hidden="true">+</span>
-          {props.label}
+          {label}
         </button>
       </div>
-      <dialog ref={dialog} id={DIALOG_ID} className="sheet" aria-labelledby="raport-titlu" onClose={() => setRound((value) => value + 1)}>
+      <dialog
+        ref={dialog}
+        id={DIALOG_ID}
+        className="sheet"
+        aria-labelledby="raport-titlu"
+        onClose={() => {
+          setRound((value) => value + 1);
+          setChosen(single ? 0 : null);
+        }}
+      >
         <div className="grab" aria-hidden="true" />
-        <ReportForm key={round} props={props} onClose={close} />
+        {current ? (
+          <ReportForm key={`${round}-${current.city.slug}`} props={current} onClose={close} onChangeCity={single ? undefined : () => setChosen(null)} />
+        ) : (
+          <CityStep cities={cities} onPick={setChosen} onClose={close} />
+        )}
       </dialog>
     </>
   );

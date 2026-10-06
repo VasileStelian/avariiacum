@@ -170,6 +170,55 @@ describe("reporting a water outage", () => {
     }
   });
 
+  it("reports from the home page: city first, then the usual panel", async () => {
+    const page = await neighbour("198.51.100.30");
+
+    await page.goto(`${BASE}/`);
+    await page.getByRole("button", { name: "Raportează o problemă" }).click();
+
+    const dialog = page.getByRole("dialog");
+
+    expect(await dialog.getByRole("heading", { name: "În ce oraș?" }).isVisible()).toBe(true);
+
+    await dialog.getByRole("button", { name: "Bacău" }).click();
+    expect(await page.getByLabel("Cartierul").locator("option", { hasText: "Republicii, Bacău" }).count()).toBe(1);
+
+    await dialog.getByRole("button", { name: "Schimbă orașul" }).click();
+    await dialog.getByRole("button", { name: "Iași" }).click();
+    await page.getByLabel("Cartierul").selectOption("copou");
+    await page.getByRole("radio", { name: "Curent", exact: true }).check();
+    await page.getByRole("button", { name: "Trimite raportul" }).click();
+
+    await expect.poll(() => page.getByText("Raport trimis. Mulțumim.").isVisible()).toBe(true);
+    expect(await page.getByText("Curent în Copou", { exact: true }).isVisible()).toBe(true);
+
+    const [{ count }] = await sql`select count(*)::int as count from public.reports where city = 'iasi' and zone = 'copou' and service = 'curent'`;
+
+    expect(count).toBe(1);
+  }, 30_000);
+
+  it("starts again from the city question after the panel is closed", async () => {
+    const page = await neighbour("198.51.100.31");
+
+    await page.goto(`${BASE}/`);
+    await page.getByRole("button", { name: "Raportează o problemă" }).click();
+    await page.getByRole("dialog").getByRole("button", { name: "Bacău" }).click();
+    await page.getByRole("dialog").getByRole("button", { name: "Închide" }).click();
+    await page.getByRole("button", { name: "Raportează o problemă" }).click();
+
+    expect(await page.getByRole("dialog").getByRole("heading", { name: "În ce oraș?" }).isVisible()).toBe(true);
+  }, 20_000);
+
+  it("skips the city question on a city's own pages", async () => {
+    const page = await neighbour("198.51.100.32");
+
+    await page.goto(`${BASE}/iasi/`);
+    await page.getByRole("button", { name: "Raportează o problemă" }).click();
+
+    expect(await page.getByRole("dialog").getByRole("heading", { name: "Ce nu funcționează?" }).isVisible()).toBe(true);
+    expect(await page.getByRole("dialog").getByRole("heading", { name: "În ce oraș?" }).count()).toBe(0);
+  }, 20_000);
+
   it("did not log any error in the browser", () => {
     expect([...new Set(errors)]).toEqual([]);
   });

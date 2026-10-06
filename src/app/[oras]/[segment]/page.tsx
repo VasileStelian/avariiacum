@@ -9,7 +9,7 @@ import { ReportDialog } from "@/components/report-dialog";
 import { StatusBadge } from "@/components/status-badge";
 import { type City, SERVICES, type Service, type Zone, findCity, resolveCitySegment } from "@/config/locations";
 import { countRo, joinRo, telHref, timeAgo } from "@/lib/format";
-import { reportProps } from "@/lib/report-props";
+import { cityReport } from "@/lib/report-props";
 import { serviceView, zoneView } from "@/lib/views";
 import { serverReportsStore } from "@/server/supabase";
 
@@ -79,7 +79,7 @@ async function ServicePage({ city, service }: { city: City; service: Service }) 
       <div className="head">
         <h1>{`${service.name} ${city.name} acum: avarii raportate pe cartiere`}</h1>
         <p className="lead">{view.affected.some((row) => row.status === "avarie") ? <strong>{view.headline}</strong> : view.headline}</p>
-        <ReportDialog {...reportProps(city, `Raportează ${service.missingPhrase}`, { service: service.slug })} />
+        <ReportDialog label={`Raportează ${service.missingPhrase}`} cities={[cityReport(city, { service: service.slug })]} />
       </div>
       <div className="split">
         <div className="stack">
@@ -175,7 +175,7 @@ async function ZonePage({ city, zone }: { city: City; zone: Zone }) {
       <div className="head">
         <h1>{`${zone.name}, ${city.name}: avarii acum`}</h1>
         <p className="lead">{view.services.some((row) => row.status === "avarie") ? <strong>{view.headline}</strong> : view.headline}</p>
-        <ReportDialog {...reportProps(city, `Raportează în ${zone.name}`, { zone: zone.slug })} />
+        <ReportDialog label={`Raportează în ${zone.name}`} cities={[cityReport(city, { zone: zone.slug })]} />
       </div>
       <div className="split">
         <ul className="rows panel">
