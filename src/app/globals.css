@@ -521,6 +521,10 @@ p {
   overflow-y: auto;
 }
 
+.sheet {
+  overscroll-behavior: contain;
+}
+
 .sheet::backdrop {
   background: rgb(22 25 29 / 0.45);
 }
@@ -530,12 +534,28 @@ p {
   gap: 16px;
 }
 
+/* Liniuța de tras: zonă de apucat de 24px, bara vizibilă de 4px. Ea și titlul nu derulează pagina. */
 .grab {
+  width: 96px;
+  height: 24px;
+  margin: -12px 0 -12px;
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  cursor: grab;
+  touch-action: none;
+}
+
+.grab::before {
+  content: "";
   width: 40px;
   height: 4px;
   border-radius: 2px;
   background: var(--line-strong);
-  justify-self: center;
+}
+
+.sheet .sheet-head {
+  touch-action: none;
 }
 
 .report-form,
