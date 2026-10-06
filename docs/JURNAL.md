@@ -130,3 +130,11 @@ Sursa articolului despre vibe coding de pe fanvora.ro. O intrare per etapă: dat
 - Decizii: părțile numerotate de cartier comasate cum le anunță Apa Canal (Țiglina 1-2, Mazepa 1-2), dar Micro 16 (Țiglina 3) separat, fiindcă e pe altă rețea de apă. La căldură, pagina spune că Calorgal încălzește doar zonele legate la centralele lui; CET-ul s-a închis în 2017.
 - Ce s-a stricat: testul de lungime a descrierii (≤160 de caractere) a prins „Distribuție Energie Electrică”, prea lung; formula s-a scurtat pentru toate orașele. Testul sitemap-ului avea numărul de pagini scris de mână (47 → 80).
 - Timp: 19:40 → 21:15.
+
+## 2026-10-06 · Amprenta IP trăiește 2 ore, nu 48
+
+- Semnalat (un programator, pe Reddit, după un audit al codului): amprenta IP e un HMAC cu cheie fixă; cine are cheia parcurge cele ~4 miliarde de IPv4 și află adresa. Avea dreptate. Iar fereastra era de până la 48 de ore, deși amprenta e folosită doar pentru limita de 2 ore și pentru persoanele diferite din ultima oră.
+- Făcut (PR pentru #48): pg_cron în Supabase, la 15 minute, face null amprentele mai vechi de 2 ore; o amprentă trăiește cel mult 2 ore și un sfert. Cron-ul Vercel (unul singur pe zi, pe Hobby) rămâne pentru baza trează și ca rezervă. Pagina de confidențialitate spunea „din amprentă nu se poate afla adresa” și „amprentă criptată”; acum spune deschis că, pentru cine are cheia, amprenta nu e anonimă.
+- Ce n-am făcut și de ce: cheie rotită zilnic (nu ajută împotriva cui are acces în fereastră și strică limita la schimbarea cheii); hash pe /24 (vecinii pe același furnizor ar conta ca o singură persoană, iar pragul de 3 n-ar mai fi atins).
+- Lecție pentru articol: codul public a adus un audit gratuit în prima zi. Textul de confidențialitate fusese scris din intenție, nu din modelul de atac.
+- Timp: 21:30 → 22:10.

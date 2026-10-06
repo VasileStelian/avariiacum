@@ -56,7 +56,7 @@ export default function AboutPage() {
         <section className="stack">
           <h2>Ce păstrăm</h2>
           <p>
-            Cartierul, serviciul și ora. Adresa IP nu o salvăm; păstrăm doar o amprentă criptată, ca să nu se poată raporta de mai multe ori, ștearsă în cel mult 48 de ore. Fără cookie-uri de urmărire.{" "}
+            Cartierul, serviciul și ora. Adresa IP nu o salvăm; păstrăm doar o amprentă, ca să nu se poată raporta de mai multe ori, ștearsă după cel mult 2 ore și un sfert. Fără cookie-uri de urmărire.{" "}
             <PendingLink href="/confidentialitate/">
               Detalii despre confidențialitate
             </PendingLink>

@@ -171,15 +171,32 @@ describe("reportSeries", () => {
 });
 
 describe("forgetOldIpHashes", () => {
-  it("erases fingerprints older than 24 hours and keeps the reports", async () => {
-    await insertAt(25 * 60, "republicii", "apa", HASH_A);
-    await insertAt(23 * 60, "republicii", "apa", HASH_B);
+  // Cu cheia, amprenta unui IPv4 se poate inversa încercând toate adresele; o păstrăm doar cât o cere
+  // limita de 2 ore (#48).
+  it("erases fingerprints older than 2 hours and keeps the reports", async () => {
+    await insertAt(125, "republicii", "apa", HASH_A);
+    await insertAt(115, "republicii", "apa", HASH_B);
 
     await expect(store.forgetOldIpHashes()).resolves.toBe(1);
 
     const rows = await sql`select ip_hash from public.reports order by created_at`;
 
     expect(rows.map((row) => row.ip_hash)).toEqual([null, HASH_B]);
+  });
+
+  it("keeps the 2 hour limit working right after the cleanup", async () => {
+    await insertAt(115, "republicii", "apa", HASH_A);
+    await store.forgetOldIpHashes();
+
+    await expect(store.submitReport({ city: "bacau", zone: "republicii", service: "apa", ipHash: HASH_A })).resolves.toMatchObject({ accepted: false });
+  });
+
+  it("runs every 15 minutes inside Postgres, so it needs no second Vercel cron", async () => {
+    const jobs = await sql`select schedule, command, active from cron.job where jobname = 'sterge-amprente-ip'`;
+
+    expect(jobs).toHaveLength(1);
+    expect(jobs[0]).toMatchObject({ schedule: "*/15 * * * *", active: true });
+    expect(jobs[0].command).toContain("public.forget_old_ip_hashes()");
   });
 });
 

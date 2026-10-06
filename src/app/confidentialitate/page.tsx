@@ -22,9 +22,12 @@ export default function PrivacyPage() {
         <section className="stack">
           <h2>Adresa IP</h2>
           <p>
-            Nu salvăm adresa IP. Din ea calculăm o amprentă criptată (HMAC-SHA256, cu o cheie secretă), care ne lasă să verificăm două lucruri: că același dispozitiv nu raportează același serviciu mai des de o dată la 2 ore și că „Probabil avarie” vine de la persoane diferite. Din amprentă nu se poate afla adresa.
+            Nu salvăm adresa IP. Din ea calculăm o amprentă (HMAC-SHA256, cu o cheie secretă), care ne lasă să verificăm două lucruri: că același dispozitiv nu raportează același serviciu mai des de o dată la 2 ore și că „Probabil avarie” vine de la persoane diferite.
           </p>
-          <p>Amprenta e ștearsă de o curățenie automată zilnică, pentru rapoartele mai vechi de 24 de ore, deci în cel mult 48 de ore de la raport. Rapoartele rămân fără ea, pentru istoric și statistici pe cartiere.</p>
+          <p>
+            Amprenta nu e anonimă pentru cine are cheia: încercând toate adresele IP posibile, cineva cu cheia (noi sau cine ar obține-o) ar putea afla adresa. De aceea o păstrăm doar cât e nevoie. O curățenie automată rulează la fiecare 15 minute și
+            șterge amprentele mai vechi de 2 ore, deci o amprentă există cel mult 2 ore și un sfert. Rapoartele rămân fără ea, pentru istoric și statistici pe cartiere.
+          </p>
         </section>
         <section className="stack">
           <h2>Ce rămâne pe dispozitivul tău</h2>
