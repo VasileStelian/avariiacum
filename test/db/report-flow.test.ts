@@ -131,6 +131,45 @@ describe("reporting a water outage", () => {
     await expect.poll(() => page.getByLabel("Cartierul").inputValue()).toBe("republicii");
   }, 20_000);
 
+  it("keeps every status label readable: text at least 4.5:1 against its background", async () => {
+    const page = await neighbour("198.51.100.9");
+
+    await page.goto(`${BASE}/bacau/centru/`);
+
+    const ratios = await page.evaluate(() => {
+      const channel = (value: number): number => {
+        const c = value / 255;
+
+        return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+      };
+
+      const luminance = (rgb: string): number => {
+        const [r = 0, g = 0, b = 0] = (rgb.match(/\d+/g) ?? []).map(Number);
+
+        return 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b);
+      };
+
+      // Doar etichetele cu text; bifa singură din tabel are pragul de 3:1 al iconițelor.
+      return [...document.querySelectorAll(".st")].flatMap((badge) => {
+        if ((badge.textContent ?? "").trim() === "") {
+          return [];
+        }
+
+        const fg = luminance(getComputedStyle(badge).color);
+        const bgColor = getComputedStyle(badge).backgroundColor;
+        const bg = bgColor === "rgba(0, 0, 0, 0)" ? 1 : luminance(bgColor);
+
+        return [(Math.max(fg, bg) + 0.05) / (Math.min(fg, bg) + 0.05)];
+      });
+    });
+
+    expect(ratios.length).toBeGreaterThan(0);
+
+    for (const ratio of ratios) {
+      expect(ratio).toBeGreaterThanOrEqual(4.5);
+    }
+  });
+
   it("did not log any error in the browser", () => {
     expect([...new Set(errors)]).toEqual([]);
   });

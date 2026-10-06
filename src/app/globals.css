@@ -269,9 +269,14 @@ p {
   background: var(--warn-bg);
 }
 
+/* Textul „Fără raportări” cere 4,5:1 (verde închis); bifa singură din tabel poate fi discretă (3:1). */
 .st-ok {
-  color: var(--ok-quiet);
+  color: var(--ok);
   padding-inline: 0;
+}
+
+.matrix .st-ok {
+  color: var(--ok-quiet);
 }
 
 /* Tabelul cartiere × servicii */
