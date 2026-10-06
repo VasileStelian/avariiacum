@@ -88,7 +88,7 @@ async function ServicePage({ city, service }: { city: City; service: Service }) 
               <h2 id="grafic">Raportări în ultimele 24 de ore</h2>
               <span className="small muted">la 15 minute</span>
             </div>
-            <Bars series={series} />
+            <Bars series={series.map((point) => ({ start: point.start.toISOString(), reports: point.reports }))} />
             <Axis />
             <p className="small muted">{view.lastReportAt ? `Ultimul raport ${timeAgo(view.lastReportAt, now)}` : "Niciun raport în ultimele 24 de ore"}</p>
           </section>
@@ -192,7 +192,7 @@ async function ZonePage({ city, zone }: { city: City; zone: Zone }) {
                   {row.status === "liniste" ? "Fără raportări" : null}
                 </StatusBadge>
               </div>
-              <Bars series={series[index] ?? []} mini tone={row.status} />
+              <Bars series={(series[index] ?? []).map((point) => ({ start: point.start.toISOString(), reports: point.reports }))} mini tone={row.status} />
               <Axis middle={row.lastReportAt ? `ultimul raport ${timeAgo(row.lastReportAt, now)}` : "niciun raport azi"} />
               {row.status === "liniste" ? null : (
                 <PendingLink className="small" href={`/${city.slug}/${row.service.slug}/`}>

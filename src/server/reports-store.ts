@@ -19,10 +19,15 @@ export type ZoneActivity = {
   lastReportAt: Date;
 };
 
+export type SeriesPoint = {
+  start: Date;
+  reports: number;
+};
+
 export type ReportsStore = {
   submitReport: (report: NewReport) => Promise<SubmitResult>;
   cityActivity: (city: string) => Promise<ZoneActivity[]>;
-  reportSeries: (city: string, service: string, zone: string | null) => Promise<number[]>;
+  reportSeries: (city: string, service: string, zone: string | null) => Promise<SeriesPoint[]>;
   forgetOldIpHashes: () => Promise<number>;
 };
 
@@ -49,7 +54,9 @@ const ActivityRows = z.array(
     })),
 );
 
-const SeriesRows = z.array(z.object({ reports: z.int().nonnegative() }).transform((row) => row.reports)).length(96);
+const SeriesRows = z
+  .array(z.object({ bucket_start: timestamp, reports: z.int().nonnegative() }).transform((row): SeriesPoint => ({ start: row.bucket_start, reports: row.reports })))
+  .length(96);
 
 const ForgottenCount = z.int().nonnegative();
 

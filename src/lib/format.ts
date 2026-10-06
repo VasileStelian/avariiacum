@@ -49,3 +49,14 @@ export function clockRo(date: Date): string {
 export function telHref(phone: string): string {
   return `tel:${phone.replace(/[^\d+]/g, "")}`;
 }
+
+const REPORTS: Noun = { one: "raport", many: "rapoarte" };
+
+const QUARTER_MS = 15 * 60_000;
+
+// „21:15–21:30: 7 rapoarte”, pentru o bară de 15 minute din grafic.
+export function intervalLabel(start: Date, reports: number): string {
+  const range = `${clockRo(start)}–${clockRo(new Date(start.getTime() + QUARTER_MS))}`;
+
+  return `${range}: ${reports === 0 ? "niciun raport" : countRo(reports, REPORTS)}`;
+}

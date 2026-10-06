@@ -158,3 +158,70 @@ describe("pressing", () => {
     await ctx.close();
   }, 20_000);
 });
+
+describe("chart", () => {
+  it("shows the interval and the count when hovering a bar on desktop, and hides it after", async () => {
+    await sql`
+      insert into public.reports (city, zone, service, ip_hash)
+      select 'bacau', 'izvoare', 'apa', md5(random()::text) || md5(random()::text) from generate_series(1, 4)
+    `;
+
+    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    const page = await ctx.newPage();
+
+    await page.goto(`${BASE}/bacau/apa/`);
+
+    const bars = page.locator(".bars").first();
+    const box = await bars.boundingBox();
+
+    await page.mouse.move((box?.x ?? 0) + (box?.width ?? 0) - 2, (box?.y ?? 0) + (box?.height ?? 0) / 2);
+
+    const tip = page.locator(".chart-tip").first();
+
+    await expect.poll(() => tip.isVisible()).toBe(true);
+    expect(await tip.textContent()).toMatch(/^\d\d:\d\d–\d\d:\d\d: 4 rapoarte$/);
+    expect(await page.locator(".bars i.on").count()).toBe(1);
+
+    await page.mouse.move(5, 5);
+    await expect.poll(() => tip.isVisible()).toBe(false);
+
+    await ctx.close();
+  }, 20_000);
+
+  it("shows the interval when a bar is tapped on a phone", async () => {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true });
+    const page = await ctx.newPage();
+
+    await page.goto(`${BASE}/bacau/izvoare/`);
+
+    const bars = page.locator(".bars").first();
+    const box = await bars.boundingBox();
+
+    await page.touchscreen.tap((box?.x ?? 0) + (box?.width ?? 0) - 1, (box?.y ?? 0) + (box?.height ?? 0) / 2);
+
+    await expect.poll(() => page.locator(".chart-tip").first().textContent()).toMatch(/: 4 rapoarte$/);
+
+    await ctx.close();
+  }, 20_000);
+
+  it("can be explored with the keyboard and announces each interval", async () => {
+    const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+    const page = await ctx.newPage();
+
+    await page.goto(`${BASE}/bacau/apa/`);
+    await page.locator(".bars").first().focus();
+    await page.keyboard.press("End");
+
+    const live = page.locator('.chart-area [aria-live="polite"]').first();
+
+    await expect.poll(() => live.textContent()).toMatch(/: 4 rapoarte$/);
+
+    await page.keyboard.press("ArrowLeft");
+    await expect.poll(() => live.textContent()).toMatch(/: niciun raport$/);
+
+    await page.keyboard.press("Escape");
+    expect(await page.locator(".chart-tip").first().isVisible()).toBe(false);
+
+    await ctx.close();
+  }, 20_000);
+});

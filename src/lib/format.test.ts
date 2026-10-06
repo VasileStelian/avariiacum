@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { clockRo, countRo, joinRo, telHref, timeAgo } from "./format";
+import { clockRo, countRo, intervalLabel, joinRo, telHref, timeAgo } from "./format";
 
 describe("joinRo", () => {
   it("joins Romanian lists with commas and a final „și”", () => {
@@ -71,5 +71,14 @@ describe("telHref", () => {
     expect(telHref("0372 401 301")).toBe("tel:0372401301");
     expect(telHref("0234.585.050")).toBe("tel:0234585050");
     expect(telHref("0232 969")).toBe("tel:0232969");
+  });
+});
+
+describe("intervalLabel", () => {
+  it("names the 15-minute interval in Romanian time and counts the reports", () => {
+    expect(intervalLabel(new Date("2026-10-05T18:15:00Z"), 7)).toBe("21:15–21:30: 7 rapoarte");
+    expect(intervalLabel(new Date("2026-10-05T18:45:00Z"), 1)).toBe("21:45–22:00: 1 raport");
+    expect(intervalLabel(new Date("2026-10-05T18:45:00Z"), 0)).toBe("21:45–22:00: niciun raport");
+    expect(intervalLabel(new Date("2026-10-05T20:45:00Z"), 21)).toBe("23:45–00:00: 21 de rapoarte");
   });
 });
