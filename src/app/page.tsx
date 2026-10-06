@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { PendingLink } from "@/components/pending-link";
 
 import { CITIES } from "@/config/locations";
 
@@ -12,10 +12,10 @@ export default function Home() {
       <ul className="rows panel">
         {CITIES.map((city) => (
           <li key={city.slug}>
-            <Link prefetch={false} className="row-link" href={`/${city.slug}/`}>
+            <PendingLink className="row-link" href={`/${city.slug}/`}>
               <span className="row-name">{city.name}</span>
               <span className="muted">{`${city.zones.length} cartiere`}</span>
-            </Link>
+            </PendingLink>
           </li>
         ))}
       </ul>

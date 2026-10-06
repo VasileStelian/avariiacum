@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 import { submitReport } from "@/app/actions";
 import { clockRo, countRo, telHref } from "@/lib/format";
@@ -34,6 +34,34 @@ export type ReportDialogProps = {
 };
 
 const clock = (iso: string): string => clockRo(new Date(iso));
+
+const DIALOG_ID = "raporteaza";
+
+const SLOW_AFTER_MS = 4000;
+
+const noSubscription = (): (() => void) => () => undefined;
+
+// false în HTML-ul de pe server și până se încarcă JavaScript-ul; true după aceea.
+function useHydrated(): boolean {
+  return useSyncExternalStore(
+    noSubscription,
+    () => true,
+    () => false,
+  );
+}
+
+// Comenzi native pentru dialog (commandfor/command): butonul deschide și închide panoul chiar
+// înainte să se încarce JavaScript-ul, pe o rețea lentă. Tipurile React nu le cunosc încă.
+type NativeCommand = {
+  commandfor: string;
+  command: "show-modal" | "close";
+};
+
+function nativeCommand(command: NativeCommand["command"]): NativeCommand {
+  return { commandfor: DIALOG_ID, command };
+}
+
+const supportsCommands = (): boolean => "command" in HTMLButtonElement.prototype;
 
 function rememberedZoneKey(city: string): string {
   return `avariiacum:${city}:cartier`;
@@ -94,7 +122,7 @@ function Thanks({ outcome, props, onClose }: { outcome: Extract<ReportOutcome, {
     <div className="done" role="status">
       <div className="sheet-head">
         <h2 id="raport-titlu">Raport trimis. Mulțumim.</h2>
-        <button type="button" className="x" aria-label="Închide" onClick={onClose}>
+        <button type="button" className="x" aria-label="Închide" {...nativeCommand("close")} onClick={onClose}>
           ×
         </button>
       </div>
@@ -140,6 +168,20 @@ function Thanks({ outcome, props, onClose }: { outcome: Extract<ReportOutcome, {
 function ReportForm({ props, onClose }: { props: ReportDialogProps; onClose: () => void }) {
   const [outcome, action, pending] = useActionState(submitReport, null);
   const [zone, setZone] = useState(props.zone ?? "");
+  const [slow, setSlow] = useState(false);
+  const hydrated = useHydrated();
+
+  useEffect(() => {
+    if (!pending) {
+      setSlow(false);
+
+      return;
+    }
+
+    const timer = setTimeout(() => setSlow(true), SLOW_AFTER_MS);
+
+    return () => clearTimeout(timer);
+  }, [pending]);
 
   useEffect(() => {
     if (props.zone) {
@@ -169,7 +211,7 @@ function ReportForm({ props, onClose }: { props: ReportDialogProps; onClose: () 
     <form action={action} className="report-form">
       <div className="sheet-head">
         <h2 id="raport-titlu">Ce nu funcționează?</h2>
-        <button type="button" className="x" aria-label="Închide" onClick={onClose}>
+        <button type="button" className="x" aria-label="Închide" {...nativeCommand("close")} onClick={onClose}>
           ×
         </button>
       </div>
@@ -217,9 +259,15 @@ function ReportForm({ props, onClose }: { props: ReportDialogProps; onClose: () 
         </p>
       ) : null}
       <p className="fine">Raportul e anonim: nu cerem nume, telefon sau locație. Poți raporta același serviciu o dată la 2 ore.</p>
-      <button type="submit" className="btn btn-primary btn-wide" disabled={pending}>
-        {pending ? "Se trimite…" : "Trimite raportul"}
+      <button type="submit" className="btn btn-primary btn-wide" disabled={pending || !hydrated} aria-busy={pending}>
+        {pending ? <span className="spinner" aria-hidden="true" /> : null}
+        {!hydrated ? "Se încarcă…" : pending ? "Se trimite…" : "Trimite raportul"}
       </button>
+      {slow ? (
+        <p className="fine" role="status">
+          Rețeaua e lentă. Raportul tău e pe drum; nu închide pagina.
+        </p>
+      ) : null}
     </form>
   );
 }
@@ -234,12 +282,21 @@ export function ReportDialog(props: ReportDialogProps) {
   return (
     <>
       <div className="report-cta">
-        <button type="button" className="btn btn-primary btn-wide" onClick={() => dialog.current?.showModal()}>
+        <button
+          type="button"
+          className="btn btn-primary btn-wide"
+          {...nativeCommand("show-modal")}
+          onClick={() => {
+            if (!supportsCommands()) {
+              dialog.current?.showModal();
+            }
+          }}
+        >
           <span aria-hidden="true">+</span>
           {props.label}
         </button>
       </div>
-      <dialog ref={dialog} className="sheet" aria-labelledby="raport-titlu" onClose={() => setRound((value) => value + 1)}>
+      <dialog ref={dialog} id={DIALOG_ID} className="sheet" aria-labelledby="raport-titlu" onClose={() => setRound((value) => value + 1)}>
         <div className="grab" aria-hidden="true" />
         <ReportForm key={round} props={props} onClose={close} />
       </dialog>

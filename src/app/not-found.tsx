@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { PendingLink } from "@/components/pending-link";
 
 import { CITIES } from "@/config/locations";
 
@@ -10,13 +10,13 @@ export default function NotFound() {
         <p className="lead">Poate adresa are o greșeală, sau cartierul nu e încă în listă.</p>
       </div>
       <nav className="inline-links" aria-label="Unde poți merge">
-        <Link prefetch={false} href="/">
+        <PendingLink href="/">
           Pagina principală
-        </Link>
+        </PendingLink>
         {CITIES.map((city) => (
-          <Link key={city.slug} prefetch={false} href={`/${city.slug}/`}>
+          <PendingLink key={city.slug} href={`/${city.slug}/`}>
             {`Avarii în ${city.name}`}
-          </Link>
+          </PendingLink>
         ))}
         <a href="mailto:contact@fanvora.ro?subject=Avarii%20Acum%3A%20cartier%20lips%C4%83">Lipsește cartierul tău? Scrie-ne</a>
       </nav>

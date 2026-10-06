@@ -97,3 +97,11 @@ Sursa articolului despre vibe coding de pe fanvora.ro. O intrare per etapă: dat
   - Pagina 404 pentru un oraș necunoscut e un schelet în HTML (textul vine cu JavaScript); acceptat, documentat.
   - GitHub Actions degradat: joburi „neacceptate de runner”, rulate din nou.
 - Timp: 23:10 → 23:40.
+
+## 2026-10-06 · Feedback la clic pe internet lent
+
+- Cerut (Vasile): „pe internet lent nu sunt sigur dacă aplicația mi-a preluat inputul”.
+- Făcut (PR pentru #29): apăsare vizibilă din CSS pe butoane, plăcuțe și rânduri (merge înainte de JavaScript); linkul apăsat pulsează cât se încarcă pagina (useLinkStatus, fără deplasare de layout); panoul de raportare se deschide și fără JavaScript (comenzile native ale butoanelor, commandfor); „Trimite” arată „Se încarcă…” până e gata pagina, apoi un indicator la trimitere și, după 4 s, „Rețeaua e lentă. Raportul tău e pe drum”. Animațiile se opresc pentru cine are mișcarea redusă din sistem.
+- Teste: rețeaua încetinită artificial în Chromium (pagina nouă întârziată 2 s, trimiterea 5 s) și JavaScript oprit.
+- Ce s-a stricat: testul de apăsare pica constant fiindcă apăsarea pe „Raportează” devenea clic și deschidea panoul, care bloca restul paginii. Testul ridică acum degetul în altă parte.
+- Timp: 08:51.
