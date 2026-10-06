@@ -105,3 +105,12 @@ Sursa articolului despre vibe coding de pe fanvora.ro. O intrare per etapă: dat
 - Teste: rețeaua încetinită artificial în Chromium (pagina nouă întârziată 2 s, trimiterea 5 s) și JavaScript oprit.
 - Ce s-a stricat: testul de apăsare pica constant fiindcă apăsarea pe „Raportează” devenea clic și deschidea panoul, care bloca restul paginii. Testul ridică acum degetul în altă parte.
 - Timp: 08:51.
+
+## 2026-10-06 · Raportarea de pe pagina principală și graficul interactiv
+
+- Cerut (Vasile): buton de raportare și pe pagina principală, cu alegerea orașului înainte de formular; hover pe bare pe desktop (tap pe telefon) ca să se vadă intervalul; întrebare: au barele înălțime variabilă?
+- Făcut (PR #32): pe pagina principală, panoul întreabă „În ce oraș?”, apoi arată formularul obișnuit, cu „Schimbă orașul”. Paginile unui oraș sar peste întrebare.
+- Făcut (PR #34): hover, tap sau săgeți pe o bară arată „21:15–21:30: 7 rapoarte”. Răspuns la întrebare: da, înălțimea e numărul de rapoarte din sfertul de oră, față de vârful graficului; roșu de la 3 rapoarte.
+- Date demo locale: 351 de rapoarte pe 24 de ore (avarii în desfășurare, avarii trecute, plângeri răzlețe), ca să se vadă graficul plin. Așa s-a văzut un defect: minigraficele din pagina cartierului se umpleau complet la o avarie mare (scara fixă de 4). Acum scara are minim 4, dar urcă după vârf.
+- Ce s-a stricat: un test căuta „Curent în Copou” și găsea și „...din nou curent în Copou” din textul mic; testele de bază de date șterg datele demo, care trebuie reîncărcate după rulare.
+- Timp: 09:35.
