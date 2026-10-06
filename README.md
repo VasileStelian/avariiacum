@@ -37,6 +37,10 @@ npm run test:db   # după npm run build: baza de date, paginile și fluxul de ra
 - `design/`: sistemul de design și machetele.
 - `docs/PLAN.md`: deciziile; `docs/JURNAL.md`: cum a fost construită aplicația, pas cu pas.
 
+## Contribuții
+
+Contribuțiile sunt binevenite, cu [CLA](CLA.md) semnat (un comentariu la primul pull request). Pașii și regulile sunt în [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Ce nu este
 
 Avarii Acum nu este furnizorul de apă, curent, gaz sau căldură și nu primește date de la furnizori. Pentru avarii, sunați la furnizor.
