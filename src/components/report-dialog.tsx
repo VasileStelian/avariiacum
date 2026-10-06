@@ -4,6 +4,7 @@ import { useActionState, useEffect, useRef, useState, useSyncExternalStore } fro
 
 import { submitReport } from "@/app/actions";
 import { clockRo, countRo, telHref } from "@/lib/format";
+import { shouldDismiss } from "@/lib/sheet-drag";
 import { shareLinks, shareText } from "@/lib/site";
 import type { ReportOutcome } from "@/server/report";
 
@@ -69,6 +70,22 @@ function nativeCommand(command: NativeCommand["command"]): NativeCommand {
 }
 
 const supportsCommands = (): boolean => "command" in HTMLButtonElement.prototype;
+
+// Pe ecrane sub 1024px panoul e foaie de jos (se poate trage); peste, e dialog centrat.
+const isBottomSheet = (): boolean => !window.matchMedia("(min-width: 1024px)").matches;
+
+const reducedMotion = (): boolean => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Dacă degetul a stat pe loc înainte de eliberare, nu mai contează viteza de dinainte.
+const STILL_MS = 100;
+
+type Drag = {
+  pointerId: number;
+  startY: number;
+  lastY: number;
+  lastTime: number;
+  velocity: number;
+};
 
 function rememberedZoneKey(city: string): string {
   return `avariiacum:${city}:cartier`;
@@ -319,6 +336,74 @@ export function ReportDialog({ label, cities }: ReportDialogProps) {
   const current = chosen === null ? undefined : cities[chosen];
 
   const close = (): void => dialog.current?.close();
+  const drag = useRef<Drag | null>(null);
+
+  // Tras de liniuță sau de titlu: panoul urmează degetul; peste prag se închide, altfel revine.
+  function startDrag(event: React.PointerEvent<HTMLDialogElement>): void {
+    const target = event.target;
+
+    if (!isBottomSheet() || !(target instanceof Element) || !target.closest(".grab, .sheet-head") || target.closest("button")) {
+      return;
+    }
+
+    drag.current = { pointerId: event.pointerId, startY: event.clientY, lastY: event.clientY, lastTime: event.timeStamp, velocity: 0 };
+    event.currentTarget.setPointerCapture(event.pointerId);
+    event.currentTarget.style.transition = "none";
+  }
+
+  function moveDrag(event: React.PointerEvent<HTMLDialogElement>): void {
+    const current = drag.current;
+
+    if (!current || current.pointerId !== event.pointerId) {
+      return;
+    }
+
+    const elapsed = event.timeStamp - current.lastTime;
+
+    drag.current = { ...current, lastY: event.clientY, lastTime: event.timeStamp, velocity: elapsed > 0 ? (event.clientY - current.lastY) / elapsed : current.velocity };
+    event.currentTarget.style.transform = `translateY(${Math.max(0, event.clientY - current.startY)}px)`;
+  }
+
+  function endDrag(event: React.PointerEvent<HTMLDialogElement>): void {
+    const current = drag.current;
+
+    if (!current || current.pointerId !== event.pointerId) {
+      return;
+    }
+
+    drag.current = null;
+
+    const sheet = event.currentTarget;
+    const distance = event.clientY - current.startY;
+    const velocity = event.timeStamp - current.lastTime > STILL_MS ? 0 : current.velocity;
+
+    if (!shouldDismiss(distance, sheet.getBoundingClientRect().height, velocity)) {
+      sheet.style.transition = reducedMotion() ? "none" : "transform 200ms ease-out";
+      sheet.style.transform = "";
+
+      return;
+    }
+
+    if (reducedMotion()) {
+      sheet.close();
+
+      return;
+    }
+
+    sheet.style.transition = "transform 180ms ease-in";
+    sheet.style.transform = "translateY(100%)";
+    setTimeout(() => sheet.close(), 180);
+  }
+
+  // Tap pe zona întunecată din spate (în afara panoului) îl închide.
+  function closeOnBackdrop(event: React.MouseEvent<HTMLDialogElement>): void {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const outside = event.clientY < rect.top || event.clientY > rect.bottom || event.clientX < rect.left || event.clientX > rect.right;
+
+    if (event.target === event.currentTarget && outside) {
+      event.currentTarget.close();
+    }
+  }
 
   return (
     <>
@@ -342,7 +427,14 @@ export function ReportDialog({ label, cities }: ReportDialogProps) {
         id={DIALOG_ID}
         className="sheet"
         aria-labelledby="raport-titlu"
-        onClose={() => {
+        onPointerDown={startDrag}
+        onPointerMove={moveDrag}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onClick={closeOnBackdrop}
+        onClose={(event) => {
+          event.currentTarget.style.transition = "";
+          event.currentTarget.style.transform = "";
           setRound((value) => value + 1);
           setChosen(single ? 0 : null);
         }}
