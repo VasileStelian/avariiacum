@@ -142,8 +142,22 @@ describe("reportSeries", () => {
     const series = await store.reportSeries("bacau", "apa", null);
 
     expect(series).toHaveLength(96);
-    expect(series.at(-1)).toBe(2);
-    expect(series.reduce((sum, value) => sum + value, 0)).toBe(2);
+    expect(series.at(-1)?.reports).toBe(2);
+    expect(series.reduce((sum, point) => sum + point.reports, 0)).toBe(2);
+  });
+
+  it("gives the start of each interval, 15 minutes apart, the last one being the current quarter hour", async () => {
+    const series = await store.reportSeries("bacau", "apa", null);
+    const starts = series.map((point) => point.start.getTime());
+
+    for (let index = 1; index < starts.length; index += 1) {
+      expect((starts[index] ?? 0) - (starts[index - 1] ?? 0)).toBe(15 * 60_000);
+    }
+
+    const last = starts.at(-1) ?? 0;
+
+    expect(Date.now() - last).toBeGreaterThanOrEqual(0);
+    expect(Date.now() - last).toBeLessThan(15 * 60_000);
   });
 
   it("filters by zone when asked", async () => {
@@ -152,7 +166,7 @@ describe("reportSeries", () => {
 
     const zoneSeries = await store.reportSeries("bacau", "apa", "republicii");
 
-    expect(zoneSeries.reduce((sum, value) => sum + value, 0)).toBe(1);
+    expect(zoneSeries.reduce((sum, point) => sum + point.reports, 0)).toBe(1);
   });
 });
 
