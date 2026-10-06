@@ -140,6 +140,60 @@ describe("Iași", () => {
   });
 });
 
+describe("Galați", () => {
+  it("lists the 28 neighbourhoods found in at least two sources (see docs/PLAN.md)", () => {
+    expect(findCity("galati")?.zones.map((zone) => zone.name)).toEqual([
+      "Aurel Vlaicu",
+      "Bariera Traian",
+      "Barboși",
+      "Bădălan",
+      "Centru",
+      "Dimitrie Cantemir",
+      "Filești",
+      "Gară",
+      "I.C. Frimu",
+      "Mazepa",
+      "Micro 13",
+      "Micro 14",
+      "Micro 16 (Țiglina 3)",
+      "Micro 17",
+      "Micro 18",
+      "Micro 19",
+      "Micro 20",
+      "Micro 21",
+      "Micro 38",
+      "Micro 39",
+      "Micro 40",
+      "Piața Centrală",
+      "Port",
+      "Siderurgiștilor Vest",
+      "Traian Nord",
+      "Țiglina",
+      "Valea Orașului",
+      "Zona Veche (Lozoveni)",
+    ]);
+  });
+
+  it("has Apa Canal for water and other operators than Delgaz for power and gas", () => {
+    const galati = findCity("galati");
+
+    expect(galati?.name).toBe("Galați");
+    expect(galati?.providers.apa.name).toBe("Apa Canal");
+    expect(galati?.providers.apa.phone).toBe("0236 463 294");
+    expect(galati?.providers.curent.name).toBe("Distribuție Energie Electrică");
+    expect(galati?.providers.curent.phone).toBe("0800 500 205");
+    expect(galati?.providers.gaz.name).toBe("Distrigaz Sud Rețele");
+    expect(galati?.providers.gaz.phone).toBe("0800 877 778");
+  });
+
+  it("says Calorgal heats only the areas tied to its boiler plants", () => {
+    const galati = findCity("galati");
+
+    expect(galati?.providers.caldura.name).toBe("Calorgal");
+    expect(galati?.providers.caldura.phoneNote).toContain("doar zonele legate la centralele Calorgal");
+  });
+});
+
 describe("findCity", () => {
   it("finds a city only by its exact slug", () => {
     expect(findCity("bacau")?.name).toBe("Bacău");

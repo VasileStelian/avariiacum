@@ -14,5 +14,5 @@ export function serviceHeading(city: City, service: Service): string {
 export function serviceDescription(city: City, service: Service): string {
   const provider = city.providers[service.slug].name;
 
-  return `Avarii și întreruperi ${service.outagePhrase} în ${city.name}, raportate de locuitori pe cartiere în ultima oră. Nu suntem ${provider}; numărul lor de avarii e pe pagină.`;
+  return `Avarii și întreruperi ${service.outagePhrase} în ${city.name} acum, raportate de vecini pe cartiere. Nu suntem ${provider}; numărul lor de avarii e pe pagină.`;
 }

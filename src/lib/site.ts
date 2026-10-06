@@ -1,6 +1,6 @@
 import { CITIES, SERVICES } from "@/config/locations";
 
-import { countRo } from "./format";
+import { countRo, joinRo } from "./format";
 import { OUTAGE_THRESHOLD } from "./status";
 
 const FALLBACK_URL = "https://avariiacum.vercel.app";
@@ -8,6 +8,10 @@ const FALLBACK_URL = "https://avariiacum.vercel.app";
 // Adresa publică; SITE_URL se setează în Vercel când se leagă domeniul avariiacum.ro.
 export function siteUrl(configured: string | undefined): string {
   return (configured || FALLBACK_URL).replace(/\/+$/, "");
+}
+
+export function siteDescription(): string {
+  return `Raportări anonime de la locuitori despre avariile de apă, curent, gaz și căldură, pe cartiere. ${joinRo(CITIES.map((city) => city.name))}.`;
 }
 
 export function sitemapPaths(): string[] {

@@ -137,7 +137,7 @@ describe("/bacau/apa/", () => {
     const { html } = await page("/bacau/apa/");
 
     expect(html).toContain("<title>Apă Bacău acum: avarii și întreruperi CRAB</title>");
-    expect(html).toContain('content="Avarii și întreruperi de apă în Bacău, raportate de locuitori pe cartiere în ultima oră.');
+    expect(html).toContain('content="Avarii și întreruperi de apă în Bacău acum, raportate de vecini pe cartiere.');
   });
 
   it("calls a power cut „Pană de curent”, the way people search for it", async () => {
@@ -158,6 +158,38 @@ describe("/bacau/republicii/", () => {
     for (const name of ["Apă", "Curent", "Gaz", "Apă caldă și căldură"]) {
       expect(html).toContain(name);
     }
+  });
+});
+
+describe("Galați", () => {
+  it("is in the header and on the home page, with its 28 neighbourhoods", async () => {
+    const { html } = await page("/");
+
+    expect(html).toContain('href="/galati/"');
+    expect(html).toContain("28 cartiere");
+  });
+
+  it("names its own operators, not Delgaz", async () => {
+    const { status, html } = await page("/galati/curent/");
+
+    expect(status).toBe(200);
+    expect(html).toContain("<title>Pană de curent Galați acum: avarii și întreruperi Distribuție Energie Electrică</title>");
+    expect(html).toContain('href="tel:0800500205"');
+    expect(html).not.toContain("Delgaz");
+  });
+
+  it("warns that Calorgal heats only part of the city", async () => {
+    const { html } = await page("/galati/caldura/");
+
+    expect(html).toContain("Nu suntem Calorgal");
+    expect(html).toContain("doar zonele legate la centralele Calorgal, nu tot orașul");
+  });
+
+  it("serves a neighbourhood whose name has parentheses", async () => {
+    const { status, html } = await page("/galati/micro-16-tiglina-3/");
+
+    expect(status).toBe(200);
+    expect(html).toContain("Micro 16 (Țiglina 3)");
   });
 });
 
@@ -238,7 +270,8 @@ describe("search engines", () => {
 
     expect(response.status).toBe(200);
     expect(xml).toContain("<loc>https://avariiacum.vercel.app/bacau/republicii/</loc>");
-    expect(xml.match(/<loc>/g)).toHaveLength(3 + (1 + 4 + 12) + (1 + 4 + 22));
+    expect(xml).toContain("<loc>https://avariiacum.vercel.app/galati/micro-16-tiglina-3/</loc>");
+    expect(xml.match(/<loc>/g)).toHaveLength(3 + (1 + 4 + 12) + (1 + 4 + 22) + (1 + 4 + 28));
   });
 
   it("serves robots.txt that keeps crawlers out of the API and points to the sitemap", async () => {

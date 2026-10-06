@@ -49,7 +49,7 @@ describe("serviceHeading", () => {
 describe("serviceDescription", () => {
   it("names the interruption, the city and that we are not the provider", () => {
     expect(serviceDescription(city("iasi"), service("apa"))).toBe(
-      "Avarii și întreruperi de apă în Iași, raportate de locuitori pe cartiere în ultima oră. Nu suntem ApaVital; numărul lor de avarii e pe pagină.",
+      "Avarii și întreruperi de apă în Iași acum, raportate de vecini pe cartiere. Nu suntem ApaVital; numărul lor de avarii e pe pagină.",
     );
   });
 

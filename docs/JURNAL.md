@@ -122,3 +122,11 @@ Sursa articolului despre vibe coding de pe fanvora.ro. O intrare per etapă: dat
 - Tot azi: issue #44 cu orașele mari din Moldova, cu populația de la recensământul din 2021.
 - Ce s-a stricat: nimic în cod. Mailurile de eșec din GitHub erau de la testul CLA cu contul svasile26 (Vercel nu face preview pentru commit-uri din afara echipei) și de la prima rulare a acțiunii CLA, care creează fișierul de semnături și raportează mereu eroare.
 - Timp: 19:00 → 19:20.
+
+## 2026-10-06 · Galați
+
+- Cerut (Vasile): „hai să facem orașul Galați, că parcă și ăia aveau probleme cu apa” (da: în august 2026, peste 100.000 de oameni au rămas 24 de ore fără apă din cauza Dunării scăzute).
+- Făcut (PR pentru #46): 28 de cartiere și patru furnizori, toți diferiți de Bacău și Iași: Apa Canal, Distribuție Energie Electrică (nu Delgaz), Distrigaz Sud Rețele, Calorgal. Doi agenți au căutat în paralel, unul furnizorii, altul cartierele; două numere le-am reverificat direct la sursă. Descrierea site-ului se generează acum din configurare (scria „Bacău și Iași” de mână).
+- Decizii: părțile numerotate de cartier comasate cum le anunță Apa Canal (Țiglina 1-2, Mazepa 1-2), dar Micro 16 (Țiglina 3) separat, fiindcă e pe altă rețea de apă. La căldură, pagina spune că Calorgal încălzește doar zonele legate la centralele lui; CET-ul s-a închis în 2017.
+- Ce s-a stricat: testul de lungime a descrierii (≤160 de caractere) a prins „Distribuție Energie Electrică”, prea lung; formula s-a scurtat pentru toate orașele. Testul sitemap-ului avea numărul de pagini scris de mână (47 → 80).
+- Timp: 19:40 → 21:15.
