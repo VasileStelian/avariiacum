@@ -111,11 +111,11 @@ create index on reports (city, zone, service, created_at desc);
 - **Graficul**: rapoarte grupate pe intervale de 15 minute, ultimele 24h.
 - Oraș, cartier și serviciu se validează contra configurației, nu doar contra constrângerii din DB.
 
-## Cron (Vercel, zilnic)
+## Cron
 
-`/api/cron/curatenie`, protejat cu `CRON_SECRET` (Vercel trimite `Authorization: Bearer <CRON_SECRET>`):
-1. `update reports set ip_hash = null where created_at < now() - interval '24 hours'`
-2. Asta e și interogarea care ține Supabase activ.
+**pg_cron în Supabase, la 15 minute** (`sterge-amprente-ip`): `forget_old_ip_hashes()` face null amprentele mai vechi de **2 ore**, cât cere limita. Cu cheia HMAC, o amprentă IPv4 se poate inversa încercând toate adresele, deci trebuie să trăiască cât mai puțin (#48, semnalat pe Reddit; înainte: până la 48 de ore).
+
+**Vercel, zilnic** (Hobby permite un singur cron pe zi): `/api/cron/curatenie`, protejat cu `CRON_SECRET` (Vercel trimite `Authorization: Bearer <CRON_SECRET>`). Ține Supabase activ și rulează aceeași ștergere, ca rezervă.
 
 Rapoartele rămân pentru istoric (subiecte de presă).
 

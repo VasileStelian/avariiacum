@@ -6,7 +6,7 @@ Downdetector pentru apă, curent, gaz, apă caldă și căldură, pe cartiere. L
 
 ## Cum funcționează
 
-- Fără cont. Se salvează doar orașul, cartierul, serviciul și ora; adresa IP devine o amprentă HMAC, ștearsă în cel mult 48 de ore.
+- Fără cont. Se salvează doar orașul, cartierul, serviciul și ora; adresa IP devine o amprentă HMAC, ștearsă după cel mult 2 ore și un sfert (pg_cron, la 15 minute).
 - Același dispozitiv poate raporta același serviciu în același cartier o dată la 2 ore (verificat atomic în baza de date).
 - Paginile sunt randate pe server și puse în cache 60 de secunde; un raport nou le regenerează imediat. Conținutul e în HTML, fără JavaScript.
 - Pe fiecare pagină de serviciu e numărul de avarii al furnizorului, verificat pe site-ul oficial (sursa și data sunt afișate).

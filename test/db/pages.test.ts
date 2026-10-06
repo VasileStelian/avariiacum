@@ -238,7 +238,9 @@ describe("info pages", () => {
 
     expect(status).toBe(200);
     expect(html).toContain("<h1>Confidențialitate</h1>");
-    expect(html).toContain("24 de ore");
+    expect(html).toContain("2 ore și un sfert");
+    expect(html).toContain("cine are cheia");
+    expect(html).not.toContain("Din amprentă nu se poate afla adresa");
     expect(html).toContain("pe dispozitivul tău");
     expect(html).not.toMatch(/Google Analytics|cookie de urmărire activ/);
   });
