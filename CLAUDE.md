@@ -13,6 +13,8 @@ Downdetector pentru apă, curent, gaz și căldură, pe cartiere. Bacău + Iași
 5. Verificare: teste, Playwright la 390 și 1440, `curl` fără JavaScript arată conținutul.
 6. Deploy pe Vercel (subdomeniul gratuit) → test o săptămână → domeniul.
 
+Stare (6 oct 2026): pașii 1-5 gata, aplicația e publică pe avariiacum.vercel.app. Rămâne: săptămâna de test, domeniul avariiacum.ro (+ `SITE_URL` în Vercel), lansarea.
+
 ## Reguli de proiect
 
 - Commit-uri: `<type>(avarii): <descriere>`.
